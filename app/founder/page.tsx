@@ -12,10 +12,15 @@ export default function FounderPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-3">
-              <Image src="/shinka-logo.png" alt="Shinka" width={120} height={40} className="h-8 w-auto" />
-              <span className="text-foreground font-normal text-lg tracking-tight">shinka</span>
+              <a href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+                <Image src="/shinka-logo.png" alt="Shinka" width={120} height={40} className="h-8 w-auto" />
+                <span className="text-foreground font-normal text-lg tracking-tight">shinka</span>
+              </a>
             </div>
             <div className="hidden md:flex items-center space-x-8">
+              <a href="/" className="text-foreground/80 hover:text-foreground transition-colors font-medium">
+                Home
+              </a>
               <a href="/#services" className="text-foreground/80 hover:text-foreground transition-colors font-medium">
                 Services
               </a>
