@@ -52,6 +52,8 @@ export default function Home() {
               AI Agents, Models,
               <br />
               <span className="text-foreground">Integrations & Automations</span>
+              <br />
+              <span className="text-foreground">For Enterprises</span>
             </h1>
             <p className="text-xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed font-light">
               We make enterprise processes 1000x more efficient with AI agents, models, integrations, and automations. 
