@@ -1,0 +1,32 @@
+{
+  "name": "Shinka - Enterprise AI Solutions",
+  "short_name": "Shinka",
+  "description": "Intelligent AI products for modern enterprises. We build cutting-edge AI agents, workflows, and automations that transform how enterprises operate.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "32x32",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["technology", "business", "productivity"],
+  "lang": "en",
+  "dir": "ltr"
+} 
