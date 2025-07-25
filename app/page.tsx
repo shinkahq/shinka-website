@@ -56,22 +56,8 @@ export default function Home() {
               <span className="text-foreground">For Enterprises</span>
             </h1>
             <p className="text-xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed font-light">
-              We make enterprise processes 1000x more efficient with AI agents, models, integrations, and automations. 
-              From research to implementation, we deliver solutions that scale.
+              We make enterprise processes 1000x more efficient with AI agents, models, integrations, and automations.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-foreground hover:bg-foreground/90 text-background font-medium">
-                Explore Solutions
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-border text-foreground hover:bg-muted font-medium"
-              >
-                View Research
-              </Button>
-            </div>
           </div>
         </div>
       </section>
