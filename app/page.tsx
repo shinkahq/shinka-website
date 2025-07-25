@@ -22,7 +22,9 @@ export default function Home() {
                 About
               </a>
               <Button className="bg-foreground hover:bg-foreground/90 text-background font-medium">
-                Contact
+                <a href="#contact" className="text-background hover:text-background">
+                  Get in Touch
+                </a>
               </Button>
             </div>
           </div>
@@ -179,12 +181,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contact Section */}
+      {/* Get in Touch Section */}
       <section id="contact" className="py-24 bg-background">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-normal text-foreground mb-4 tracking-tight">Contact</h2>
-            <p className="text-muted-foreground font-light">
+            <h2 className="text-4xl lg:text-5xl font-medium text-foreground mb-6 tracking-tight">Get in Touch</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-light">
               Get in touch for project inquiries, partnerships, or general questions.
             </p>
           </div>
@@ -195,14 +197,14 @@ export default function Home() {
             <div className="border-b border-border/30 pb-8">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-lg font-normal text-foreground mb-1">Email</h3>
-                  <p className="text-muted-foreground font-light">For general inquiries and partnerships</p>
+                  <h3 className="text-xl font-medium text-foreground mb-4">Email</h3>
+                  <p className="text-muted-foreground leading-relaxed font-light">For general inquiries and partnerships</p>
                 </div>
                 <a 
-                  href="mailto:shinkahq@gmail.com" 
+                  href="mailto:ayushbodade1@gmail.com" 
                   className="text-foreground hover:text-foreground/70 transition-colors font-light"
                 >
-                  shinkahq@gmail.com
+                  ayushbodade1@gmail.com
                 </a>
               </div>
             </div>
@@ -211,14 +213,16 @@ export default function Home() {
             <div className="border-b border-border/30 pb-8">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-lg font-normal text-foreground mb-1">Consultation</h3>
-                  <p className="text-muted-foreground font-light">Schedule a call to discuss your AI needs</p>
+                  <h3 className="text-xl font-medium text-foreground mb-4">Consultation</h3>
+                  <p className="text-muted-foreground leading-relaxed font-light">Schedule a call to discuss your AI needs</p>
                 </div>
                 <Button 
                   variant="ghost" 
                   className="text-foreground hover:text-foreground/70 hover:bg-transparent font-light p-0 h-auto"
                 >
-                  Book →
+                  <a href="mailto:ayushbodade1@gmail.com?subject=Consultation%20Request" className="text-foreground hover:text-foreground/70">
+                    Book →
+                  </a>
                 </Button>
               </div>
             </div>
@@ -227,8 +231,8 @@ export default function Home() {
             <div className="pt-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-lg font-normal text-foreground mb-1">Follow</h3>
-                  <p className="text-muted-foreground font-light">Updates and insights</p>
+                  <h3 className="text-xl font-medium text-foreground mb-4">Follow</h3>
+                  <p className="text-muted-foreground leading-relaxed font-light">Updates and insights</p>
                 </div>
                 <div className="flex space-x-6">
                   <a 
@@ -262,11 +266,11 @@ export default function Home() {
               <Image src="/shinka-logo.png" alt="Shinka" width={80} height={32} className="h-6 w-auto" />
               <div className="flex items-center space-x-4 text-muted-foreground">
                 <a 
-                  href="mailto:shinkahq@gmail.com" 
+                  href="mailto:ayushbodade1@gmail.com" 
                   className="flex items-center space-x-2 hover:text-foreground transition-colors font-light text-sm"
                 >
                   <Mail className="h-3 w-3" />
-                  <span>shinkahq@gmail.com</span>
+                  <span>ayushbodade1@gmail.com</span>
                 </a>
                 <a 
                   href="https://x.com/shinkahq" 
