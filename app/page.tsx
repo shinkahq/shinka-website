@@ -200,12 +200,14 @@ export default function Home() {
                   <h3 className="text-xl font-medium text-foreground mb-4">Email</h3>
                   <p className="text-muted-foreground leading-relaxed font-light">For general inquiries and partnerships</p>
                 </div>
-                <a 
-                  href="mailto:ayushbodade1@gmail.com" 
-                  className="text-foreground hover:text-foreground/70 transition-colors font-light"
+                <Button 
+                  variant="ghost" 
+                  className="text-foreground hover:text-foreground/70 hover:bg-transparent font-light p-0 h-auto"
                 >
-                  ayushbodade1@gmail.com
-                </a>
+                  <a href="mailto:ayushbodade1@gmail.com" className="text-foreground hover:text-foreground/70">
+                    Email →
+                  </a>
+                </Button>
               </div>
             </div>
 
