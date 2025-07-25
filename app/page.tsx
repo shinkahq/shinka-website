@@ -213,7 +213,7 @@ export default function Home() {
             <div className="flex items-center space-x-3 mb-4 md:mb-0">
               <Image src="/shinka-logo.png" alt="Shinka" width={120} height={40} className="h-8 w-auto" />
             </div>
-            <div className="text-muted-foreground text-sm font-light">© 2024 Shinka. Building the future of enterprise AI.</div>
+            <div className="text-muted-foreground text-sm font-light">© 2025 Shinka. Building the future of enterprise AI.</div>
           </div>
         </div>
       </footer>
