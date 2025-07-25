@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { ArrowRight, Bot, Workflow, Zap, Building2, Mail, Phone, ChevronRight, Sparkles } from "lucide-react"
+import { ArrowRight, Bot, Workflow, Zap, Building2, Mail, Phone, ChevronRight, Sparkles, Twitter, Linkedin, ExternalLink } from "lucide-react"
 import Image from "next/image"
 
 export default function Home() {
@@ -180,35 +180,111 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-24 bg-muted/30">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl lg:text-5xl font-medium text-foreground mb-8 tracking-tight">Ready to Transform Your Enterprise?</h2>
-          <p className="text-lg text-muted-foreground mb-12 max-w-2xl mx-auto font-light">
-            Let's discuss how our AI solutions can drive innovation and efficiency in your organization.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <Button size="lg" className="bg-foreground hover:bg-foreground/90 text-background font-medium">
-              <Mail className="mr-2 h-4 w-4" />
-              Get in Touch
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-border text-foreground hover:bg-muted font-medium"
-            >
-              <Phone className="mr-2 h-4 w-4" />
-              Schedule a Call
-            </Button>
+      <section id="contact" className="py-24 bg-background">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-normal text-foreground mb-4 tracking-tight">Contact</h2>
+            <p className="text-muted-foreground font-light">
+              Get in touch for project inquiries, partnerships, or general questions.
+            </p>
+          </div>
+          
+          {/* Contact Information */}
+          <div className="space-y-8">
+            {/* Email */}
+            <div className="border-b border-border/30 pb-8">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-lg font-normal text-foreground mb-1">Email</h3>
+                  <p className="text-muted-foreground font-light">For general inquiries and partnerships</p>
+                </div>
+                <a 
+                  href="mailto:hello@shinka.ai" 
+                  className="text-foreground hover:text-foreground/70 transition-colors font-light"
+                >
+                  hello@shinka.ai
+                </a>
+              </div>
+            </div>
+
+            {/* Consultation */}
+            <div className="border-b border-border/30 pb-8">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-lg font-normal text-foreground mb-1">Consultation</h3>
+                  <p className="text-muted-foreground font-light">Schedule a call to discuss your AI needs</p>
+                </div>
+                <Button 
+                  variant="ghost" 
+                  className="text-foreground hover:text-foreground/70 hover:bg-transparent font-light p-0 h-auto"
+                >
+                  Book →
+                </Button>
+              </div>
+            </div>
+
+            {/* Social */}
+            <div className="pt-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-lg font-normal text-foreground mb-1">Follow</h3>
+                  <p className="text-muted-foreground font-light">Updates and insights</p>
+                </div>
+                <div className="flex space-x-6">
+                  <a 
+                    href="https://twitter.com/shinka_ai" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    <Twitter className="h-4 w-4" />
+                  </a>
+                  <a 
+                    href="https://linkedin.com/company/shinka-ai" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    <Linkedin className="h-4 w-4" />
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border/50 py-12">
+      <footer className="border-t border-border/30 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center space-x-3 mb-4 md:mb-0">
-              <Image src="/shinka-logo.png" alt="Shinka" width={120} height={40} className="h-8 w-auto" />
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <Image src="/shinka-logo.png" alt="Shinka" width={80} height={32} className="h-6 w-auto" />
+              <div className="flex items-center space-x-4 text-muted-foreground">
+                <a 
+                  href="mailto:hello@shinka.ai" 
+                  className="flex items-center space-x-2 hover:text-foreground transition-colors font-light text-sm"
+                >
+                  <Mail className="h-3 w-3" />
+                  <span>hello@shinka.ai</span>
+                </a>
+                <a 
+                  href="https://twitter.com/shinka_ai" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:text-foreground transition-colors"
+                >
+                  <Twitter className="h-3 w-3" />
+                </a>
+                <a 
+                  href="https://linkedin.com/company/shinka-ai" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:text-foreground transition-colors"
+                >
+                  <Linkedin className="h-3 w-3" />
+                </a>
+              </div>
             </div>
             <div className="text-muted-foreground text-sm font-light">© 2024 Shinka. Building the future of enterprise AI.</div>
           </div>
