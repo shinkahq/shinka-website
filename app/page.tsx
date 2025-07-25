@@ -21,6 +21,9 @@ export default function Home() {
               <a href="#about" className="text-foreground/80 hover:text-foreground transition-colors font-medium">
                 About
               </a>
+              <a href="/founder" className="text-foreground/80 hover:text-foreground transition-colors font-medium">
+                Founder
+              </a>
               <Button className="bg-foreground hover:bg-foreground/90 text-background font-medium">
                 <a href="#contact" className="text-background hover:text-background">
                   Get in Touch
