@@ -43,13 +43,13 @@ export default function Home() {
               Enterprise AI Solutions
             </Badge>
             <h1 className="text-5xl lg:text-7xl font-medium text-foreground mb-8 tracking-tight leading-[0.9]">
-              Intelligent AI Products
+              AI Agents, Models,
               <br />
-              <span className="text-foreground">for Modern Enterprises</span>
+              <span className="text-foreground">Integrations & Automations</span>
             </h1>
             <p className="text-xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed font-light">
-              We build cutting-edge AI agents, workflows, and automations that transform how enterprises operate. 
-              From research to implementation, we deliver intelligent solutions that scale.
+              We make enterprise processes 1000x more efficient with AI agents, models, integrations, and automations. 
+              From research to implementation, we deliver solutions that scale.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-foreground hover:bg-foreground/90 text-background font-medium">
@@ -100,10 +100,10 @@ export default function Home() {
                 <div className="w-12 h-12 bg-muted rounded-xl flex items-center justify-center mb-6 group-hover:bg-muted/80 transition-colors">
                   <Workflow className="h-6 w-6 text-foreground" />
                 </div>
-                <h3 className="text-xl font-medium text-foreground mb-4">Smart Workflows</h3>
+                <h3 className="text-xl font-medium text-foreground mb-4">AI Models</h3>
                 <p className="text-muted-foreground leading-relaxed font-light">
-                  Automated workflows that adapt and optimize themselves, reducing manual overhead while improving
-                  accuracy and speed.
+                  Custom AI models tailored to your specific business needs, from fine-tuned language models
+                  to specialized computer vision solutions.
                 </p>
                 <div className="mt-6 flex items-center text-foreground font-medium">
                   Learn more <ChevronRight className="ml-1 h-4 w-4" />
@@ -116,10 +116,10 @@ export default function Home() {
                 <div className="w-12 h-12 bg-muted rounded-xl flex items-center justify-center mb-6 group-hover:bg-muted/80 transition-colors">
                   <Zap className="h-6 w-6 text-foreground" />
                 </div>
-                <h3 className="text-xl font-medium text-foreground mb-4">Automations</h3>
+                <h3 className="text-xl font-medium text-foreground mb-4">Integrations & Automations</h3>
                 <p className="text-muted-foreground leading-relaxed font-light">
-                  End-to-end process automation that integrates seamlessly with existing infrastructure and scales with
-                  your business needs.
+                  Seamless integrations with existing systems and end-to-end process automation that scales
+                  with your business needs.
                 </p>
                 <div className="mt-6 flex items-center text-foreground font-medium">
                   Learn more <ChevronRight className="ml-1 h-4 w-4" />
