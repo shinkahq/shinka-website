@@ -36,14 +36,14 @@ export default function Home() {
       <section className="py-24 lg:py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <Badge variant="outline" className="mb-8 border-brand-accent text-brand-accent font-medium">
+            <Badge variant="outline" className="mb-8 border-foreground text-foreground font-medium">
               <Sparkles className="w-3 h-3 mr-1" />
               Enterprise AI Solutions
             </Badge>
             <h1 className="text-5xl lg:text-7xl font-medium text-foreground mb-8 tracking-tight leading-[0.9]">
               Intelligent AI Products
               <br />
-              <span className="text-brand-accent">for Modern Enterprises</span>
+              <span className="text-foreground">for Modern Enterprises</span>
             </h1>
             <p className="text-xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed font-light">
               We build cutting-edge AI agents, workflows, and automations that transform how enterprises operate. 
@@ -79,15 +79,15 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-8">
             <Card className="border-border/50 shadow-sm bg-background hover:shadow-md transition-all duration-300 group">
               <CardContent className="p-8">
-                <div className="w-12 h-12 bg-brand-accent/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-accent/20 transition-colors">
-                  <Bot className="h-6 w-6 text-brand-accent" />
+                <div className="w-12 h-12 bg-muted rounded-xl flex items-center justify-center mb-6 group-hover:bg-muted/80 transition-colors">
+                  <Bot className="h-6 w-6 text-foreground" />
                 </div>
                 <h3 className="text-xl font-medium text-foreground mb-4">AI Agents</h3>
                 <p className="text-muted-foreground leading-relaxed font-light">
                   Intelligent autonomous agents that understand context, make decisions, and execute complex tasks
                   across your enterprise systems.
                 </p>
-                <div className="mt-6 flex items-center text-brand-accent font-medium">
+                <div className="mt-6 flex items-center text-foreground font-medium">
                   Learn more <ChevronRight className="ml-1 h-4 w-4" />
                 </div>
               </CardContent>
@@ -95,15 +95,15 @@ export default function Home() {
 
             <Card className="border-border/50 shadow-sm bg-background hover:shadow-md transition-all duration-300 group">
               <CardContent className="p-8">
-                <div className="w-12 h-12 bg-brand-warm/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-warm/20 transition-colors">
-                  <Workflow className="h-6 w-6 text-brand-warm" />
+                <div className="w-12 h-12 bg-muted rounded-xl flex items-center justify-center mb-6 group-hover:bg-muted/80 transition-colors">
+                  <Workflow className="h-6 w-6 text-foreground" />
                 </div>
                 <h3 className="text-xl font-medium text-foreground mb-4">Smart Workflows</h3>
                 <p className="text-muted-foreground leading-relaxed font-light">
                   Automated workflows that adapt and optimize themselves, reducing manual overhead while improving
                   accuracy and speed.
                 </p>
-                <div className="mt-6 flex items-center text-brand-warm font-medium">
+                <div className="mt-6 flex items-center text-foreground font-medium">
                   Learn more <ChevronRight className="ml-1 h-4 w-4" />
                 </div>
               </CardContent>
@@ -111,15 +111,15 @@ export default function Home() {
 
             <Card className="border-border/50 shadow-sm bg-background hover:shadow-md transition-all duration-300 group">
               <CardContent className="p-8">
-                <div className="w-12 h-12 bg-brand-cool/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-cool/20 transition-colors">
-                  <Zap className="h-6 w-6 text-brand-cool" />
+                <div className="w-12 h-12 bg-muted rounded-xl flex items-center justify-center mb-6 group-hover:bg-muted/80 transition-colors">
+                  <Zap className="h-6 w-6 text-foreground" />
                 </div>
                 <h3 className="text-xl font-medium text-foreground mb-4">Automations</h3>
                 <p className="text-muted-foreground leading-relaxed font-light">
                   End-to-end process automation that integrates seamlessly with existing infrastructure and scales with
                   your business needs.
                 </p>
-                <div className="mt-6 flex items-center text-brand-cool font-medium">
+                <div className="mt-6 flex items-center text-foreground font-medium">
                   Learn more <ChevronRight className="ml-1 h-4 w-4" />
                 </div>
               </CardContent>
@@ -133,7 +133,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <Badge variant="outline" className="mb-6 border-brand-accent text-brand-accent font-medium">
+              <Badge variant="outline" className="mb-6 border-foreground text-foreground font-medium">
                 Research-Driven
               </Badge>
               <h2 className="text-4xl lg:text-5xl font-medium text-foreground mb-8 tracking-tight">Built for Enterprise Scale</h2>
@@ -144,11 +144,11 @@ export default function Home() {
               </p>
               <div className="flex items-center space-x-8">
                 <div className="flex items-center space-x-2">
-                  <Building2 className="h-5 w-5 text-brand-accent" />
+                  <Building2 className="h-5 w-5 text-foreground" />
                   <span className="text-foreground font-medium">Enterprise-Ready</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <Zap className="h-5 w-5 text-brand-accent" />
+                  <Zap className="h-5 w-5 text-foreground" />
                   <span className="text-foreground font-medium">Production-Tested</span>
                 </div>
               </div>
@@ -156,21 +156,21 @@ export default function Home() {
             <div className="bg-muted/30 rounded-2xl p-8 border border-border/50">
               <div className="space-y-8">
                 <div className="flex items-start space-x-4">
-                  <div className="w-2 h-2 bg-brand-accent rounded-full mt-2"></div>
+                  <div className="w-2 h-2 bg-foreground rounded-full mt-2"></div>
                   <div>
                     <h4 className="font-medium text-foreground mb-2">Advanced Research</h4>
                     <p className="text-muted-foreground font-light">Pushing the boundaries of what's possible with AI</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
-                  <div className="w-2 h-2 bg-brand-warm rounded-full mt-2"></div>
+                  <div className="w-2 h-2 bg-foreground rounded-full mt-2"></div>
                   <div>
                     <h4 className="font-medium text-foreground mb-2">Enterprise Integration</h4>
                     <p className="text-muted-foreground font-light">Seamless deployment into existing systems</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
-                  <div className="w-2 h-2 bg-brand-cool rounded-full mt-2"></div>
+                  <div className="w-2 h-2 bg-foreground rounded-full mt-2"></div>
                   <div>
                     <h4 className="font-medium text-foreground mb-2">Scalable Solutions</h4>
                     <p className="text-muted-foreground font-light">Built to grow with your organization</p>
@@ -213,7 +213,7 @@ export default function Home() {
             <div className="flex items-center space-x-3 mb-4 md:mb-0">
               <Image src="/shinka-logo.png" alt="Shinka" width={120} height={40} className="h-8 w-auto" />
             </div>
-            <div className="text-muted-foreground text-sm font-light">© 2025 Shinka. Building the future of enterprise AI.</div>
+            <div className="text-muted-foreground text-sm font-light">© 2024 Shinka. Building the future of enterprise AI.</div>
           </div>
         </div>
       </footer>
