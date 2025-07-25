@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://shinka.ai/sitemap.xml
-# Replace with your actual production domain above if it's not shinka.ai 
+Sitemap: https://shinkahq.com/sitemap.xml
