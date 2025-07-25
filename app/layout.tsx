@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Script from "next/script";
+import StructuredData from "./structured-data";
 import "./globals.css";
 
 const inter = Inter({
@@ -14,13 +15,13 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_VERCEL_URL
     ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-    : 'http://localhost:3000'),
+    : 'https://shinkahq.com'),
   title: {
     default: "Shinka - Enterprise AI Solutions",
     template: "%s | Shinka",
   },
   description: "Intelligent AI products for modern enterprises. We build cutting-edge AI agents, workflows, and automations that transform how enterprises operate.",
-  keywords: ["AI", "Artificial Intelligence", "Enterprise", "Automation", "Workflows", "Agents", "Shinka", "Business Solutions"],
+  keywords: ["AI", "Artificial Intelligence", "Enterprise", "Automation", "Workflows", "Agents", "Shinka", "Business Solutions", "Machine Learning", "AI Agents", "Smart Workflows"],
   authors: [{ name: "Shinka" }],
   creator: "Shinka",
   publisher: "Shinka",
@@ -34,15 +35,25 @@ export const metadata: Metadata = {
     description: "Intelligent AI products for modern enterprises. We build cutting-edge AI agents, workflows, and automations that transform how enterprises operate.",
     url: process.env.NEXT_PUBLIC_VERCEL_URL
       ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-      : 'http://localhost:3000',
+      : 'https://shinkahq.com',
     siteName: "Shinka",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: '/shinka-logo.png',
+        width: 800,
+        height: 600,
+        alt: 'Shinka - Enterprise AI Solutions',
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Shinka - Enterprise AI Solutions",
     description: "Intelligent AI products for modern enterprises. We build cutting-edge AI agents, workflows, and automations that transform how enterprises operate.",
+    creator: "@shinkahq",
+    images: ['/shinka-logo.png'],
   },
   robots: {
     index: true,
@@ -62,7 +73,7 @@ export const metadata: Metadata = {
   other: {
     "mobile-agent": "format=html5; url=" + (process.env.NEXT_PUBLIC_VERCEL_URL
       ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-      : 'http://localhost:3000'),
+      : 'https://shinkahq.com'),
     "google-site-verification": "YOUR_GOOGLE_VERIFICATION_CODE",
     "msvalidate.01": "YOUR_BING_VERIFICATION_CODE",
     "yandex-verification": "YOUR_YANDEX_VERIFICATION_CODE",
@@ -92,6 +103,7 @@ export default function RootLayout({
         <meta name="HandheldFriendly" content="true" />
         <meta name="geo.region" content="US, EU, CN" />
         <meta name="geo.placename" content="Global" />
+        <StructuredData />
       </head>
       <body className="font-sans antialiased">
         <main className="min-h-screen">

@@ -3,7 +3,7 @@ import { MetadataRoute } from 'next'
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
     ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-    : 'http://localhost:3000'
+    : 'https://shinkahq.com'
 
   const currentDate = new Date()
 
@@ -13,6 +13,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 1,
+    },
+    {
+      url: `${baseUrl}/#services`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/#about`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/#contact`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.9,
     },
   ]
 } 

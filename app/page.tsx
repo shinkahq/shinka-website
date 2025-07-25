@@ -246,7 +246,7 @@ export default function Home() {
                     <Twitter className="h-4 w-4" />
                   </a>
                   <a 
-                    href="https://linkedin.com/company/shinka-ai" 
+                    href="https://linkedin.com/company/shinkahq" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="text-muted-foreground hover:text-foreground transition-colors"
@@ -283,7 +283,7 @@ export default function Home() {
                   <Twitter className="h-3 w-3" />
                 </a>
                 <a 
-                  href="https://linkedin.com/company/shinka-ai" 
+                  href="https://linkedin.com/company/shinkahq" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="hover:text-foreground transition-colors"

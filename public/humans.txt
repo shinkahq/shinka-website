@@ -1,0 +1,14 @@
+/* TEAM */
+    Founder: Ayush Bodade
+    Contact: ayushbodade1@gmail.com
+    From: United States & India
+
+/* SITE */
+    Last update: 2024/07/26
+    Founded: 2025
+    Language: English
+    Doctype: HTML5
+    IDE: Visual Studio Code
+    Standards: HTML5, CSS3, JavaScript ES6+
+    Components: Next.js, React, TypeScript, Tailwind CSS
+    Software: Node.js, pnpm 
