@@ -231,7 +231,7 @@ export default function Home() {
                   variant="ghost" 
                   className="text-foreground hover:text-foreground/70 hover:bg-transparent font-light p-0 h-auto"
                 >
-                  <a href="mailto:ayushbodade1@gmail.com?subject=Consultation%20Request" className="text-foreground hover:text-foreground/70">
+                  <a href="https://calendly.com/ayushbodade1/one-on-one" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-foreground/70">
                     Book →
                   </a>
                 </Button>
