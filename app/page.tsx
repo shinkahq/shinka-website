@@ -199,10 +199,10 @@ export default function Home() {
                   <p className="text-muted-foreground font-light">For general inquiries and partnerships</p>
                 </div>
                 <a 
-                  href="mailto:hello@shinka.ai" 
+                  href="mailto:shinkahq@gmail.com" 
                   className="text-foreground hover:text-foreground/70 transition-colors font-light"
                 >
-                  hello@shinka.ai
+                  shinkahq@gmail.com
                 </a>
               </div>
             </div>
@@ -232,7 +232,7 @@ export default function Home() {
                 </div>
                 <div className="flex space-x-6">
                   <a 
-                    href="https://twitter.com/shinka_ai" 
+                    href="https://x.com/shinkahq" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="text-muted-foreground hover:text-foreground transition-colors"
@@ -262,14 +262,14 @@ export default function Home() {
               <Image src="/shinka-logo.png" alt="Shinka" width={80} height={32} className="h-6 w-auto" />
               <div className="flex items-center space-x-4 text-muted-foreground">
                 <a 
-                  href="mailto:hello@shinka.ai" 
+                  href="mailto:shinkahq@gmail.com" 
                   className="flex items-center space-x-2 hover:text-foreground transition-colors font-light text-sm"
                 >
                   <Mail className="h-3 w-3" />
-                  <span>hello@shinka.ai</span>
+                  <span>shinkahq@gmail.com</span>
                 </a>
                 <a 
-                  href="https://twitter.com/shinka_ai" 
+                  href="https://x.com/shinkahq" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="hover:text-foreground transition-colors"
