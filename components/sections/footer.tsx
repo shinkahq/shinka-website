@@ -67,7 +67,7 @@ export default function Footer() {
                 mobileSize="text-xs"
                 className="text-muted-foreground font-light"
               >
-                © 2025 Shinka. Path to ASI.
+                © 2025 Shinka. Building super-intelligence for the world and beyond.
               </ResponsiveText>
             </div>
           </div>
@@ -107,7 +107,7 @@ export default function Footer() {
               </div>
             </div>
             <div className="text-muted-foreground text-sm font-light">
-              © 2025 Shinka. Path to ASI.
+              © 2025 Shinka. Building super-intelligence for the world and beyond.
             </div>
           </div>
         </Show>
