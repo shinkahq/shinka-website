@@ -2,6 +2,7 @@
 
 import { useState, useCallback, memo } from 'react'
 import { Button } from "@/components/ui/button"
+import { ThemeToggle } from "@/components/ui/theme-toggle"
 import { Menu, X } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
@@ -219,20 +220,26 @@ export default function Navigation() {
                     isActive={isActive(item.href)}
                   />
                 ))}
-                <GetInTouchButton />
+                <div className="flex items-center space-x-2">
+                  <ThemeToggle />
+                  <GetInTouchButton />
+                </div>
               </div>
             </Show>
 
             {/* Mobile Menu Button - Hidden by default for SSR */}
             <Show below="md" fallback="hide">
-              <button
-                onClick={handleMenuToggle}
-                className="p-2 text-foreground hover:text-foreground/80 transition-colors"
-                aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-                aria-expanded={isMenuOpen}
-              >
-                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-              </button>
+              <div className="flex items-center space-x-2">
+                <ThemeToggle />
+                <button
+                  onClick={handleMenuToggle}
+                  className="p-2 text-foreground hover:text-foreground/80 transition-colors"
+                  aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+                  aria-expanded={isMenuOpen}
+                >
+                  {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                </button>
+              </div>
             </Show>
           </div>
 

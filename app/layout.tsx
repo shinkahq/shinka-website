@@ -103,7 +103,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="preload" href="/shinka-logo.png" as="image" type="image/png" />
         <meta name="theme-color" content="#f7f5f3" media="(prefers-color-scheme: light)" />
-        <meta name="theme-color" content="#2c2622" media="(prefers-color-scheme: dark)" />
+        <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
       </head>
       <body 
         className="font-sans antialiased min-h-screen bg-background text-foreground"

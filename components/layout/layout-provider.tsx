@@ -2,6 +2,7 @@
 
 import { Suspense } from 'react'
 import { DynamicAnalytics, DynamicPerformanceMonitor } from '@/lib/dynamic-imports'
+import { ThemeProvider } from '@/components/ui/theme-provider'
 
 interface LayoutProviderProps {
   children: React.ReactNode
@@ -18,7 +19,7 @@ function FastLoading() {
 
 export default function LayoutProvider({ children }: LayoutProviderProps) {
   return (
-    <>
+    <ThemeProvider>
       <Suspense fallback={<FastLoading />}>
         <main className="min-h-screen antialiased">
           {children}
@@ -28,6 +29,6 @@ export default function LayoutProvider({ children }: LayoutProviderProps) {
       {/* Load analytics and performance monitoring asynchronously */}
       <DynamicAnalytics />
       <DynamicPerformanceMonitor />
-    </>
+    </ThemeProvider>
   )
 } 
