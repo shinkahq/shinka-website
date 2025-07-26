@@ -395,7 +395,7 @@ export default function Home() {
                 </a>
               </div>
             </div>
-            <div className="text-muted-foreground text-sm font-light">© 2024 Shinka. Path to ASI.</div>
+            <div className="text-muted-foreground text-sm font-light">© 2025 Shinka. Building ASI for the world and beyond.</div>
           </div>
         </div>
       </footer>

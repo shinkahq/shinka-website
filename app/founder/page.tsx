@@ -138,7 +138,7 @@ export default function FounderPage() {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <Image src="/shinka-logo.png" alt="Shinka" width={80} height={32} className="h-6 w-auto" />
-              <div className="text-muted-foreground text-sm font-light">© 2024 Shinka. Path to ASI.</div>
+              <div className="text-muted-foreground text-sm font-light">© 2025 Shinka. Building ASI for the world and beyond.</div>
             </div>
             <div className="text-muted-foreground text-sm font-light">
               <a href="/" className="hover:text-foreground transition-colors">Back to Home</a>
