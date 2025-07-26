@@ -287,76 +287,46 @@ export default function Home() {
       {/* Get in Touch Section */}
       <section id="contact" className="py-24 bg-background">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-medium text-foreground mb-6 tracking-tight">Get in Touch</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-light">
-              Get in touch for project inquiries, partnerships, or general questions.
-            </p>
-          </div>
-          
-          {/* Contact Information */}
-          <div className="space-y-8">
-            {/* Email */}
-            <div className="border-b border-border/30 pb-8">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="text-xl font-medium text-foreground mb-4">Email</h3>
-                  <p className="text-muted-foreground leading-relaxed font-light">For general inquiries and partnerships</p>
-                </div>
-                <Button 
-                  variant="ghost" 
-                  className="text-foreground hover:text-foreground/70 hover:bg-transparent font-light p-0 h-auto"
-                >
-                  <a href="mailto:ayushbodade1@gmail.com" className="text-foreground hover:text-foreground/70">
-                    Email →
-                  </a>
-                </Button>
-              </div>
-            </div>
-
+          <div className="space-y-16">
             {/* Consultation */}
-            <div className="border-b border-border/30 pb-8">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="text-xl font-medium text-foreground mb-4">Consultation</h3>
-                  <p className="text-muted-foreground leading-relaxed font-light">Schedule a call to discuss your AI needs</p>
-                </div>
-                <Button 
-                  variant="ghost" 
-                  className="text-foreground hover:text-foreground/70 hover:bg-transparent font-light p-0 h-auto"
-                >
-                  <a href="https://calendly.com/ayushbodade1/one-on-one" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-foreground/70">
-                    Book →
-                  </a>
-                </Button>
+            <div className="flex items-center justify-between group">
+              <div>
+                <h3 className="text-3xl font-medium text-foreground mb-3">Consultation</h3>
+                <p className="text-lg text-muted-foreground font-light">Schedule a call to discuss your AI needs</p>
               </div>
+              <a 
+                href="https://calendly.com/ayushbodade1/one-on-one" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-lg text-foreground hover:opacity-70 transition-opacity font-light flex items-center"
+              >
+                Book <ArrowRight className="ml-2 h-5 w-5" />
+              </a>
             </div>
 
-            {/* Social */}
-            <div className="pt-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="text-xl font-medium text-foreground mb-4">Follow</h3>
-                  <p className="text-muted-foreground leading-relaxed font-light">Updates and insights</p>
-                </div>
-                <div className="flex space-x-6">
-                  <a 
-                    href="https://x.com/shinkahq" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    <Twitter className="h-4 w-4" />
-                  </a>
-                  <a 
-                    href="https://linkedin.com/company/shinkahq" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    <Linkedin className="h-4 w-4" />
-                  </a>
-                </div>
+            {/* Follow */}
+            <div className="flex items-center justify-between group">
+              <div>
+                <h3 className="text-3xl font-medium text-foreground mb-3">Follow</h3>
+                <p className="text-lg text-muted-foreground font-light">Updates and insights</p>
+              </div>
+              <div className="flex items-center space-x-6">
+                <a 
+                  href="https://x.com/shinkahq" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  <Twitter className="h-5 w-5" />
+                </a>
+                <a 
+                  href="https://linkedin.com/company/shinkahq" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  <Linkedin className="h-5 w-5" />
+                </a>
               </div>
             </div>
           </div>
@@ -369,19 +339,19 @@ export default function Home() {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <Image src="/shinka-logo.png" alt="Shinka" width={80} height={32} className="h-6 w-auto" />
-              <div className="flex items-center space-x-4 text-muted-foreground">
-                <a 
-                  href="mailto:ayushbodade1@gmail.com" 
-                  className="flex items-center space-x-2 hover:text-foreground transition-colors font-light text-sm"
-                >
-                  <Mail className="h-3 w-3" />
-                  <span>ayushbodade1@gmail.com</span>
-                </a>
+              <a 
+                href="mailto:ayushbodade1@gmail.com" 
+                className="text-muted-foreground hover:text-foreground transition-colors font-light text-sm flex items-center space-x-2"
+              >
+                <Mail className="h-3 w-3" />
+                <span>ayushbodade1@gmail.com</span>
+              </a>
+              <div className="flex items-center space-x-4">
                 <a 
                   href="https://x.com/shinkahq" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="hover:text-foreground transition-colors"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
                 >
                   <Twitter className="h-3 w-3" />
                 </a>
@@ -389,13 +359,13 @@ export default function Home() {
                   href="https://linkedin.com/company/shinkahq" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="hover:text-foreground transition-colors"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
                 >
                   <Linkedin className="h-3 w-3" />
                 </a>
               </div>
             </div>
-            <div className="text-muted-foreground text-sm font-light">© 2025 Shinka. Building ASI for the world and beyond.</div>
+            <div className="text-muted-foreground text-sm font-light">© 2025 Shinka. Path to ASI.</div>
           </div>
         </div>
       </footer>
