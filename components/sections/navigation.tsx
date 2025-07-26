@@ -203,7 +203,7 @@ export default function Navigation() {
     <>
       <nav className="border-b border-border/50 bg-background/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+          <div className="flex justify-between items-center h-16 relative">
             {/* Logo */}
             <div className="flex items-center space-x-3">
               <Logo isMobile={isMobile} isHydrated={isHydrated} />
@@ -227,7 +227,7 @@ export default function Navigation() {
               </div>
             </Show>
 
-            {/* Mobile Menu Button - Hidden by default for SSR */}
+            {/* Mobile Menu Button */}
             <Show below="md" fallback="hide">
               <div className="flex items-center space-x-2">
                 <ThemeToggle />
@@ -241,6 +241,12 @@ export default function Navigation() {
                 </button>
               </div>
             </Show>
+
+
+
+
+
+
           </div>
 
           {/* Mobile Navigation Menu - Only show after hydration and when menu is open */}
