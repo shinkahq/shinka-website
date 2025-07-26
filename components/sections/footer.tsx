@@ -40,10 +40,10 @@ export default function Footer() {
             <div className="text-center">
               <a 
                 href="mailto:ayushbodade1@gmail.com" 
-                className="text-muted-foreground hover:text-foreground transition-colors font-light text-sm flex items-center justify-center space-x-2"
+                className="text-muted-foreground hover:text-foreground transition-colors font-light text-sm flex items-center justify-center"
+                aria-label="Email us"
               >
-                <Mail className="h-3 w-3" />
-                <span>ayushbodade1@gmail.com</span>
+                <Mail className="h-4 w-4" />
               </a>
             </div>
 
@@ -86,10 +86,10 @@ export default function Footer() {
               />
               <a 
                 href="mailto:ayushbodade1@gmail.com" 
-                className="text-muted-foreground hover:text-foreground transition-colors font-light text-sm flex items-center space-x-2"
+                className="text-muted-foreground hover:text-foreground transition-colors font-light text-sm"
+                aria-label="Email us"
               >
-                <Mail className="h-3 w-3" />
-                <span>ayushbodade1@gmail.com</span>
+                <Mail className="h-4 w-4" />
               </a>
               <div className="flex items-center space-x-4">
                 {socialLinks.map((social, index) => (
