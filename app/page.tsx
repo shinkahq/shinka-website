@@ -148,7 +148,7 @@ export default function Home() {
                   </div>
                   <div className="flex items-center space-x-3">
                     <div className="w-1 h-1 bg-foreground rounded-full"></div>
-                    <span>NLP analysis of financial statements and contracts</span>
+                    <span>AI-powered document analysis and insights</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <div className="w-1 h-1 bg-foreground rounded-full"></div>
@@ -165,11 +165,11 @@ export default function Home() {
                 <div className="space-y-3 text-sm text-muted-foreground font-light">
                   <div className="flex items-center space-x-3">
                     <div className="w-1 h-1 bg-foreground rounded-full"></div>
-                    <span>ML-powered credit scoring and fraud detection</span>
+                    <span>AI-powered risk assessment and fraud prevention</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <div className="w-1 h-1 bg-foreground rounded-full"></div>
-                    <span>NLP chatbots for 24/7 customer support</span>
+                    <span>AI agents for 24/7 intelligent assistance</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <div className="w-1 h-1 bg-foreground rounded-full"></div>
@@ -209,15 +209,19 @@ export default function Home() {
                 <div className="space-y-3 text-sm text-muted-foreground font-light">
                   <div className="flex items-center space-x-3">
                     <div className="w-1 h-1 bg-foreground rounded-full"></div>
-                    <span>AI-driven demand forecasting with 45% accuracy improvement</span>
+                    <span>AI-driven order processing and workflow automation</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <div className="w-1 h-1 bg-foreground rounded-full"></div>
-                    <span>Real-time IoT monitoring and disruption detection</span>
+                    <span>Intelligent order fulfillment optimization</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <div className="w-1 h-1 bg-foreground rounded-full"></div>
-                    <span>Autonomous inventory and routing optimization</span>
+                    <span>Automated operational efficiency improvements</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <div className="w-1 h-1 bg-foreground rounded-full"></div>
+                    <span>Cost reduction through AI-powered management</span>
                   </div>
                 </div>
               </div>
