@@ -18,6 +18,8 @@ interface ShowProps {
   // Show based on capabilities
   touch?: boolean
   desktop?: boolean
+  // Hydration behavior
+  fallback?: 'show' | 'hide' | 'desktop'
 }
 
 export const Show: React.FC<ShowProps> = ({
@@ -31,9 +33,35 @@ export const Show: React.FC<ShowProps> = ({
   landscape,
   touch,
   desktop,
+  fallback = 'desktop', // Default to desktop behavior during SSR
 }) => {
   const responsive = useResponsive()
 
+  // During hydration, use fallback behavior to prevent mismatch
+  if (!responsive.isHydrated) {
+    switch (fallback) {
+      case 'show':
+        return <>{children}</>
+      case 'hide':
+        return null
+      case 'desktop':
+        // Show if it would be shown on desktop (lg breakpoint)
+        if (above) {
+          const BREAKPOINTS = { xs: 0, sm: 640, md: 768, lg: 1024, xl: 1280, '2xl': 1536 }
+          return 1024 >= BREAKPOINTS[above] ? <>{children}</> : null
+        }
+        if (below) {
+          const BREAKPOINTS = { xs: 0, sm: 640, md: 768, lg: 1024, xl: 1280, '2xl': 1536 }
+          return 1024 < BREAKPOINTS[below] ? <>{children}</> : null
+        }
+        // Default to showing for desktop-first approach
+        return <>{children}</>
+      default:
+        return <>{children}</>
+    }
+  }
+
+  // After hydration, use normal responsive logic
   // Check breakpoint conditions
   if (above && !responsive.isAbove(above)) return null
   if (below && !responsive.isBelow(below)) return null

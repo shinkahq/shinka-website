@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react'
 
 // Tailwind CSS default breakpoints
 const BREAKPOINTS = {
@@ -34,7 +34,7 @@ interface ResponsiveState {
   // Orientation
   orientation: Orientation
   
-  // Breakpoint checks
+  // Breakpoint checks (memoized)
   isXs: boolean
   isSm: boolean
   isMd: boolean
@@ -42,16 +42,16 @@ interface ResponsiveState {
   isXl: boolean
   is2Xl: boolean
   
-  // Device type checks
+  // Device type checks (memoized)
   isMobile: boolean
   isTablet: boolean
   isDesktop: boolean
   
-  // Orientation checks
+  // Orientation checks (memoized)
   isPortrait: boolean
   isLandscape: boolean
   
-  // Utility functions
+  // Utility functions (stable references)
   isAbove: (breakpoint: Breakpoint) => boolean
   isBelow: (breakpoint: Breakpoint) => boolean
   isBetween: (min: Breakpoint, max: Breakpoint) => boolean
@@ -61,153 +61,172 @@ interface ResponsiveState {
   
   // High DPI detection
   isHighDPI: boolean
+  
+  // Hydration state
+  isHydrated: boolean
+}
+
+// Memoized helper functions for better performance
+const getCurrentBreakpoint = (width: number): Breakpoint => {
+  if (width >= BREAKPOINTS['2xl']) return '2xl'
+  if (width >= BREAKPOINTS.xl) return 'xl'
+  if (width >= BREAKPOINTS.lg) return 'lg'
+  if (width >= BREAKPOINTS.md) return 'md'
+  if (width >= BREAKPOINTS.sm) return 'sm'
+  return 'xs'
+}
+
+const getDeviceType = (width: number): DeviceType => {
+  // Check user agent for mobile devices (cached for performance)
+  if (typeof window !== 'undefined') {
+    const userAgent = window.navigator.userAgent.toLowerCase()
+    const isMobileUA = /mobile|android|ios|iphone|ipad|tablet|blackberry|windows phone/i.test(userAgent)
+    
+    // If it's a mobile user agent and small screen, it's mobile
+    if (isMobileUA && width < BREAKPOINTS.md) return 'mobile'
+    
+    // If it's a mobile user agent but larger screen (like iPad), consider it tablet
+    if (isMobileUA && width < BREAKPOINTS.lg) return 'tablet'
+  }
+  
+  // Fallback to width-based detection
+  if (width < BREAKPOINTS.md) return 'mobile'
+  if (width < BREAKPOINTS.lg) return 'tablet'
+  return 'desktop'
+}
+
+const getOrientation = (width: number, height: number): Orientation => {
+  return width > height ? 'landscape' : 'portrait'
+}
+
+// Default/SSR-safe dimensions (assume desktop first for hydration consistency)
+const DEFAULT_DIMENSIONS = {
+  width: 1024, // Default to lg breakpoint for SSR
+  height: 768,
 }
 
 const useResponsive = (): ResponsiveState => {
-  const [windowDimensions, setWindowDimensions] = useState<WindowDimensions>({
-    width: 0,
-    height: 0,
-  })
-  
+  // Start with SSR-safe state (desktop-first)
+  const [windowDimensions, setWindowDimensions] = useState<WindowDimensions>(DEFAULT_DIMENSIONS)
   const [isTouchDevice, setIsTouchDevice] = useState(false)
   const [isHighDPI, setIsHighDPI] = useState(false)
+  const [isHydrated, setIsHydrated] = useState(false)
 
-  // Get current breakpoint based on width
-  const getCurrentBreakpoint = useCallback((width: number): Breakpoint => {
-    if (width >= BREAKPOINTS['2xl']) return '2xl'
-    if (width >= BREAKPOINTS.xl) return 'xl'
-    if (width >= BREAKPOINTS.lg) return 'lg'
-    if (width >= BREAKPOINTS.md) return 'md'
-    if (width >= BREAKPOINTS.sm) return 'sm'
-    return 'xs'
-  }, [])
-
-  // Get device type based on width and user agent
-  const getDeviceType = useCallback((width: number): DeviceType => {
-    // Check user agent for mobile devices
-    if (typeof window !== 'undefined') {
-      const userAgent = window.navigator.userAgent.toLowerCase()
-      const isMobileUA = /mobile|android|ios|iphone|ipad|tablet|blackberry|windows phone/i.test(userAgent)
-      
-      // If it's a mobile user agent and small screen, it's mobile
-      if (isMobileUA && width < BREAKPOINTS.md) return 'mobile'
-      
-      // If it's a mobile user agent but larger screen (like iPad), consider it tablet
-      if (isMobileUA && width < BREAKPOINTS.lg) return 'tablet'
-    }
-    
-    // Fallback to width-based detection
-    if (width < BREAKPOINTS.md) return 'mobile'
-    if (width < BREAKPOINTS.lg) return 'tablet'
-    return 'desktop'
-  }, [])
-
-  // Get orientation
-  const getOrientation = useCallback((width: number, height: number): Orientation => {
-    return width > height ? 'landscape' : 'portrait'
-  }, [])
-
-  // Debounced resize handler
+  // Optimized resize handler with throttling
   const handleResize = useCallback(() => {
     if (typeof window === 'undefined') return
 
     const width = window.innerWidth
     const height = window.innerHeight
 
-    setWindowDimensions({ width, height })
+    // Only update if dimensions actually changed (prevents unnecessary renders)
+    setWindowDimensions(prev => {
+      if (prev.width === width && prev.height === height) return prev
+      return { width, height }
+    })
   }, [])
 
-  // Initialize dimensions and event listeners
+  // Hydration-safe initialization
   useEffect(() => {
+    // Mark as hydrated and set real dimensions
+    setIsHydrated(true)
+    
     if (typeof window === 'undefined') return
 
-    // Initial setup
+    // Set real dimensions after hydration
     const width = window.innerWidth
     const height = window.innerHeight
     setWindowDimensions({ width, height })
 
-    // Detect touch device
+    // Detect touch device (cache result)
     const touchSupported = 'ontouchstart' in window || navigator.maxTouchPoints > 0
     setIsTouchDevice(touchSupported)
 
-    // Detect high DPI
+    // Detect high DPI (cache result)
     const highDPI = window.devicePixelRatio > 1
     setIsHighDPI(highDPI)
 
-    // Debounce resize events
-    let timeoutId: NodeJS.Timeout
-    const debouncedResize = () => {
-      clearTimeout(timeoutId)
-      timeoutId = setTimeout(handleResize, 150)
+    // Optimized resize handler with requestAnimationFrame
+    let ticking = false
+    const optimizedResize = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleResize()
+          ticking = false
+        })
+        ticking = true
+      }
     }
 
-    window.addEventListener('resize', debouncedResize)
-    window.addEventListener('orientationchange', debouncedResize)
+    window.addEventListener('resize', optimizedResize, { passive: true })
+    window.addEventListener('orientationchange', optimizedResize, { passive: true })
 
     return () => {
-      window.removeEventListener('resize', debouncedResize)
-      window.removeEventListener('orientationchange', debouncedResize)
-      clearTimeout(timeoutId)
+      window.removeEventListener('resize', optimizedResize)
+      window.removeEventListener('orientationchange', optimizedResize)
     }
   }, [handleResize])
 
-  // Calculate derived state
-  const currentBreakpoint = getCurrentBreakpoint(windowDimensions.width)
-  const deviceType = getDeviceType(windowDimensions.width)
-  const orientation = getOrientation(windowDimensions.width, windowDimensions.height)
+  // Memoized derived state (only recalculates when dimensions change)
+  const derivedState = useMemo(() => {
+    const { width, height } = windowDimensions
+    
+    const currentBreakpoint = getCurrentBreakpoint(width)
+    const deviceType = getDeviceType(width)
+    const orientation = getOrientation(width, height)
 
-  // Breakpoint checks
-  const isXs = currentBreakpoint === 'xs'
-  const isSm = currentBreakpoint === 'sm'
-  const isMd = currentBreakpoint === 'md'
-  const isLg = currentBreakpoint === 'lg'
-  const isXl = currentBreakpoint === 'xl'
-  const is2Xl = currentBreakpoint === '2xl'
+    // Breakpoint checks
+    const isXs = currentBreakpoint === 'xs'
+    const isSm = currentBreakpoint === 'sm'
+    const isMd = currentBreakpoint === 'md'
+    const isLg = currentBreakpoint === 'lg'
+    const isXl = currentBreakpoint === 'xl'
+    const is2Xl = currentBreakpoint === '2xl'
 
-  // Device type checks
-  const isMobile = deviceType === 'mobile'
-  const isTablet = deviceType === 'tablet'
-  const isDesktop = deviceType === 'desktop'
+    // Device type checks
+    const isMobile = deviceType === 'mobile'
+    const isTablet = deviceType === 'tablet'
+    const isDesktop = deviceType === 'desktop'
 
-  // Orientation checks
-  const isPortrait = orientation === 'portrait'
-  const isLandscape = orientation === 'landscape'
+    // Orientation checks
+    const isPortrait = orientation === 'portrait'
+    const isLandscape = orientation === 'landscape'
 
-  // Utility functions
-  const isAbove = useCallback((breakpoint: Breakpoint) => {
-    return windowDimensions.width >= BREAKPOINTS[breakpoint]
-  }, [windowDimensions.width])
+    return {
+      currentBreakpoint,
+      deviceType,
+      orientation,
+      isXs,
+      isSm,
+      isMd,
+      isLg,
+      isXl,
+      is2Xl,
+      isMobile,
+      isTablet,
+      isDesktop,
+      isPortrait,
+      isLandscape,
+    }
+  }, [windowDimensions])
 
-  const isBelow = useCallback((breakpoint: Breakpoint) => {
-    return windowDimensions.width < BREAKPOINTS[breakpoint]
-  }, [windowDimensions.width])
+  // Memoized utility functions (stable references)
+  const utilityFunctions = useMemo(() => ({
+    isAbove: (breakpoint: Breakpoint) => windowDimensions.width >= BREAKPOINTS[breakpoint],
+    isBelow: (breakpoint: Breakpoint) => windowDimensions.width < BREAKPOINTS[breakpoint],
+    isBetween: (min: Breakpoint, max: Breakpoint) => 
+      windowDimensions.width >= BREAKPOINTS[min] && windowDimensions.width < BREAKPOINTS[max],
+  }), [windowDimensions.width])
 
-  const isBetween = useCallback((min: Breakpoint, max: Breakpoint) => {
-    return windowDimensions.width >= BREAKPOINTS[min] && windowDimensions.width < BREAKPOINTS[max]
-  }, [windowDimensions.width])
-
-  return {
+  // Return memoized state object (prevents unnecessary re-renders)
+  return useMemo(() => ({
     windowDimensions,
-    currentBreakpoint,
-    deviceType,
-    orientation,
-    isXs,
-    isSm,
-    isMd,
-    isLg,
-    isXl,
-    is2Xl,
-    isMobile,
-    isTablet,
-    isDesktop,
-    isPortrait,
-    isLandscape,
-    isAbove,
-    isBelow,
-    isBetween,
+    ...derivedState,
+    ...utilityFunctions,
     isTouchDevice,
     isHighDPI,
-  }
+    isHydrated,
+  }), [windowDimensions, derivedState, utilityFunctions, isTouchDevice, isHighDPI, isHydrated])
 }
 
 export default useResponsive
