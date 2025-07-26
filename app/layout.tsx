@@ -1,21 +1,31 @@
-import { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import Script from "next/script";
-import StructuredData from "./lib/metadata";
-import { SEO_CONFIG, getBaseUrl } from "./lib/seo";
-import "./lib/styles.css";
+import type { Metadata, Viewport } from "next"
+import StructuredData from "./lib/metadata"
+import { SEO_CONFIG, getBaseUrl } from "./lib/seo"
+import { fontVariables } from "./lib/fonts"
+import { GoogleAnalytics } from "./lib/analytics"
+import LayoutProvider from "./components/layout-provider"
+import Script from "next/script"
+import "./lib/styles.css"
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
+// Export viewport configuration using Next.js 15 API
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#f7f5f3' },
+    { media: '(prefers-color-scheme: dark)', color: '#2c2622' }
+  ],
+  colorScheme: 'light dark',
+  viewportFit: 'cover',
+}
 
+// Optimized metadata configuration
 export const metadata: Metadata = {
   metadataBase: new URL(getBaseUrl()),
   ...SEO_CONFIG,
+  manifest: '/manifest.json',
   formatDetection: {
     email: true,
     address: true,
@@ -31,9 +41,10 @@ export const metadata: Metadata = {
     images: [
       {
         url: '/shinka-logo.png',
-        width: 800,
-        height: 600,
+        width: 1200,
+        height: 630,
         alt: 'Shinka - Enterprise AI Solutions',
+        type: 'image/png',
       },
     ],
   },
@@ -59,60 +70,77 @@ export const metadata: Metadata = {
   applicationName: "Shinka",
   referrer: "origin-when-cross-origin",
   category: "technology",
-  other: {
-    "mobile-agent": "format=html5; url=" + getBaseUrl(),
-    "google-site-verification": "YOUR_GOOGLE_VERIFICATION_CODE",
-    "msvalidate.01": "YOUR_BING_VERIFICATION_CODE",
-    "yandex-verification": "YOUR_YANDEX_VERIFICATION_CODE",
-    "baidu-site-verification": "YOUR_BAIDU_VERIFICATION_CODE",
-    "sogou_site_verification": "YOUR_SOGOU_VERIFICATION_CODE",
-    "360-site-verification": "YOUR_360_VERIFICATION_CODE",
-    "shenma-site-verification": "YOUR_SHENMA_VERIFICATION_CODE",
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION,
+    yandex: process.env.YANDEX_VERIFICATION,
+    other: {
+      "msvalidate.01": process.env.BING_VERIFICATION || '',
+      "baidu-site-verification": process.env.BAIDU_VERIFICATION || '',
+    }
   },
-};
+  other: {
+    "mobile-agent": `format=html5; url=${getBaseUrl()}`,
+    "applicable-device": "pc,mobile",
+    "MobileOptimized": "width",
+    "HandheldFriendly": "true",
+  },
+}
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+interface RootLayoutProps {
+  children: React.ReactNode
+}
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html
-      lang="en"
-      className={`text-black bg-white dark:text-white dark:bg-black ${inter.variable}`}
+    <html 
+      lang="en" 
+      className={`${fontVariables} scroll-smooth`}
+      suppressHydrationWarning
     >
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-        <link rel="manifest" href="/manifest.json" />
-        <meta httpEquiv="Cache-Control" content="max-age=86400" />
-        <meta name="applicable-device" content="pc,mobile" />
-        <meta name="MobileOptimized" content="width" />
-        <meta name="HandheldFriendly" content="true" />
-        <meta name="geo.region" content="US, EU, CN" />
-        <meta name="geo.placename" content="Global" />
         <StructuredData />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="preload" href="/shinka-logo.png" as="image" type="image/png" />
+        <meta name="theme-color" content="#f7f5f3" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#2c2622" media="(prefers-color-scheme: dark)" />
       </head>
-      <body className="font-sans antialiased">
-        <main className="min-h-screen">
+      <body 
+        className="font-sans antialiased min-h-screen bg-background text-foreground"
+        suppressHydrationWarning
+      >
+        <LayoutProvider>
           {children}
-          <Analytics />
-          <SpeedInsights />
-        </main>
+        </LayoutProvider>
+        <GoogleAnalytics />
         
-        {/* Google Analytics */}
+        {/* Performance optimization script */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"
+          id="performance-optimizations"
           strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              // Immediate performance optimizations
+              if (typeof window !== 'undefined') {
+                // Optimize touch interactions for mobile
+                document.body.style.touchAction = 'manipulation';
+                
+                // Reduce motion for users who prefer it
+                if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                  document.documentElement.style.scrollBehavior = 'auto';
+                }
+                
+                // Prefetch founder page for instant navigation
+                const prefetchLink = document.createElement('link');
+                prefetchLink.rel = 'prefetch';
+                prefetchLink.href = '/founder';
+                document.head.appendChild(prefetchLink);
+              }
+            `
+          }}
         />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'GA_MEASUREMENT_ID');
-          `}
-        </Script>
       </body>
     </html>
-  );
+  )
 }
