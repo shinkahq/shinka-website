@@ -139,7 +139,7 @@ export default function Home() {
               <div className="border-b border-border/30 pb-8">
                 <h3 className="text-2xl font-medium text-foreground mb-4">Private Equity</h3>
                 <p className="text-muted-foreground mb-6 font-light">
-                  Slow deal sourcing, liquidity bottlenecks, operational complexity.
+                  Slow deal sourcing, liquidity bottlenecks, operational complexity?
                 </p>
                 <div className="space-y-3 text-sm text-muted-foreground font-light">
                   <div className="flex items-center space-x-3">
@@ -160,7 +160,7 @@ export default function Home() {
               <div className="border-b border-border/30 pb-8">
                 <h3 className="text-2xl font-medium text-foreground mb-4">Banking</h3>
                 <p className="text-muted-foreground mb-6 font-light">
-                  Regulatory compliance, customer loyalty, fraud detection.
+                  Regulatory compliance, customer loyalty, fraud detection?
                 </p>
                 <div className="space-y-3 text-sm text-muted-foreground font-light">
                   <div className="flex items-center space-x-3">
@@ -183,7 +183,7 @@ export default function Home() {
               <div className="border-b border-border/30 pb-8">
                 <h3 className="text-2xl font-medium text-foreground mb-4">Pharmaceutical</h3>
                 <p className="text-muted-foreground mb-6 font-light">
-                  Rising R&D costs, regulatory complexity, supply chain disruptions.
+                  Rising R&D costs, regulatory complexity, supply chain disruptions?
                 </p>
                 <div className="space-y-3 text-sm text-muted-foreground font-light">
                   <div className="flex items-center space-x-3">
@@ -204,7 +204,7 @@ export default function Home() {
               <div className="border-b border-border/30 pb-8">
                 <h3 className="text-2xl font-medium text-foreground mb-4">Supply Chain</h3>
                 <p className="text-muted-foreground mb-6 font-light">
-                  Material shortages, forecasting errors, lack of visibility.
+                  Material shortages, forecasting errors, inventory management inefficiencies?
                 </p>
                 <div className="space-y-3 text-sm text-muted-foreground font-light">
                   <div className="flex items-center space-x-3">
@@ -230,7 +230,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About Section
+      {/* About Section */}
       <section id="about" className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -282,7 +282,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section> */}
+      </section>
 
       {/* Get in Touch Section */}
       <section id="contact" className="py-24 bg-background">
