@@ -68,7 +68,7 @@ export default function Home() {
           <div className="text-center mb-20">
             <h2 className="text-4xl lg:text-5xl font-medium text-foreground mb-6 tracking-tight">What We Build</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-light">
-              Comprehensive AI solutions designed for enterprise-scale challenges
+              Solving enterprise problems with AI across Private Equity, Banking, Pharma, Supply Chain & more
             </p>
           </div>
 
@@ -80,8 +80,8 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-medium text-foreground mb-4">AI Agents</h3>
                 <p className="text-muted-foreground leading-relaxed font-light">
-                  Intelligent autonomous agents that understand context, make decisions, and execute complex tasks
-                  across your enterprise systems.
+                  Autonomous agents that analyze financial documents, monitor transactions, detect anomalies, and 
+                  automate compliance workflows across enterprise systems.
                 </p>
                 <div className="mt-6 flex items-center text-foreground font-medium">
                   Learn more <ChevronRight className="ml-1 h-4 w-4" />
@@ -96,8 +96,8 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-medium text-foreground mb-4">AI Models</h3>
                 <p className="text-muted-foreground leading-relaxed font-light">
-                  Custom AI models tailored to your specific business needs, from fine-tuned language models
-                  to specialized computer vision solutions.
+                  Custom models for detecting financial fraud, analyzing legal contracts, predicting market risks, and 
+                  identifying regulatory violations with industry-specific training.
                 </p>
                 <div className="mt-6 flex items-center text-foreground font-medium">
                   Learn more <ChevronRight className="ml-1 h-4 w-4" />
@@ -112,14 +112,116 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-medium text-foreground mb-4">Integrations & Automations</h3>
                 <p className="text-muted-foreground leading-relaxed font-light">
-                  Seamless integrations with existing systems and end-to-end process automation that scales
-                  with your business needs.
+                  Seamless integration with Bloomberg, Salesforce, SAP, and legacy banking systems. End-to-end automation 
+                  for AML screening, trade settlement, quality control, and regulatory submissions.
                 </p>
                 <div className="mt-6 flex items-center text-foreground font-medium">
                   Learn more <ChevronRight className="ml-1 h-4 w-4" />
                 </div>
               </CardContent>
             </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Industries & Problems Section */}
+      <section className="py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl lg:text-5xl font-medium text-foreground mb-6 tracking-tight">Industry Challenges</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-light">
+              Real problems. Real solutions.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-16">
+            <div className="space-y-12">
+              <div className="border-b border-border/30 pb-8">
+                <h3 className="text-2xl font-medium text-foreground mb-4">Private Equity</h3>
+                <p className="text-muted-foreground mb-6 font-light">
+                  Slow deal sourcing, liquidity bottlenecks, operational complexity.
+                </p>
+                <div className="space-y-3 text-sm text-muted-foreground font-light">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-1 h-1 bg-foreground rounded-full"></div>
+                    <span>Automated deal sourcing from financial datasets</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <div className="w-1 h-1 bg-foreground rounded-full"></div>
+                    <span>NLP analysis of financial statements and contracts</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <div className="w-1 h-1 bg-foreground rounded-full"></div>
+                    <span>Real-time portfolio performance monitoring</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="border-b border-border/30 pb-8">
+                <h3 className="text-2xl font-medium text-foreground mb-4">Banking</h3>
+                <p className="text-muted-foreground mb-6 font-light">
+                  Regulatory compliance, customer loyalty, fraud detection.
+                </p>
+                <div className="space-y-3 text-sm text-muted-foreground font-light">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-1 h-1 bg-foreground rounded-full"></div>
+                    <span>ML-powered credit scoring and fraud detection</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <div className="w-1 h-1 bg-foreground rounded-full"></div>
+                    <span>NLP chatbots for 24/7 customer support</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <div className="w-1 h-1 bg-foreground rounded-full"></div>
+                    <span>Automated KYC and compliance checks</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-12">
+              <div className="border-b border-border/30 pb-8">
+                <h3 className="text-2xl font-medium text-foreground mb-4">Pharmaceutical</h3>
+                <p className="text-muted-foreground mb-6 font-light">
+                  Rising R&D costs, regulatory complexity, supply chain disruptions.
+                </p>
+                <div className="space-y-3 text-sm text-muted-foreground font-light">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-1 h-1 bg-foreground rounded-full"></div>
+                    <span>AI-accelerated drug discovery and target identification</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <div className="w-1 h-1 bg-foreground rounded-full"></div>
+                    <span>Adaptive clinical trial design and monitoring</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <div className="w-1 h-1 bg-foreground rounded-full"></div>
+                    <span>Automated regulatory dossier assembly</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="border-b border-border/30 pb-8">
+                <h3 className="text-2xl font-medium text-foreground mb-4">Supply Chain</h3>
+                <p className="text-muted-foreground mb-6 font-light">
+                  Material shortages, forecasting errors, lack of visibility.
+                </p>
+                <div className="space-y-3 text-sm text-muted-foreground font-light">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-1 h-1 bg-foreground rounded-full"></div>
+                    <span>AI-driven demand forecasting with 45% accuracy improvement</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <div className="w-1 h-1 bg-foreground rounded-full"></div>
+                    <span>Real-time IoT monitoring and disruption detection</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <div className="w-1 h-1 bg-foreground rounded-full"></div>
+                    <span>Autonomous inventory and routing optimization</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
