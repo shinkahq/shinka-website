@@ -10,94 +10,94 @@
 
 @layer base {
   :root {
-    /* Refined color palette inspired by Japanese minimalist design */
-    --background: 36 33% 93%;    /* Cream/beige background */
-    --foreground: 220 13% 18%;   /* Deep charcoal */
-    --card: 36 33% 97%;          /* Lighter cream */
-    --card-foreground: 220 13% 18%;
-    --popover: 36 33% 97%;       /* Lighter cream */
-    --popover-foreground: 220 13% 18%;
-    --primary: 0 68% 42%;        /* Deep red accent */
-    --primary-foreground: 36 33% 97%;
-    --secondary: 36 33% 90%;     /* Slightly darker cream */
-    --secondary-foreground: 220 13% 18%;
-    --muted: 36 33% 90%;         /* Slightly darker cream */
-    --muted-foreground: 220 9% 46%;
-    --accent: 0 68% 42%;         /* Deep red accent */
-    --accent-foreground: 36 33% 97%;
+    /* Refined color palette inspired by the Shinka logo */
+    --background: 36 30% 94%;    /* Warm cream background from logo */
+    --foreground: 0 0% 10%;      /* Soft black */
+    --card: 36 30% 97%;          /* Lighter cream */
+    --card-foreground: 0 0% 10%;
+    --popover: 36 30% 97%;       /* Lighter cream */
+    --popover-foreground: 0 0% 10%;
+    --primary: 0 65% 45%;        /* Logo red */
+    --primary-foreground: 36 30% 97%;
+    --secondary: 36 30% 90%;     /* Slightly darker cream */
+    --secondary-foreground: 0 0% 10%;
+    --muted: 36 30% 90%;         /* Slightly darker cream */
+    --muted-foreground: 0 0% 45%;
+    --accent: 0 65% 45%;         /* Logo red */
+    --accent-foreground: 36 30% 97%;
     --destructive: 0 84% 60%;
-    --destructive-foreground: 36 33% 97%;
-    --border: 36 33% 85%;        /* Cream border */
-    --input: 36 33% 85%;         /* Cream input */
-    --ring: 220 13% 18%;
+    --destructive-foreground: 36 30% 97%;
+    --border: 36 30% 85%;        /* Cream border */
+    --input: 36 30% 85%;         /* Cream input */
+    --ring: 0 0% 10%;
     
-    /* Brand colors - sophisticated, warm minimalism */
-    --brand-primary: 0 68% 42%;  /* Deep red */
-    --brand-secondary: 220 9% 46%;
-    --brand-accent: 0 68% 42%;   /* Deep red */
-    --brand-warm: 36 33% 85%;    /* Warm cream */
-    --brand-cool: 220 13% 18%;   /* Deep charcoal */
+    /* Brand colors - from logo */
+    --brand-primary: 0 65% 45%;  /* Logo red */
+    --brand-secondary: 0 0% 45%;
+    --brand-accent: 0 65% 45%;   /* Logo red */
+    --brand-warm: 36 30% 85%;    /* Warm cream */
+    --brand-cool: 0 0% 10%;      /* Soft black */
     
     /* Chart colors for data visualization */
-    --chart-1: 0 68% 42%;        /* Deep red */
-    --chart-2: 36 33% 85%;       /* Cream */
-    --chart-3: 220 13% 18%;      /* Charcoal */
-    --chart-4: 0 68% 32%;        /* Darker red */
-    --chart-5: 36 33% 75%;       /* Darker cream */
+    --chart-1: 0 65% 45%;        /* Logo red */
+    --chart-2: 36 30% 85%;       /* Cream */
+    --chart-3: 0 0% 10%;         /* Soft black */
+    --chart-4: 0 65% 35%;        /* Darker red */
+    --chart-5: 36 30% 75%;       /* Darker cream */
     
     --radius: 0.5rem;
-    --sidebar-background: 36 33% 95%;  /* Slightly lighter cream */
-    --sidebar-foreground: 220 13% 18%;
-    --sidebar-primary: 0 68% 42%;      /* Deep red */
-    --sidebar-primary-foreground: 36 33% 97%;
-    --sidebar-accent: 36 33% 90%;      /* Slightly darker cream */
-    --sidebar-accent-foreground: 220 13% 18%;
-    --sidebar-border: 36 33% 85%;      /* Cream border */
-    --sidebar-ring: 0 68% 42%;         /* Deep red */
+    --sidebar-background: 36 30% 95%;  /* Slightly lighter cream */
+    --sidebar-foreground: 0 0% 10%;
+    --sidebar-primary: 0 65% 45%;      /* Logo red */
+    --sidebar-primary-foreground: 36 30% 97%;
+    --sidebar-accent: 36 30% 90%;      /* Slightly darker cream */
+    --sidebar-accent-foreground: 0 0% 10%;
+    --sidebar-border: 36 30% 85%;      /* Cream border */
+    --sidebar-ring: 0 65% 45%;         /* Logo red */
   }
   
   .dark {
-    --background: 220 13% 18%;         /* Dark charcoal */
-    --foreground: 36 33% 93%;          /* Cream */
-    --card: 220 13% 18%;
-    --card-foreground: 36 33% 93%;
-    --popover: 220 13% 18%;
-    --popover-foreground: 36 33% 93%;
-    --primary: 0 68% 42%;              /* Deep red */
-    --primary-foreground: 36 33% 93%;
-    --secondary: 220 14% 14%;
-    --secondary-foreground: 36 33% 93%;
-    --muted: 220 14% 14%;
-    --muted-foreground: 36 33% 85%;
-    --accent: 0 68% 42%;               /* Deep red */
-    --accent-foreground: 36 33% 93%;
+    --background: 0 0% 10%;            /* Soft black */
+    --foreground: 36 30% 94%;          /* Cream */
+    --card: 0 0% 10%;
+    --card-foreground: 36 30% 94%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 36 30% 94%;
+    --primary: 0 65% 45%;              /* Logo red */
+    --primary-foreground: 36 30% 94%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 36 30% 94%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 36 30% 85%;
+    --accent: 0 65% 45%;               /* Logo red */
+    --accent-foreground: 36 30% 94%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 36 33% 93%;
-    --border: 220 14% 14%;
-    --input: 220 14% 14%;
-    --ring: 36 33% 83.1%;
+    --destructive-foreground: 36 30% 94%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 36 30% 83.1%;
     
     /* Dark mode brand colors */
-    --brand-primary: 36 33% 93%;       /* Cream */
-    --brand-secondary: 36 33% 85%;
-    --brand-accent: 0 68% 42%;         /* Deep red */
-    --brand-warm: 36 33% 85%;
-    --brand-cool: 36 33% 93%;
+    --brand-primary: 36 30% 94%;       /* Cream */
+    --brand-secondary: 36 30% 85%;
+    --brand-accent: 0 65% 45%;         /* Logo red */
+    --brand-warm: 36 30% 85%;
+    --brand-cool: 36 30% 94%;
     
-    --chart-1: 0 68% 52%;              /* Brighter red */
-    --chart-2: 36 33% 93%;             /* Cream */
-    --chart-3: 220 13% 28%;            /* Lighter charcoal */
-    --chart-4: 0 68% 62%;              /* Even brighter red */
-    --chart-5: 36 33% 83%;             /* Darker cream */
+    --chart-1: 0 65% 55%;              /* Brighter red */
+    --chart-2: 36 30% 94%;             /* Cream */
+    --chart-3: 0 0% 20%;               /* Lighter soft black */
+    --chart-4: 0 65% 65%;              /* Even brighter red */
+    --chart-5: 36 30% 83%;             /* Darker cream */
     
-    --sidebar-background: 220 13% 18%;
-    --sidebar-foreground: 36 33% 93%;
-    --sidebar-primary: 0 68% 42%;       /* Deep red */
-    --sidebar-primary-foreground: 36 33% 93%;
-    --sidebar-accent: 220 14% 14%;
-    --sidebar-accent-foreground: 36 33% 93%;
-    --sidebar-border: 220 14% 14%;
-    --sidebar-ring: 0 68% 42%;          /* Deep red */
+    --sidebar-background: 0 0% 10%;
+    --sidebar-foreground: 36 30% 94%;
+    --sidebar-primary: 0 65% 45%;       /* Logo red */
+    --sidebar-primary-foreground: 36 30% 94%;
+    --sidebar-accent: 0 0% 15%;
+    --sidebar-accent-foreground: 36 30% 94%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 0 65% 45%;          /* Logo red */
   }
 }
 
