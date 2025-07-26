@@ -3,8 +3,9 @@ import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Script from "next/script";
-import StructuredData from "./structured-data";
-import "./globals.css";
+import StructuredData from "./lib/metadata";
+import { SEO_CONFIG, getBaseUrl } from "./lib/seo";
+import "./lib/styles.css";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -13,29 +14,17 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_VERCEL_URL
-    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-    : 'https://shinkahq.com'),
-  title: {
-    default: "Shinka - Enterprise AI Solutions",
-    template: "%s | Shinka",
-  },
-  description: "Intelligent AI products for modern enterprises. We build cutting-edge AI agents, workflows, and automations that transform how enterprises operate.",
-  keywords: ["AI", "Artificial Intelligence", "Enterprise", "Automation", "Workflows", "Agents", "Shinka", "Business Solutions", "Machine Learning", "AI Agents", "Smart Workflows"],
-  authors: [{ name: "Shinka" }],
-  creator: "Shinka",
-  publisher: "Shinka",
+  metadataBase: new URL(getBaseUrl()),
+  ...SEO_CONFIG,
   formatDetection: {
     email: true,
     address: true,
     telephone: true,
   },
   openGraph: {
-    title: "Shinka - Enterprise AI Solutions",
-    description: "Intelligent AI products for modern enterprises. We build cutting-edge AI agents, workflows, and automations that transform how enterprises operate.",
-    url: process.env.NEXT_PUBLIC_VERCEL_URL
-      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-      : 'https://shinkahq.com',
+    title: SEO_CONFIG.title.default,
+    description: SEO_CONFIG.description,
+    url: getBaseUrl(),
     siteName: "Shinka",
     locale: "en_US",
     type: "website",
@@ -50,8 +39,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Shinka - Enterprise AI Solutions",
-    description: "Intelligent AI products for modern enterprises. We build cutting-edge AI agents, workflows, and automations that transform how enterprises operate.",
+    title: SEO_CONFIG.title.default,
+    description: SEO_CONFIG.description,
     creator: "@shinkahq",
     images: ['/shinka-logo.png'],
   },
@@ -71,9 +60,7 @@ export const metadata: Metadata = {
   referrer: "origin-when-cross-origin",
   category: "technology",
   other: {
-    "mobile-agent": "format=html5; url=" + (process.env.NEXT_PUBLIC_VERCEL_URL
-      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-      : 'https://shinkahq.com'),
+    "mobile-agent": "format=html5; url=" + getBaseUrl(),
     "google-site-verification": "YOUR_GOOGLE_VERIFICATION_CODE",
     "msvalidate.01": "YOUR_BING_VERIFICATION_CODE",
     "yandex-verification": "YOUR_YANDEX_VERIFICATION_CODE",

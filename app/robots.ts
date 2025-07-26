@@ -1,16 +1,3 @@
-import { MetadataRoute } from 'next'
+import { robots } from './lib/seo'
 
-export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
-    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-    : 'https://shinkahq.com'
-
-  return {
-    rules: {
-      userAgent: '*',
-      allow: '/',
-      disallow: ['/api/', '/admin/'],
-    },
-    sitemap: `${baseUrl}/sitemap.xml`,
-  }
-} 
+export default robots 
