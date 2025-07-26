@@ -1,10 +1,19 @@
 'use client'
 
-import { ArrowRight, Twitter, Linkedin } from "lucide-react"
+import { ArrowRight, Twitter, Linkedin, Mail } from "lucide-react"
 import useResponsive from '@/lib/use-responsive'
 import { ResponsiveContainer, ResponsiveText } from '@/components/responsive'
 
 const contactOptions = [
+  {
+    title: "Email",
+    description: "Send us a message directly",
+    action: {
+      text: "Email",
+      href: "mailto:ayushbodade1@gmail.com",
+      external: false
+    }
+  },
   {
     title: "Consultation",
     description: "Schedule a call to discuss your AI needs",
@@ -37,63 +46,85 @@ export default function Contact() {
 
   return (
     <section id="contact" className={`${isMobile ? 'py-16' : 'py-24'} bg-background`}>
-             <ResponsiveContainer maxWidth="2xl">
-        <div className="space-y-12 md:space-y-16">
-          {contactOptions.map((option, index) => (
-            <div key={index} className={`flex ${isMobile ? 'flex-col space-y-4' : 'items-center justify-between'} group`}>
-              <div className={isMobile ? 'text-center' : ''}>
-                <ResponsiveText
-                  as="h3"
-                  mobileSize="text-2xl"
-                  tabletSize="text-3xl"
-                  desktopSize="text-3xl"
-                  className="font-medium text-foreground mb-2 md:mb-3"
-                >
-                  {option.title}
-                </ResponsiveText>
-                <ResponsiveText
-                  mobileSize="text-base"
-                  tabletSize="text-lg"
-                  desktopSize="text-lg"
-                  className="text-muted-foreground font-light"
-                >
-                  {option.description}
-                </ResponsiveText>
-              </div>
+      <ResponsiveContainer maxWidth="responsive">
+        <div className="text-center mb-12 md:mb-20">
+          <ResponsiveText
+            as="h2"
+            mobileSize="text-3xl"
+            tabletSize="text-4xl"
+            desktopSize="text-4xl lg:text-5xl"
+            className="font-medium text-foreground mb-4 md:mb-6 tracking-tight"
+          >
+            Get in Touch
+          </ResponsiveText>
+          <ResponsiveText
+            mobileSize="text-base"
+            tabletSize="text-lg"
+            desktopSize="text-lg"
+            className="text-muted-foreground max-w-2xl mx-auto font-light"
+          >
+            Ready to transform your enterprise with AI?
+          </ResponsiveText>
+        </div>
 
-              {/* Action Button */}
-              {option.action && (
+        <div className="max-w-3xl mx-auto">
+          <div className="space-y-12 md:space-y-16">
+            {contactOptions.map((option, index) => (
+              <div key={index} className={`flex ${isMobile ? 'flex-col space-y-4' : 'items-center justify-between'} group`}>
                 <div className={isMobile ? 'text-center' : ''}>
-                  <a 
-                    href={option.action.href}
-                    target={option.action.external ? "_blank" : undefined}
-                    rel={option.action.external ? "noopener noreferrer" : undefined}
-                    className={`${isMobile ? 'text-base' : 'text-lg'} text-foreground hover:opacity-70 transition-opacity font-light flex items-center ${isMobile ? 'justify-center' : ''}`}
+                  <ResponsiveText
+                    as="h3"
+                    mobileSize="text-2xl"
+                    tabletSize="text-3xl"
+                    desktopSize="text-3xl"
+                    className="font-medium text-foreground mb-2 md:mb-3"
                   >
-                    {option.action.text} <ArrowRight className="ml-2 h-4 w-4 md:h-5 md:w-5" />
-                  </a>
+                    {option.title}
+                  </ResponsiveText>
+                  <ResponsiveText
+                    mobileSize="text-base"
+                    tabletSize="text-lg"
+                    desktopSize="text-lg"
+                    className="text-muted-foreground font-light"
+                  >
+                    {option.description}
+                  </ResponsiveText>
                 </div>
-              )}
 
-              {/* Social Links */}
-              {option.socialLinks && (
-                <div className={`flex items-center ${isMobile ? 'justify-center space-x-8' : 'space-x-6'}`}>
-                  {option.socialLinks.map((social, socialIndex) => (
+                {/* Action Button */}
+                {option.action && (
+                  <div className={isMobile ? 'text-center' : ''}>
                     <a 
-                      key={socialIndex}
-                      href={social.href}
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-foreground transition-colors"
-                      aria-label={social.label}
+                      href={option.action.href}
+                      target={option.action.external ? "_blank" : undefined}
+                      rel={option.action.external ? "noopener noreferrer" : undefined}
+                      className={`${isMobile ? 'text-base' : 'text-lg'} text-foreground hover:opacity-70 transition-opacity font-light flex items-center ${isMobile ? 'justify-center' : ''}`}
                     >
-                      <social.icon className={`${isMobile ? 'h-6 w-6' : 'h-5 w-5'}`} />
+                      {option.action.text} <ArrowRight className="ml-2 h-4 w-4 md:h-5 md:w-5" />
                     </a>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
+                  </div>
+                )}
+
+                {/* Social Links */}
+                {option.socialLinks && (
+                  <div className={`flex items-center ${isMobile ? 'justify-center space-x-8' : 'space-x-6'}`}>
+                    {option.socialLinks.map((social, socialIndex) => (
+                      <a 
+                        key={socialIndex}
+                        href={social.href}
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-muted-foreground hover:text-foreground transition-colors"
+                        aria-label={social.label}
+                      >
+                        <social.icon className={`${isMobile ? 'h-6 w-6' : 'h-5 w-5'}`} />
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       </ResponsiveContainer>
     </section>
