@@ -15,7 +15,6 @@ const navItems = [
   { href: "/#services", label: "Services" },
   { href: "/#about", label: "About" },
   { href: "/#team", label: "Team" },
-  { href: "/founder", label: "Founder" },
 ] as const
 
 // Memoized logo component with hydration-safe rendering
