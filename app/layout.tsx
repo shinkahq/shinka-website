@@ -2,9 +2,8 @@ import type { Metadata, Viewport } from "next"
 import StructuredData from "@/lib/metadata"
 import { SEO_CONFIG, getBaseUrl } from "@/lib/seo"
 import { fontVariables } from "@/lib/fonts"
-import { GoogleAnalytics } from "@/lib/analytics"
+import { DynamicGoogleAnalytics } from "@/lib/dynamic-imports"
 import LayoutProvider from "@/components/layout/layout-provider"
-import Script from "next/script"
 import "@/lib/styles.css"
 
 // Export viewport configuration using Next.js 15 API
@@ -113,33 +112,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <LayoutProvider>
           {children}
         </LayoutProvider>
-        <GoogleAnalytics />
-        
-        {/* Performance optimization script */}
-        <Script
-          id="performance-optimizations"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              // Immediate performance optimizations
-              if (typeof window !== 'undefined') {
-                // Optimize touch interactions for mobile
-                document.body.style.touchAction = 'manipulation';
-                
-                // Reduce motion for users who prefer it
-                if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                  document.documentElement.style.scrollBehavior = 'auto';
-                }
-                
-                // Prefetch founder page for instant navigation
-                const prefetchLink = document.createElement('link');
-                prefetchLink.rel = 'prefetch';
-                prefetchLink.href = '/founder';
-                document.head.appendChild(prefetchLink);
-              }
-            `
-          }}
-        />
+        <DynamicGoogleAnalytics />
       </body>
     </html>
   )

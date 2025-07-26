@@ -1,177 +1,180 @@
-// Performance utilities and configurations
+// Ultra-optimized performance utilities
 
-// Preload critical resources
+// Cached DOM elements and values
+let logoPreloaded = false
+let fontsPreconnected = false
+let scrollOptimized = false
+
+// Super fast resource preloading
 export const preloadCriticalResources = () => {
-  if (typeof window === 'undefined') return
-
+  if (typeof window === 'undefined' || logoPreloaded) return
+  
+  // Batch DOM operations for better performance
+  const fragment = document.createDocumentFragment()
+  
   // Preload logo image
   const logoLink = document.createElement('link')
   logoLink.rel = 'preload'
   logoLink.href = '/shinka-logo.png'
   logoLink.as = 'image'
   logoLink.type = 'image/png'
-  document.head.appendChild(logoLink)
-
-  // Preload critical fonts
-  const fontLink = document.createElement('link')
-  fontLink.rel = 'preconnect'
-  fontLink.href = 'https://fonts.gstatic.com'
-  fontLink.crossOrigin = 'anonymous'
-  document.head.appendChild(fontLink)
-}
-
-// Optimize scroll behavior
-export const optimizeScrollBehavior = () => {
-  if (typeof window === 'undefined') return
-
-  // Enable smooth scrolling for hash links
-  document.documentElement.style.scrollBehavior = 'smooth'
-
-  // Optimize scroll performance
-  let scrollTimeout: NodeJS.Timeout
-  const optimizedScrollHandler = () => {
-    document.body.style.pointerEvents = 'none'
-    clearTimeout(scrollTimeout)
-    scrollTimeout = setTimeout(() => {
-      document.body.style.pointerEvents = 'auto'
-    }, 150)
-  }
-
-  window.addEventListener('scroll', optimizedScrollHandler, { passive: true })
+  fragment.appendChild(logoLink)
   
-  return () => {
-    window.removeEventListener('scroll', optimizedScrollHandler)
-    clearTimeout(scrollTimeout)
-  }
+  document.head.appendChild(fragment)
+  logoPreloaded = true
 }
 
-// Lazy load non-critical images
-export const createLazyImageObserver = () => {
-  if (typeof window === 'undefined' || !('IntersectionObserver' in window)) return
-
-  const imageObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const img = entry.target as HTMLImageElement
-        if (img.dataset.src) {
-          img.src = img.dataset.src
-          img.removeAttribute('data-src')
-          imageObserver.unobserve(img)
-        }
-      }
-    })
-  }, {
-    rootMargin: '50px 0px',
-    threshold: 0.01
-  })
-
-  return imageObserver
+// Optimized font preconnection
+export const preconnectFonts = () => {
+  if (typeof window === 'undefined' || fontsPreconnected) return
+  
+  const fragment = document.createDocumentFragment()
+  
+  const gfontsLink = document.createElement('link')
+  gfontsLink.rel = 'preconnect'
+  gfontsLink.href = 'https://fonts.googleapis.com'
+  fragment.appendChild(gfontsLink)
+  
+  const gstaticLink = document.createElement('link')
+  gstaticLink.rel = 'preconnect'
+  gstaticLink.href = 'https://fonts.gstatic.com'
+  gstaticLink.crossOrigin = 'anonymous'
+  fragment.appendChild(gstaticLink)
+  
+  document.head.appendChild(fragment)
+  fontsPreconnected = true
 }
 
-// Debounce utility for better performance
-export const debounce = <T extends (...args: any[]) => any>(
-  func: T,
-  wait: number
-): ((...args: Parameters<T>) => void) => {
-  let timeout: NodeJS.Timeout
-  return (...args: Parameters<T>) => {
-    clearTimeout(timeout)
-    timeout = setTimeout(() => func(...args), wait)
-  }
-}
+// Ultra-optimized scroll behavior
+export const optimizeScrollBehavior = () => {
+  if (typeof window === 'undefined' || scrollOptimized) return
 
-// Throttle utility for better performance
-export const throttle = <T extends (...args: any[]) => any>(
-  func: T,
-  limit: number
-): ((...args: Parameters<T>) => void) => {
-  let inThrottle: boolean
-  return (...args: Parameters<T>) => {
-    if (!inThrottle) {
-      func(...args)
-      inThrottle = true
-      setTimeout(() => inThrottle = false, limit)
-    }
-  }
-}
-
-// Performance metrics tracking
-export const trackPerformanceMetrics = () => {
-  if (typeof window === 'undefined' || !('performance' in window)) return
-
-  // Track Core Web Vitals
-  const observer = new PerformanceObserver((list) => {
-    for (const entry of list.getEntries()) {
-      // Log performance metrics in development
-      if (process.env.NODE_ENV === 'development') {
-        console.log(`${entry.name}: ${entry.value}ms`)
-      }
-    }
-  })
-
-  try {
-    observer.observe({ entryTypes: ['measure', 'navigation'] })
-  } catch (e) {
-    // Fallback for older browsers
-    console.warn('Performance observer not supported')
-  }
-
-  return observer
-}
-
-// Mobile-specific optimizations
-export const optimizeForMobile = () => {
-  if (typeof window === 'undefined') return
-
-  // Prevent zoom on input focus for iOS
-  const viewport = document.querySelector('meta[name=viewport]')
-  if (viewport) {
-    viewport.setAttribute('content', 
-      'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'
-    )
-  }
-
-  // Optimize touch interactions
+  // Enable smooth scrolling
+  document.documentElement.style.scrollBehavior = 'smooth'
+  
+  // Optimize touch interactions immediately
   document.body.style.touchAction = 'manipulation'
-
+  
   // Reduce motion for users who prefer it
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     document.documentElement.style.scrollBehavior = 'auto'
   }
+  
+  scrollOptimized = true
 }
 
-// Prefetch routes for better navigation
+// Lightweight lazy image observer
+export const createFastImageObserver = () => {
+  if (typeof window === 'undefined' || !('IntersectionObserver' in window)) return null
+
+  return new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const img = entry.target as HTMLImageElement
+          if (img.dataset.src) {
+            img.src = img.dataset.src
+            img.removeAttribute('data-src')
+          }
+        }
+      })
+    },
+    {
+      rootMargin: '50px 0px',
+      threshold: 0.01
+    }
+  )
+}
+
+// Ultra-fast debounce (minimal overhead)
+export const debounce = <T extends (...args: any[]) => any>(
+  func: T,
+  wait: number
+): ((...args: Parameters<T>) => void) => {
+  let timeout: NodeJS.Timeout | undefined
+  return (...args: Parameters<T>) => {
+    if (timeout) clearTimeout(timeout)
+    timeout = setTimeout(() => func(...args), wait)
+  }
+}
+
+// Ultra-fast throttle (minimal overhead)
+export const throttle = <T extends (...args: any[]) => any>(
+  func: T,
+  limit: number
+): ((...args: Parameters<T>) => void) => {
+  let inThrottle = false
+  return (...args: Parameters<T>) => {
+    if (!inThrottle) {
+      func(...args)
+      inThrottle = true
+      setTimeout(() => (inThrottle = false), limit)
+    }
+  }
+}
+
+// Minimal performance tracking (only in development)
+export const trackPerformance = () => {
+  if (typeof window === 'undefined' || process.env.NODE_ENV !== 'development') return
+
+  // Only track in development to avoid production overhead
+  try {
+    new PerformanceObserver((list) => {
+      for (const entry of list.getEntries()) {
+        if (entry.name.includes('navigation') || entry.name.includes('paint')) {
+          console.log(`${entry.name}: ${Math.round(entry.startTime)}ms`)
+        }
+      }
+    }).observe({ entryTypes: ['navigation', 'paint'] })
+  } catch (e) {
+    // Ignore if not supported
+  }
+}
+
+// Route prefetching (super lightweight)
 export const prefetchRoutes = (routes: string[]) => {
   if (typeof window === 'undefined') return
-
-  routes.forEach(route => {
-    const link = document.createElement('link')
-    link.rel = 'prefetch'
-    link.href = route
-    document.head.appendChild(link)
-  })
+  
+  // Use requestIdleCallback for better performance
+  const prefetch = () => {
+    const fragment = document.createDocumentFragment()
+    
+    routes.forEach(route => {
+      const link = document.createElement('link')
+      link.rel = 'prefetch'
+      link.href = route
+      fragment.appendChild(link)
+    })
+    
+    document.head.appendChild(fragment)
+  }
+  
+  if ('requestIdleCallback' in window) {
+    window.requestIdleCallback(prefetch)
+  } else {
+    setTimeout(prefetch, 1)
+  }
 }
 
-// Initialize all performance optimizations
+// Single initialization function (minimal calls)
 export const initializePerformanceOptimizations = () => {
   if (typeof window === 'undefined') return
 
-  // Run optimizations after DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      preloadCriticalResources()
-      optimizeScrollBehavior()
-      optimizeForMobile()
-      trackPerformanceMetrics()
-      
-      // Prefetch critical routes
-      prefetchRoutes(['/founder', '/'])
-    })
-  } else {
+  // Batch all optimizations
+  const initialize = () => {
     preloadCriticalResources()
+    preconnectFonts()
     optimizeScrollBehavior()
-    optimizeForMobile()
-    trackPerformanceMetrics()
-    prefetchRoutes(['/founder', '/'])
+    trackPerformance()
+    
+    // Prefetch critical routes
+    prefetchRoutes(['/founder'])
+  }
+
+  // Use the fastest available method
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initialize, { once: true })
+  } else {
+    initialize()
   }
 } 

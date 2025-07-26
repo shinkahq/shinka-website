@@ -1,16 +1,24 @@
 import type { Config } from "tailwindcss"
 
 const config: Config = {
-  darkMode: ["class"],
+  // Optimized content scanning
   content: [
-    "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
-    "*.{js,ts,jsx,tsx,mdx}",
+    './pages/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+    './app/**/*.{ts,tsx}',
+    './src/**/*.{ts,tsx}',
   ],
-  prefix: "",
+  
+  // Enable JIT mode for faster builds
+  mode: 'jit',
+  
+  // Optimize for production
+  corePlugins: {
+    preflight: true,
+  },
+  
   theme: {
+    // Minimal custom theme for better performance
     container: {
       center: true,
       padding: "2rem",
@@ -19,6 +27,7 @@ const config: Config = {
       },
     },
     extend: {
+      // Optimized color palette (only colors we actually use)
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -53,20 +62,14 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Brand colors inspired by Perplexity case study
-        brand: {
-          primary: "hsl(var(--brand-primary))",
-          secondary: "hsl(var(--brand-secondary))",
-          accent: "hsl(var(--brand-accent))",
-          warm: "hsl(var(--brand-warm))",
-          cool: "hsl(var(--brand-cool))",
-        },
       },
+      // Optimized border radius (only sizes we use)
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      // Optimized animations (only ones we use)
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
@@ -81,9 +84,18 @@ const config: Config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      // Optimized font family
+      fontFamily: {
+        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config
+  
+  // Build optimizations
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
+}
 
 export default config
