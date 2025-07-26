@@ -1,7 +1,7 @@
 'use client'
 
-import { AnalyticsProvider } from '@/app/lib/analytics'
 import { Suspense } from 'react'
+import { AnalyticsProvider } from '@/lib/analytics'
 
 interface LayoutProviderProps {
   children: React.ReactNode

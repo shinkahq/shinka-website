@@ -1,11 +1,11 @@
 import type { Metadata, Viewport } from "next"
-import StructuredData from "./lib/metadata"
-import { SEO_CONFIG, getBaseUrl } from "./lib/seo"
-import { fontVariables } from "./lib/fonts"
-import { GoogleAnalytics } from "./lib/analytics"
-import LayoutProvider from "./components/layout-provider"
+import StructuredData from "@/lib/metadata"
+import { SEO_CONFIG, getBaseUrl } from "@/lib/seo"
+import { fontVariables } from "@/lib/fonts"
+import { GoogleAnalytics } from "@/lib/analytics"
+import LayoutProvider from "@/components/layout/layout-provider"
 import Script from "next/script"
-import "./lib/styles.css"
+import "@/lib/styles.css"
 
 // Export viewport configuration using Next.js 15 API
 export const viewport: Viewport = {

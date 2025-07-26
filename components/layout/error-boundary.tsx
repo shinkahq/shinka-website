@@ -3,13 +3,12 @@
 import { useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 
-export default function ErrorBoundary({
-  error,
-  reset,
-}: {
+interface ErrorBoundaryProps {
   error: Error & { digest?: string }
   reset: () => void
-}) {
+}
+
+export default function ErrorBoundary({ error, reset }: ErrorBoundaryProps) {
   useEffect(() => {
     // Log the error to an error reporting service
     console.error('Application error:', error)
@@ -27,18 +26,17 @@ export default function ErrorBoundary({
           </p>
         </div>
         
-        <Button
-          onClick={reset}
-          className="bg-foreground hover:bg-foreground/90 text-background"
-        >
-          Try again
-        </Button>
-        
-        <div className="mt-4">
+        <div className="space-y-4">
+          <Button
+            onClick={reset}
+            className="bg-foreground hover:bg-foreground/90 text-background"
+          >
+            Try again
+          </Button>
+          
           <Button
             variant="outline"
             onClick={() => window.location.href = '/'}
-            className="ml-2"
           >
             Go home
           </Button>

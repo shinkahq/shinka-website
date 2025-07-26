@@ -1,3 +1,3 @@
-import { sitemap } from './lib/seo'
+import { sitemap } from '@/lib/seo'
 
 export default sitemap 

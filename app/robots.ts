@@ -1,3 +1,3 @@
-import { robots } from './lib/seo'
+import { robots } from '@/lib/seo'
 
 export default robots 
