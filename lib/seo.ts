@@ -57,11 +57,11 @@ export function sitemap(): MetadataRoute.Sitemap {
 // SEO constants
 export const SEO_CONFIG = {
   title: {
-    default: "Shinka - Enterprise AI Solutions",
+    default: "Shinka - Building Super Intelligence for the World",
     template: "%s | Shinka",
   },
   description: "Intelligent AI products for modern enterprises. We build cutting-edge AI agents, workflows, and automations that transform how enterprises operate.",
-  keywords: ["AI", "Artificial Intelligence", "Enterprise", "Automation", "Workflows", "Agents", "Shinka", "Business Solutions", "Machine Learning", "AI Agents", "Smart Workflows"],
+  keywords: ["AI", "Artificial Intelligence", "Enterprise", "Automation", "Workflows", "Agents", "Shinka", "Business Solutions", "Machine Learning", "AI Agents", "Smart Workflows", "Super Intelligence"],
   authors: [{ name: "Shinka" }],
   creator: "Shinka",
   publisher: "Shinka",
