@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import useResponsive from '@/lib/use-responsive'
 import { ResponsiveContainer, ResponsiveText } from '@/components/responsive'
 
@@ -50,6 +50,7 @@ const experience = [
 export default function Team() {
   const { isMobile } = useResponsive()
   const containerRef = useRef<HTMLDivElement>(null)
+  const [activeIndex, setActiveIndex] = useState<number | null>(null)
 
   return (
     <section id="team" className={`${isMobile ? 'py-16' : 'py-24'} bg-background overflow-hidden`}>
@@ -89,19 +90,22 @@ export default function Team() {
               const delayClass = `animate-in fade-in slide-in-from-bottom-4 duration-700 fill-mode-forwards`
               const staggerDelay = `delay-[${index * 100}ms]`
               
+              const isActive = activeIndex === index
+              
               return (
                 <div 
                   key={index}
                   className={`group relative py-2 px-1 ${delayClass} ${staggerDelay}`}
+                  onClick={() => setActiveIndex(isActive ? null : index)}
                 >
-                  <div className="relative transition-transform duration-300 group-hover:-translate-y-1">
-                    <span className={`font-medium ${sizeClasses} text-foreground/70 group-hover:text-foreground transition-colors duration-300 cursor-default`}>
+                  <div className={`relative transition-all duration-300 ${isActive ? '-translate-y-1' : ''} md:group-hover:-translate-y-1`}>
+                    <span className={`font-medium ${sizeClasses} ${isActive ? 'text-foreground' : 'text-foreground/70'} md:group-hover:text-foreground transition-colors duration-300 cursor-pointer md:cursor-default`}>
                       {item.name}
                     </span>
-                    <div className="absolute -bottom-1 left-0 w-0 h-[2px] bg-foreground/30 group-hover:bg-foreground transition-all duration-300 group-hover:w-full" />
+                    <div className={`absolute -bottom-1 left-0 h-[2px] bg-foreground/30 transition-all duration-300 ${isActive ? 'w-full bg-foreground' : 'w-0 md:group-hover:w-full md:group-hover:bg-foreground'}`} />
                   </div>
-                  <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 pointer-events-none">
-                    <span className="text-xs text-muted-foreground bg-background/80 backdrop-blur-sm px-2 py-1 rounded-full opacity-0 transform translate-y-1 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 whitespace-nowrap">
+                  <div className={`absolute -bottom-4 left-1/2 -translate-x-1/2 pointer-events-none ${isMobile ? 'md:pointer-events-none' : 'pointer-events-none'}`}>
+                    <span className={`text-xs text-muted-foreground bg-background/80 backdrop-blur-sm px-2 py-1 rounded-full transform transition-all duration-300 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-1 md:group-hover:opacity-100 md:group-hover:translate-y-0'} whitespace-nowrap`}>
                       {item.role}
                     </span>
                   </div>
