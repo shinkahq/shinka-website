@@ -3,6 +3,8 @@
 import { useRef, useState } from 'react'
 import useResponsive from '@/lib/use-responsive'
 import { ResponsiveContainer, ResponsiveText } from '@/components/responsive'
+import { Badge } from '@/components/ui/badge'
+import { Users } from 'lucide-react'
 
 const experience = [
   {
@@ -53,9 +55,9 @@ export default function Team() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
 
   return (
-    <section id="team" className={`${isMobile ? 'py-16' : 'py-24'} bg-background overflow-hidden`}>
+    <section id="team" className={`${isMobile ? 'py-16' : 'py-24'} bg-background/50 backdrop-blur-sm border-y border-accent/10`}>
       <ResponsiveContainer maxWidth="responsive">
-        <div className="text-center mb-12 md:mb-20">
+        <div className="text-center mb-12 md:mb-20">          
           <ResponsiveText
             as="h2"
             mobileSize="text-3xl"
@@ -99,13 +101,25 @@ export default function Team() {
                   onClick={() => setActiveIndex(isActive ? null : index)}
                 >
                   <div className={`relative transition-all duration-300 ${isActive ? '-translate-y-1' : ''} md:group-hover:-translate-y-1`}>
-                    <span className={`font-medium ${sizeClasses} ${isActive ? 'text-foreground' : 'text-foreground/70'} md:group-hover:text-foreground transition-colors duration-300 cursor-pointer md:cursor-default`}>
+                    <span className={`font-medium ${sizeClasses} text-foreground/80 transition-colors duration-300 cursor-pointer md:cursor-default ${
+                      isActive 
+                        ? 'text-accent' 
+                        : 'md:group-hover:text-accent'
+                    }`}>
                       {item.name}
                     </span>
-                    <div className={`absolute -bottom-1 left-0 h-[2px] bg-foreground/30 transition-all duration-300 ${isActive ? 'w-full bg-foreground' : 'w-0 md:group-hover:w-full md:group-hover:bg-foreground'}`} />
+                    <div className={`absolute -bottom-1 left-0 h-[2px] transition-all duration-300 ${
+                      isActive 
+                        ? 'w-full bg-accent' 
+                        : 'w-0 bg-accent/30 md:group-hover:w-full'
+                    }`} />
                   </div>
                   <div className={`absolute -bottom-4 left-1/2 -translate-x-1/2 pointer-events-none ${isMobile ? 'md:pointer-events-none' : 'pointer-events-none'}`}>
-                    <span className={`text-xs text-muted-foreground bg-background/80 backdrop-blur-sm px-2 py-1 rounded-full transform transition-all duration-300 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-1 md:group-hover:opacity-100 md:group-hover:translate-y-0'} whitespace-nowrap`}>
+                    <span className={`text-xs font-medium bg-accent/5 text-foreground/60 px-3 py-1.5 rounded-full transform transition-all duration-300 ${
+                      isActive 
+                        ? 'opacity-100 translate-y-0 bg-accent/10 text-accent' 
+                        : 'opacity-0 translate-y-1 md:group-hover:opacity-100 md:group-hover:translate-y-0 md:group-hover:bg-accent/10 md:group-hover:text-accent'
+                    } whitespace-nowrap`}>
                       {item.role}
                     </span>
                   </div>

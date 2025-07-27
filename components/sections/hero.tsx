@@ -9,11 +9,11 @@ export default function Hero() {
   const { isMobile, isTablet } = useResponsive()
 
   return (
-    <section className={`${isMobile ? 'py-16' : isTablet ? 'py-20' : 'py-24 lg:py-32'}`}>
+    <section className={`${isMobile ? 'py-16' : isTablet ? 'py-20' : 'py-24 lg:py-32'} bg-gradient-to-b from-background to-muted/20`}>
       <ResponsiveContainer maxWidth="responsive">
         <div className="text-center">
-          <Badge variant="outline" className="mb-6 md:mb-8 border-foreground text-foreground font-medium">
-            <Sparkles className="w-3 h-3 mr-1" />
+          <Badge variant="outline" className="mb-6 md:mb-8 border-foreground/20 text-foreground font-medium bg-background/50 backdrop-blur-sm">
+            <Sparkles className="w-3 h-3 mr-1 text-primary" />
             Enterprise AI Solutions
           </Badge>
           
@@ -22,22 +22,30 @@ export default function Hero() {
             mobileSize="text-3xl"
             tabletSize="text-4xl lg:text-5xl"
             desktopSize="text-5xl lg:text-7xl"
-            className="font-medium text-foreground mb-6 md:mb-8 tracking-tight leading-[0.9]"
+            className="font-semibold text-foreground mb-6 md:mb-8 tracking-tight leading-[1.1]"
           >
-            AI Agents, Models,
+            <span className="inline-block">
+              <span className="text-primary font-bold">AI Agents</span>,{' '}
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/80 font-bold">Models</span>,
+            </span>
             <br />
-            <span className="text-foreground">Integrations & Automations</span>
+            <span className="inline-block">
+              <span className="text-primary/90 font-bold">Integrations</span> &{' '}
+              <span className="text-foreground">Automations</span>
+            </span>
             <br />
-            <span className="text-foreground">For Enterprises</span>
+            <span className="text-muted-foreground font-medium">For Enterprises</span>
           </ResponsiveText>
           
           <ResponsiveText
             mobileSize="text-lg"
             tabletSize="text-xl"
-            desktopSize="text-xl"
-            className="text-muted-foreground mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed font-light"
+            desktopSize="text-2xl"
+            className="text-muted-foreground mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed font-normal"
           >
-            We make enterprise processes 1000x more efficient with AI agents, models, integrations, and automations.
+            We make enterprise processes{' '}
+            <span className="font-semibold text-primary">1000x more efficient</span>{' '}
+            with AI agents, models, integrations, and automations.
           </ResponsiveText>
         </div>
       </ResponsiveContainer>

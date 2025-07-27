@@ -11,9 +11,14 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
   return (
     <NextThemesProvider
       attribute="class"
-      defaultTheme="system"
+      defaultTheme="light"
       enableSystem
       disableTransitionOnChange
+      themes={['light', 'dark']}
+      value={{
+        light: 'light',
+        dark: 'dark',
+      }}
     >
       {children}
     </NextThemesProvider>
