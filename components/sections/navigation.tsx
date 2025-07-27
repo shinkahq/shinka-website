@@ -259,16 +259,6 @@ export default function Navigation() {
           <Show below="md" fallback="hide">
             {isMenuOpen && (
               <div className="border-t border-accent/20 py-6 space-y-4 animate-in slide-in-from-top-2 duration-300 bg-gradient-to-b from-background/95 to-background/90">
-                {/* Terminal header for mobile menu */}
-                <div className="flex items-center gap-2 px-2 pb-2 border-b border-accent/10">
-                  <div className="flex gap-1">
-                    <div className="w-3 h-3 rounded-full bg-accent animate-pulse" />
-                    <div className="w-3 h-3 rounded-full bg-accent/60" />
-                    <div className="w-3 h-3 rounded-full bg-accent/30" />
-                  </div>
-                  <span className="text-xs font-mono text-accent">NAVIGATION_MENU</span>
-                </div>
-                
                 {navItems.map((item, index) => (
                   <NavLink
                     key={item.href}
@@ -286,12 +276,6 @@ export default function Navigation() {
                     className="w-full" 
                     isMobile={true}
                   />
-                </div>
-                
-                {/* Status indicator */}
-                <div className="flex items-center justify-center gap-2 pt-2">
-                  <div className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-                  <span className="text-xs font-mono text-muted-foreground">SYSTEM_READY</span>
                 </div>
               </div>
             )}
