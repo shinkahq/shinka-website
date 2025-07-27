@@ -3,7 +3,7 @@
 import { useState, useCallback, memo } from 'react'
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/ui/theme-toggle"
-import { Menu, X } from "lucide-react"
+import { Menu, X, Terminal } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
@@ -12,47 +12,54 @@ import { Show } from '@/components/responsive'
 
 // Memoized navigation items for performance
 const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/#services", label: "Services" },
-  { href: "/#about", label: "About" },
-  { href: "/#team", label: "Team" },
+  { href: "/", label: "HOME", code: "01" },
+  { href: "/#services", label: "SOLUTIONS", code: "02" },
+  { href: "/#about", label: "ABOUT", code: "03" },
+  { href: "/#team", label: "TEAM", code: "04" },
 ] as const
 
-// Memoized logo component with hydration-safe rendering
+// Memoized logo component with futuristic styling
 const Logo = memo(function Logo({ isMobile, isHydrated }: { isMobile: boolean; isHydrated: boolean }) {
-  // Use desktop size during SSR/hydration to prevent mismatch
   const logoWidth = isHydrated ? (isMobile ? 100 : 120) : 120
   const logoHeight = isHydrated ? (isMobile ? 32 : 40) : 40
   const logoClass = isHydrated ? (isMobile ? 'h-6' : 'h-8') : 'h-8'
   const textClass = isHydrated ? (isMobile ? 'text-base' : 'text-lg') : 'text-lg'
   
   return (
-    <Link href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
-      <Image 
-        src="/shinka-logo.png" 
-        alt="Shinka" 
-        width={logoWidth} 
-        height={logoHeight} 
-        className={`${logoClass} w-auto`}
-        priority
-      />
-      <span className={`text-foreground font-normal ${textClass} tracking-tight`}>
-        shinka
-      </span>
+    <Link href="/" className="group flex items-center space-x-3 hover:opacity-80 transition-all duration-300">
+      <div className="relative">
+        <Image 
+          src="/shinka-logo.png" 
+          alt="Shinka" 
+          width={logoWidth} 
+          height={logoHeight} 
+          className={`${logoClass} w-auto group-hover:scale-105 transition-transform duration-300`}
+          priority
+        />
+        <div className="absolute -inset-1 bg-accent/20 rounded-full opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-300" />
+      </div>
+      <div className="flex items-center gap-2">
+        <span className={`text-foreground font-mono font-bold ${textClass} tracking-wide`}>
+          SHINKA
+        </span>
+        <div className="w-2 h-2 bg-accent rounded-full animate-pulse" />
+      </div>
     </Link>
   )
 })
 
-// Memoized navigation link component with better click handling
+// Enhanced navigation link component with futuristic styling
 const NavLink = memo(function NavLink({ 
   href, 
   label, 
+  code,
   isActive, 
   onClick,
   className = ""
 }: { 
   href: string
   label: string
+  code: string
   isActive: boolean
   onClick?: () => void
   className?: string
@@ -60,18 +67,15 @@ const NavLink = memo(function NavLink({
   const router = useRouter()
   const pathname = usePathname()
   
-  // Handle hash links vs route links
   const isHashLink = href.startsWith('/#')
   
   const handleClick = useCallback((e: React.MouseEvent) => {
     onClick?.()
     
-    // For hash links, handle cross-page navigation properly
     if (isHashLink) {
       e.preventDefault()
-      const targetId = href.substring(2) // Remove '/#'
+      const targetId = href.substring(2)
       
-      // If we're already on the home page, just scroll to the section
       if (pathname === '/') {
         const element = document.getElementById(targetId)
         if (element) {
@@ -80,63 +84,67 @@ const NavLink = memo(function NavLink({
         return
       }
       
-      // If we're on a different page, navigate to home page first
-      // Then scroll to the section after navigation completes
       router.push('/')
-      
-      // Wait for navigation and DOM update, then scroll
       setTimeout(() => {
         const element = document.getElementById(targetId)
         if (element) {
           element.scrollIntoView({ behavior: 'smooth' })
         }
-      }, 100) // Small delay to ensure page has loaded and DOM is ready
-      
+      }, 100)
       return
     }
     
-    // For route links, use router.push for faster navigation
     if (href !== window.location.pathname) {
       e.preventDefault()
       router.push(href)
     }
   }, [href, isHashLink, onClick, router, pathname])
   
-  const linkClassName = `text-foreground/80 hover:text-foreground transition-colors font-medium ${
-    isActive ? 'text-foreground' : ''
+  const linkClassName = `group relative flex items-center gap-2 font-mono text-sm font-medium transition-all duration-300 ${
+    isActive 
+      ? 'text-accent' 
+      : 'text-foreground/70 hover:text-accent'
   } ${className}`
+  
+  const linkContent = (
+    <>
+      <span className="text-xs text-accent/60 group-hover:text-accent transition-colors duration-300">
+        [{code}]
+      </span>
+      <span className="group-hover:translate-x-1 transition-transform duration-300">
+        {label}
+      </span>
+      {isActive && (
+        <div className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-accent/50 via-accent to-accent/50" />
+      )}
+      <div className="absolute -bottom-1 left-0 w-0 h-[1px] bg-accent group-hover:w-full transition-all duration-300" />
+    </>
+  )
   
   if (isHashLink) {
     return (
-      <a
-        href={href}
-        className={linkClassName}
-        onClick={handleClick}
-      >
-        {label}
+      <a href={href} className={linkClassName} onClick={handleClick}>
+        {linkContent}
       </a>
     )
   }
   
   return (
-    <Link
-      href={href}
-      className={linkClassName}
-      onClick={handleClick}
-      prefetch={true}
-    >
-      {label}
+    <Link href={href} className={linkClassName} onClick={handleClick} prefetch={true}>
+      {linkContent}
     </Link>
   )
 })
 
-// Enhanced Get in Touch button with same cross-page navigation logic
+// Enhanced Get in Touch button with futuristic styling
 const GetInTouchButton = memo(function GetInTouchButton({ 
   onClick, 
-  className = "" 
+  className = "",
+  isMobile = false
 }: { 
   onClick?: () => void
-  className?: string 
+  className?: string
+  isMobile?: boolean
 }) {
   const router = useRouter()
   const pathname = usePathname()
@@ -145,7 +153,6 @@ const GetInTouchButton = memo(function GetInTouchButton({
     e.preventDefault()
     onClick?.()
     
-    // If we're already on the home page, just scroll to contact
     if (pathname === '/') {
       const element = document.getElementById('contact')
       if (element) {
@@ -154,7 +161,6 @@ const GetInTouchButton = memo(function GetInTouchButton({
       return
     }
     
-    // If we're on a different page, navigate to home first then scroll
     router.push('/')
     setTimeout(() => {
       const element = document.getElementById('contact')
@@ -164,12 +170,19 @@ const GetInTouchButton = memo(function GetInTouchButton({
     }, 100)
   }, [router, pathname, onClick])
   
-  const buttonClass = `bg-foreground hover:bg-foreground/90 text-background font-medium ${className}`
+  const buttonClass = `group relative bg-accent hover:bg-accent/90 text-accent-foreground font-mono font-medium border border-accent/20 hover:border-accent/40 transition-all duration-300 ${className}`
   
   return (
     <Button className={buttonClass}>
-      <a href="/#contact" className="text-background hover:text-background" onClick={handleClick}>
-        Get in Touch
+      <a 
+        href="/#contact" 
+        className="flex items-center gap-2 text-accent-foreground hover:text-accent-foreground" 
+        onClick={handleClick}
+      >
+        <Terminal className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
+        <span className="group-hover:translate-x-1 transition-transform duration-300">
+          {isMobile ? '[CONTACT]' : '[INITIALIZE_CONTACT]'}
+        </span>
       </a>
     </Button>
   )
@@ -190,18 +203,21 @@ export default function Navigation() {
 
   const isActive = useCallback((href: string) => {
     if (href === '/') return pathname === '/'
-    if (href.startsWith('/#')) return false // Hash links are handled by scrolling
+    if (href.startsWith('/#')) return false
     return pathname === href
   }, [pathname])
 
-  // Close mobile menu when clicking outside
   const handleBackdropClick = useCallback(() => {
     setIsMenuOpen(false)
   }, [])
 
   return (
     <>
-      <nav className="border-b border-border/50 bg-background/80 backdrop-blur-sm sticky top-0 z-50">
+      {/* Futuristic navigation bar */}
+      <nav className="relative border-b border-accent/20 bg-gradient-to-r from-background/95 via-background/98 to-background/95 backdrop-blur-xl sticky top-0 z-50">
+        {/* Top accent line */}
+        <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
+        
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16 relative">
             {/* Logo */}
@@ -209,7 +225,7 @@ export default function Navigation() {
               <Logo isMobile={isMobile} isHydrated={isHydrated} />
             </div>
 
-            {/* Desktop Navigation - Show by default for SSR */}
+            {/* Desktop Navigation */}
             <Show above="md" fallback="show">
               <div className="flex items-center space-x-8">
                 {navItems.map((item) => (
@@ -217,10 +233,12 @@ export default function Navigation() {
                     key={item.href}
                     href={item.href}
                     label={item.label}
+                    code={item.code}
                     isActive={isActive(item.href)}
                   />
                 ))}
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center space-x-3">
+                  <div className="w-[1px] h-6 bg-accent/20" />
                   <ThemeToggle />
                   <GetInTouchButton />
                 </div>
@@ -229,51 +247,73 @@ export default function Navigation() {
 
             {/* Mobile Menu Button */}
             <Show below="md" fallback="hide">
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-3">
                 <ThemeToggle />
                 <button
                   onClick={handleMenuToggle}
-                  className="p-2 text-foreground hover:text-foreground/80 transition-colors"
+                  className="relative p-2 text-foreground hover:text-accent transition-colors duration-300 border border-accent/20 rounded-lg hover:border-accent/40 bg-accent/5 hover:bg-accent/10"
                   aria-label={isMenuOpen ? "Close menu" : "Open menu"}
                   aria-expanded={isMenuOpen}
                 >
-                  {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                  {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+                  <div className="absolute inset-0 bg-accent/20 rounded-lg opacity-0 hover:opacity-100 transition-opacity duration-300 -z-10" />
                 </button>
               </div>
             </Show>
-
-
-
-
-
-
           </div>
 
-          {/* Mobile Navigation Menu - Only show after hydration and when menu is open */}
+          {/* Mobile Navigation Menu */}
           <Show below="md" fallback="hide">
             {isMenuOpen && (
-              <div className="border-t border-border/50 py-4 space-y-4 animate-in slide-in-from-top-2 duration-200">
-                {navItems.map((item) => (
+              <div className="border-t border-accent/20 py-6 space-y-4 animate-in slide-in-from-top-2 duration-300 bg-gradient-to-b from-background/95 to-background/90">
+                {/* Terminal header for mobile menu */}
+                <div className="flex items-center gap-2 px-2 pb-2 border-b border-accent/10">
+                  <div className="flex gap-1">
+                    <div className="w-3 h-3 rounded-full bg-accent animate-pulse" />
+                    <div className="w-3 h-3 rounded-full bg-accent/60" />
+                    <div className="w-3 h-3 rounded-full bg-accent/30" />
+                  </div>
+                  <span className="text-xs font-mono text-accent">NAVIGATION_MENU</span>
+                </div>
+                
+                {navItems.map((item, index) => (
                   <NavLink
                     key={item.href}
                     href={item.href}
                     label={item.label}
+                    code={item.code}
                     isActive={isActive(item.href)}
                     onClick={handleMenuClose}
-                    className="block py-2"
+                    className="block py-3 px-2"
                   />
                 ))}
-                <GetInTouchButton onClick={handleMenuClose} className="w-full mt-4" />
+                
+                <div className="pt-4 border-t border-accent/10">
+                  <GetInTouchButton 
+                    onClick={handleMenuClose} 
+                    className="w-full" 
+                    isMobile={true}
+                  />
+                </div>
+                
+                {/* Status indicator */}
+                <div className="flex items-center justify-center gap-2 pt-2">
+                  <div className="w-2 h-2 bg-accent rounded-full animate-pulse" />
+                  <span className="text-xs font-mono text-muted-foreground">SYSTEM_READY</span>
+                </div>
               </div>
             )}
           </Show>
         </div>
+        
+        {/* Bottom accent line */}
+        <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
       </nav>
 
-      {/* Mobile menu backdrop - Only show after hydration and when menu is open */}
+      {/* Mobile menu backdrop */}
       {isHydrated && isMenuOpen && (
         <div 
-          className="fixed inset-0 bg-black/20 z-40 md:hidden" 
+          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:hidden" 
           onClick={handleBackdropClick}
           aria-hidden="true"
         />
