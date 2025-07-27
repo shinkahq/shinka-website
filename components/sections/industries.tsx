@@ -124,7 +124,7 @@ export default function Industries() {
       
       <ResponsiveContainer maxWidth="responsive" className="relative z-10">
         <div className={`text-center ${isMobile ? 'mb-12' : 'mb-20'}`}>
-          <Badge variant="outline" className={`${isMobile ? 'mb-4' : 'mb-8'} border-accent/40 text-accent font-mono bg-accent/5 backdrop-blur-sm`}>
+          <Badge variant="outline" className={`${isMobile ? 'mb-4' : 'mb-8'} border-foreground/20 text-foreground font-mono bg-accent/5 backdrop-blur-sm`}>
             INDUSTRIES
           </Badge>
           

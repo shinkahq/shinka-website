@@ -1,7 +1,6 @@
 'use client'
 
 import { Badge } from "@/components/ui/badge"
-import { Sparkles } from "lucide-react"
 import useResponsive from '@/lib/use-responsive'
 import { ResponsiveContainer, ResponsiveText } from '@/components/responsive'
 
@@ -13,8 +12,7 @@ export default function Hero() {
       <ResponsiveContainer maxWidth="responsive">
         <div className="text-center">
           <Badge variant="outline" className="mb-6 md:mb-8 border-foreground/20 text-foreground font-medium bg-background/50 backdrop-blur-sm">
-            <Sparkles className="w-3 h-3 mr-1 text-primary" />
-            Enterprise Solutions
+            ENTERPRISE SOLUTIONS
           </Badge>
           
           <ResponsiveText
