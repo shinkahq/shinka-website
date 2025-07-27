@@ -67,27 +67,36 @@ export default function Contact() {
 
       <ResponsiveContainer maxWidth="responsive" className="relative z-10">
         <div className={`text-center ${isMobile ? 'mb-12' : 'mb-20'}`}>
-          <Badge variant="outline" className={`${isMobile ? 'mb-4' : 'mb-8'} border-accent/30 text-accent font-medium bg-accent/5 backdrop-blur-sm`}>
-            Contact
+          <Badge variant="outline" className={`${isMobile ? 'mb-4' : 'mb-8'} border-accent/40 text-accent font-mono bg-accent/5 backdrop-blur-sm`}>
+            CONTACT
           </Badge>
           
           <ResponsiveText
             as="h2"
             mobileSize="text-2xl"
             tabletSize="text-4xl"
-            desktopSize="text-4xl lg:text-5xl"
-            className={`font-medium text-foreground ${isMobile ? 'mb-4' : 'mb-6'} tracking-tight`}
+            desktopSize="text-5xl lg:text-6xl"
+            className={`font-bold text-foreground ${isMobile ? 'mb-4' : 'mb-8'} tracking-tight font-mono`}
           >
-            Get in Touch
+            GET IN{' '}
+            <span className="relative">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-accent via-accent/90 to-accent">
+                TOUCH
+              </span>
+              <div className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-accent/50 via-accent to-accent/50" />
+            </span>
           </ResponsiveText>
           
           <ResponsiveText
-            mobileSize="text-sm"
+            mobileSize="text-base"
             tabletSize="text-lg"
-            desktopSize="text-lg"
-            className="text-muted-foreground max-w-2xl mx-auto font-light"
+            desktopSize="text-xl"
+            className="text-muted-foreground max-w-4xl mx-auto leading-relaxed"
           >
-            Ready to transform your enterprise with AI?
+            Ready to{' '}
+            <span className="text-accent font-semibold">transform</span>{' '}
+            your enterprise with{' '}
+            <span className="text-accent font-semibold">AI</span>?
           </ResponsiveText>
         </div>
 
