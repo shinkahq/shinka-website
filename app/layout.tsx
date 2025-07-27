@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next"
 import StructuredData from "@/lib/metadata"
 import { SEO_CONFIG, getBaseUrl } from "@/lib/seo"
 import { fontVariables } from "@/lib/fonts"
-import { DynamicGoogleAnalytics } from "@/lib/dynamic-imports"
+ import { DynamicGoogleAnalytics, DynamicAnalytics } from "@/lib/dynamic-imports"
 import LayoutProvider from "@/components/layout/layout-provider"
 import "@/lib/styles.css"
 
@@ -113,6 +113,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           {children}
         </LayoutProvider>
         <DynamicGoogleAnalytics />
+        <DynamicAnalytics />
       </body>
     </html>
   )
