@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { Users } from 'lucide-react'
 import useResponsive from '@/lib/use-responsive'
 import { ResponsiveContainer, ResponsiveText } from '@/components/responsive'
@@ -50,6 +51,13 @@ const experience = [
 
 export default function Team() {
   const { isMobile, isTablet } = useResponsive()
+  const [activeIndex, setActiveIndex] = useState<number | null>(null)
+
+  const handleItemClick = (index: number) => {
+    if (isMobile) {
+      setActiveIndex(activeIndex === index ? null : index)
+    }
+  }
 
   return (
     <section id="team" className={`${isMobile ? 'py-12' : 'py-24'} relative overflow-hidden`}>
@@ -106,23 +114,26 @@ export default function Team() {
                 large: isMobile ? 'text-xl' : 'text-2xl md:text-3xl'
               }[item.size]
 
+              const isActive = activeIndex === index
+
               return (
                 <div 
                   key={index}
                   className="group relative py-2 px-1"
+                  onClick={() => handleItemClick(index)}
                 >
-                  <div className="relative transition-all duration-500 group-hover:-translate-y-1">
-                    <span className={`font-medium ${sizeClasses} transition-colors duration-300 text-foreground/70 group-hover:text-accent`}>
+                  <div className={`relative transition-all duration-500 ${isMobile ? '' : 'group-hover:-translate-y-1'}`}>
+                    <span className={`font-medium ${sizeClasses} transition-colors duration-300 text-foreground/70 ${isMobile ? 'text-accent cursor-pointer' : 'group-hover:text-accent'}`}>
                       {item.name}
                     </span>
                     
                     {/* Gradient underline */}
-                    <div className="absolute -bottom-1 left-0 h-[2px] w-0 bg-accent transition-all duration-500 group-hover:w-full" />
+                    <div className={`absolute -bottom-1 left-0 h-[2px] bg-accent transition-all duration-500 ${isMobile ? (isActive ? 'w-full' : 'w-0') : 'w-0 group-hover:w-full'}`} />
                   </div>
                   
                   {/* Role tooltip */}
                   <div className={`absolute ${isMobile ? '-bottom-6' : '-bottom-8'} left-1/2 -translate-x-1/2 pointer-events-none z-10`}>
-                    <span className={`${isMobile ? 'text-xs' : 'text-sm'} text-accent bg-gradient-to-r from-background/90 via-background/95 to-background/90 backdrop-blur-sm px-3 py-1.5 rounded-full border border-accent/20 transform transition-all duration-500 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 whitespace-nowrap font-medium`}>
+                    <span className={`${isMobile ? 'text-xs' : 'text-sm'} text-accent transform transition-all duration-500 whitespace-nowrap font-medium ${isMobile ? (isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2') : 'opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0'}`}>
                       {item.role}
                     </span>
                   </div>
