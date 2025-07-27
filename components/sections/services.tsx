@@ -1,6 +1,7 @@
 'use client'
 
-import { Bot, Workflow, ChevronRight, Zap } from "lucide-react"
+import { memo, useMemo } from 'react'
+import { Bot, Workflow, ChevronRight } from "lucide-react"
 import useResponsive from '@/lib/use-responsive'
 import { ResponsiveContainer, ResponsiveText } from '@/components/responsive'
 import { Badge } from '@/components/ui/badge'
@@ -19,40 +20,58 @@ const services = [
     code: "02"
   },
   {
-    icon: Zap,
+    icon: Bot,
     title: "Integrations & Automations",
     description: "Seamless integration with Bloomberg, Salesforce, SAP, and legacy banking systems. End-to-end automation for AML screening, trade settlement, quality control, and regulatory submissions.",
     code: "03"
   }
-]
+] as const
 
-export default function Services() {
-  const { isMobile, isTablet } = useResponsive()
+const Services = memo(function Services() {
+  const { isMobile } = useResponsive()
+  
+  const sectionClass = useMemo(() => 
+    `${isMobile ? 'py-12' : 'py-24'} relative overflow-hidden bg-gradient-to-b from-background via-background/98 to-background/95`, 
+    [isMobile]
+  )
+  
+  const headerClass = useMemo(() => 
+    `text-center ${isMobile ? 'mb-12' : 'mb-20 md:mb-32'}`, 
+    [isMobile]
+  )
+  
+  const badgeClass = useMemo(() => 
+    `${isMobile ? 'mb-4' : 'mb-8'} border-foreground/20 text-foreground font-mono bg-accent/5 backdrop-blur-sm`, 
+    [isMobile]
+  )
+  
+  const headingClass = useMemo(() => 
+    `font-bold text-foreground ${isMobile ? 'mb-4' : 'mb-8'} tracking-tight font-mono`, 
+    [isMobile]
+  )
+  
+  const contentClass = useMemo(() => 
+    `space-y-${isMobile ? '8' : '16 md:space-y-24'}`, 
+    [isMobile]
+  )
 
   return (
-    <section id="services" className={`${isMobile ? 'py-12' : 'py-24'} relative overflow-hidden bg-gradient-to-b from-background via-background/98 to-background/95`}>
-      {/* Simplified background for mobile */}
+    <section id="services" className={sectionClass}>
       {!isMobile && (
-        <>
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute inset-0" style={{
-              backgroundImage: `
-                linear-gradient(hsl(var(--accent) / 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, hsl(var(--accent) / 0.1) 1px, transparent 1px)
-              `,
-              backgroundSize: '40px 40px'
-            }} />
-          </div>
-        </>
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `linear-gradient(hsl(var(--accent) / 0.1) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--accent) / 0.1) 1px, transparent 1px)`,
+            backgroundSize: '40px 40px'
+          }} />
+        </div>
       )}
       
-      {/* Accent lines */}
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
       <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
       
       <ResponsiveContainer maxWidth="responsive" className="relative z-10">
-        <div className={`text-center ${isMobile ? 'mb-12' : 'mb-20 md:mb-32'}`}>
-          <Badge variant="outline" className={`${isMobile ? 'mb-4' : 'mb-8'} border-foreground/20 text-foreground font-mono bg-accent/5 backdrop-blur-sm`}>
+        <div className={headerClass}>
+          <Badge variant="outline" className={badgeClass}>
             SOLUTIONS
           </Badge>
           
@@ -61,7 +80,7 @@ export default function Services() {
             mobileSize="text-2xl"
             tabletSize="text-4xl"
             desktopSize="text-5xl lg:text-6xl"
-            className={`font-bold text-foreground ${isMobile ? 'mb-4' : 'mb-8'} tracking-tight font-mono`}
+            className={headingClass}
           >
             WHAT WE{' '}
             <span className="relative">
@@ -89,22 +108,16 @@ export default function Services() {
           )}
         </div>
 
-        <div className={`space-y-${isMobile ? '8' : '16 md:space-y-24'}`}>
+        <div className={contentClass}>
           {services.map((service, index) => (
-            <div 
-              key={index}
-              className="group relative"
-            >
-              {/* Connection line - only on desktop */}
+            <div key={index} className="group relative">
               {!isMobile && index < services.length - 1 && (
                 <div className="absolute left-8 top-20 w-[1px] h-16 bg-gradient-to-b from-accent/50 to-transparent" />
               )}
               
               <div className={`flex ${isMobile ? 'flex-col gap-4' : 'items-start gap-8 md:gap-12'}`}>
-                {/* Left side - Icon and code */}
                 <div className="flex-shrink-0">
                   <div className="relative">
-                    {/* Simplified icon container for mobile */}
                     <div className={`${isMobile ? 'w-12 h-12' : 'w-16 h-16'} relative`}>
                       <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-accent/5 transform rotate-45 rounded-lg group-hover:from-accent/30 group-hover:to-accent/10 transition-all duration-500" />
                       <div className="absolute inset-2 bg-background/90 transform rotate-45 rounded-lg" />
@@ -113,14 +126,12 @@ export default function Services() {
                       </div>
                     </div>
                     
-                    {/* Code number */}
                     <div className={`absolute -bottom-1 -right-1 ${isMobile ? 'w-5 h-5 text-xs' : 'w-6 h-6 text-xs'} bg-accent text-accent-foreground rounded-full flex items-center justify-center font-mono font-bold`}>
                       {service.code}
                     </div>
                   </div>
                 </div>
 
-                {/* Right side - Content */}
                 <div className="flex-1 min-w-0">
                   <div className={`flex items-center gap-${isMobile ? '2' : '4'} mb-${isMobile ? '2' : '4'}`}>
                     <ResponsiveText
@@ -143,7 +154,6 @@ export default function Services() {
                     {service.description}
                   </ResponsiveText>
 
-                  {/* Action link - simplified for mobile */}
                   <div className="group/link flex items-center gap-2 text-accent font-mono text-sm cursor-pointer">
                     <span className="group-hover/link:translate-x-2 transition-transform duration-300">
                       {isMobile ? '[EXPLORE]' : ''}
@@ -153,15 +163,12 @@ export default function Services() {
                   </div>
                 </div>
               </div>
-
-              {/* Scanning line effect - only on desktop */}
-              {!isMobile && (
-                <div className="absolute left-0 top-0 w-full h-[1px] bg-gradient-to-r from-transparent via-accent/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              )}
             </div>
           ))}
         </div>
       </ResponsiveContainer>
     </section>
   )
-} 
+})
+
+export default Services 

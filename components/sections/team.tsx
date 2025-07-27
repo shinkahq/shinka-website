@@ -1,83 +1,81 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, memo, useMemo, useCallback } from 'react'
 import useResponsive from '@/lib/use-responsive'
 import { ResponsiveContainer, ResponsiveText } from '@/components/responsive'
 import { Badge } from '@/components/ui/badge'
 
 const experience = [
-  {
-    name: "QX Labs",
-    role: "Founding AI Engineer",
-    size: "large"
-  },
-  {
-    name: "Unsiloed AI",
-    role: "Founding AI Engineer",
-    size: "medium"
-  },
-  {
-    name: "Massachusetts Institute of Technology",
-    role: "Undergraduate Researcher",
-    size: "large"
-  },
-  {
-    name: "Tsinghua University",
-    role: "Research Collaborator",
-    size: "medium"
-  },
-  {
-    name: "University of Amsterdam",
-    role: "Guest Researcher",
-    size: "small"
-  },
-  {
-    name: "IIT Bombay",
-    role: "Research Intern",
-    size: "medium"
-  },
-  {
-    name: "EPAM Systems",
-    role: "Innovation Center",
-    size: "small"
-  },
-  {
-    name: "Covenants",
-    role: "Tech Lead",
-    size: "medium"
-  }
+  { name: "QX Labs", role: "Founding AI Engineer", size: "large" },
+  { name: "Unsiloed AI", role: "Founding AI Engineer", size: "medium" },
+  { name: "Massachusetts Institute of Technology", role: "Undergraduate Researcher", size: "large" },
+  { name: "Tsinghua University", role: "Research Collaborator", size: "medium" },
+  { name: "University of Amsterdam", role: "Guest Researcher", size: "small" },
+  { name: "IIT Bombay", role: "Research Intern", size: "medium" },
+  { name: "EPAM Systems", role: "Innovation Center", size: "small" },
+  { name: "Covenants", role: "Tech Lead", size: "medium" }
 ] as const
 
-export default function Team() {
-  const { isMobile, isTablet } = useResponsive()
+const Team = memo(function Team() {
+  const { isMobile } = useResponsive()
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
 
-  const handleItemClick = (index: number) => {
+  const handleItemClick = useCallback((index: number) => {
     if (isMobile) {
       setActiveIndex(activeIndex === index ? null : index)
     }
-  }
+  }, [isMobile, activeIndex])
+
+  const sectionClass = useMemo(() => 
+    `${isMobile ? 'py-12' : 'py-24'} relative overflow-hidden`, 
+    [isMobile]
+  )
+  
+  const headerClass = useMemo(() => 
+    `text-center ${isMobile ? 'mb-12' : 'mb-20'}`, 
+    [isMobile]
+  )
+  
+  const badgeClass = useMemo(() => 
+    `${isMobile ? 'mb-4' : 'mb-8'} border-foreground/20 text-foreground font-mono bg-accent/5 backdrop-blur-sm`, 
+    [isMobile]
+  )
+  
+  const headingClass = useMemo(() => 
+    `font-bold text-foreground ${isMobile ? 'mb-4' : 'mb-8'} tracking-tight font-mono`, 
+    [isMobile]
+  )
+  
+  const backgroundClass = useMemo(() => 
+    `absolute inset-0 ${isMobile ? 'opacity-3' : 'opacity-5'}`, 
+    [isMobile]
+  )
+  
+  const backgroundSize = useMemo(() => 
+    isMobile ? '40px 40px' : '60px 60px', 
+    [isMobile]
+  )
+  
+  const backgroundImage = useMemo(() => 
+    `linear-gradient(hsl(var(--accent) / 0.1) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--accent) / 0.1) 1px, transparent 1px)`, 
+    []
+  )
 
   return (
-    <section id="team" className={`${isMobile ? 'py-12' : 'py-24'} relative overflow-hidden`}>
-      {/* Subtle background grid */}
-      <div className={`absolute inset-0 ${isMobile ? 'opacity-3' : 'opacity-5'}`}>
+    <section id="team" className={sectionClass}>
+      <div className={backgroundClass}>
         <div className="absolute inset-0" style={{
-          backgroundImage: `
-            linear-gradient(hsl(var(--accent) / 0.1) 1px, transparent 1px),
-            linear-gradient(90deg, hsl(var(--accent) / 0.1) 1px, transparent 1px)
-          `,
-          backgroundSize: isMobile ? '40px 40px' : '60px 60px'
+          backgroundImage,
+          backgroundSize
         }} />
       </div>
       
-      {/* Subtle accent lines */}
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
       <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
 
       <ResponsiveContainer maxWidth="responsive" className="relative z-10">
-        <div className={`text-center ${isMobile ? 'mb-12' : 'mb-20'}`}>
-          <Badge variant="outline" className={`${isMobile ? 'mb-4' : 'mb-8'} border-foreground/20 text-foreground font-mono bg-accent/5 backdrop-blur-sm`}>
+        <div className={headerClass}>
+          <Badge variant="outline" className={badgeClass}>
             EXPERIENCE
           </Badge>
           
@@ -86,7 +84,7 @@ export default function Team() {
             mobileSize="text-2xl"
             tabletSize="text-4xl"
             desktopSize="text-5xl lg:text-6xl"
-            className={`font-bold text-foreground ${isMobile ? 'mb-4' : 'mb-8'} tracking-tight font-mono`}
+            className={headingClass}
           >
             TEAM
           </ResponsiveText>
@@ -125,11 +123,9 @@ export default function Team() {
                       {item.name}
                     </span>
                     
-                    {/* Gradient underline */}
                     <div className={`absolute -bottom-1 left-0 h-[2px] bg-accent transition-all duration-500 ${isMobile ? (isActive ? 'w-full' : 'w-0') : 'w-0 group-hover:w-full'}`} />
                   </div>
                   
-                  {/* Role tooltip */}
                   <div className={`absolute ${isMobile ? '-bottom-6' : '-bottom-8'} left-1/2 -translate-x-1/2 pointer-events-none z-10`}>
                     <span className={`${isMobile ? 'text-xs' : 'text-sm'} text-accent transform transition-all duration-500 whitespace-nowrap font-medium ${isMobile ? (isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2') : 'opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0'}`}>
                       {item.role}
@@ -143,4 +139,6 @@ export default function Team() {
       </ResponsiveContainer>
     </section>
   )
-} 
+})
+
+export default Team 
