@@ -85,6 +85,7 @@ export default function Services() {
               <span className="text-accent font-semibold">Banking</span>,{' '}
               <span className="text-accent font-semibold">Pharma</span>,{' '}
               <span className="text-accent font-semibold">Supply Chain</span>
+              <span className="text-accent font-semibold">and more</span>
             </ResponsiveText>
           )}
         </div>
