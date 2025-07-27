@@ -10,15 +10,14 @@ import { usePathname, useRouter } from "next/navigation"
 import useResponsive from '@/lib/use-responsive'
 import { Show } from '@/components/responsive'
 
-// Memoized navigation items for performance
+// Navigation items (removed code numbers for clarity)
 const navItems = [
-  { href: "/", label: "HOME", code: "01" },
-  { href: "/#services", label: "SOLUTIONS", code: "02" },
-  { href: "/#about", label: "ABOUT", code: "03" },
-  { href: "/#team", label: "TEAM", code: "04" },
+  { href: "/", label: "Home" },
+  { href: "/#services", label: "Solutions" },
+  { href: "/#team", label: "Team" },
 ] as const
 
-// Memoized logo component with futuristic styling
+// Logo component
 const Logo = memo(function Logo({ isMobile, isHydrated }: { isMobile: boolean; isHydrated: boolean }) {
   const logoWidth = isHydrated ? (isMobile ? 100 : 120) : 120
   const logoHeight = isHydrated ? (isMobile ? 32 : 40) : 40
@@ -48,18 +47,16 @@ const Logo = memo(function Logo({ isMobile, isHydrated }: { isMobile: boolean; i
   )
 })
 
-// Enhanced navigation link component with futuristic styling
+// Navigation link component (no code numbers)
 const NavLink = memo(function NavLink({ 
   href, 
-  label, 
-  code,
+  label,
   isActive, 
   onClick,
   className = ""
 }: { 
   href: string
   label: string
-  code: string
   isActive: boolean
   onClick?: () => void
   className?: string
@@ -108,9 +105,6 @@ const NavLink = memo(function NavLink({
   
   const linkContent = (
     <>
-      <span className="text-xs text-accent/60 group-hover:text-accent transition-colors duration-300">
-        [{code}]
-      </span>
       <span className="group-hover:translate-x-1 transition-transform duration-300">
         {label}
       </span>
@@ -136,7 +130,7 @@ const NavLink = memo(function NavLink({
   )
 })
 
-// Enhanced Get in Touch button with futuristic styling
+// Get in Touch button with clear label
 const GetInTouchButton = memo(function GetInTouchButton({ 
   onClick, 
   className = "",
@@ -181,7 +175,7 @@ const GetInTouchButton = memo(function GetInTouchButton({
       >
         <Terminal className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
         <span className="group-hover:translate-x-1 transition-transform duration-300">
-          {isMobile ? '[CONTACT]' : '[INITIALIZE_CONTACT]'}
+          {isMobile ? 'Contact' : 'Get in Touch'}
         </span>
       </a>
     </Button>
@@ -213,7 +207,7 @@ export default function Navigation() {
 
   return (
     <>
-      {/* Futuristic navigation bar */}
+      {/* Navigation bar */}
       <nav className="relative border-b border-accent/20 bg-gradient-to-r from-background/95 via-background/98 to-background/95 backdrop-blur-xl sticky top-0 z-50">
         {/* Top accent line */}
         <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
@@ -233,7 +227,6 @@ export default function Navigation() {
                     key={item.href}
                     href={item.href}
                     label={item.label}
-                    code={item.code}
                     isActive={isActive(item.href)}
                   />
                 ))}
@@ -281,7 +274,6 @@ export default function Navigation() {
                     key={item.href}
                     href={item.href}
                     label={item.label}
-                    code={item.code}
                     isActive={isActive(item.href)}
                     onClick={handleMenuClose}
                     className="block py-3 px-2"

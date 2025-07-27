@@ -166,9 +166,6 @@ export const initializePerformanceOptimizations = () => {
     preconnectFonts()
     optimizeScrollBehavior()
     trackPerformance()
-    
-    // Prefetch critical routes
-    prefetchRoutes(['/founder'])
   }
 
   // Use the fastest available method

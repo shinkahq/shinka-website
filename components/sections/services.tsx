@@ -43,9 +43,6 @@ export default function Services() {
               backgroundSize: '40px 40px'
             }} />
           </div>
-          <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-accent rounded-full animate-pulse" />
-          <div className="absolute top-3/4 right-1/3 w-1 h-1 bg-accent/60 rounded-full animate-pulse delay-1000" />
-          <div className="absolute top-1/2 right-1/4 w-1.5 h-1.5 bg-accent/80 rounded-full animate-pulse delay-500" />
         </>
       )}
       
@@ -136,14 +133,6 @@ export default function Services() {
                     >
                       {service.title.toUpperCase()}
                     </ResponsiveText>
-                    
-                    {/* Status indicator - simplified for mobile */}
-                    {!isMobile && (
-                      <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-                        <span className="text-xs font-mono text-accent">ACTIVE</span>
-                      </div>
-                    )}
                   </div>
                   
                   <ResponsiveText
@@ -168,7 +157,7 @@ export default function Services() {
 
               {/* Scanning line effect - only on desktop */}
               {!isMobile && (
-                <div className="absolute left-0 top-0 w-full h-[1px] bg-gradient-to-r from-transparent via-accent/30 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-opacity duration-500" />
+                <div className="absolute left-0 top-0 w-full h-[1px] bg-gradient-to-r from-transparent via-accent/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               )}
             </div>
           ))}
