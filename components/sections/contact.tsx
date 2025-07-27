@@ -18,7 +18,7 @@ const contactOptions = [
   },
   {
     title: "Consultation", 
-    description: "Schedule a call to discuss your AI needs",
+    description: "Schedule a call",
     icon: Calendar,
     action: {
       text: "Book Call",

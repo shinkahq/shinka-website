@@ -14,7 +14,7 @@ export default function Hero() {
         <div className="text-center">
           <Badge variant="outline" className="mb-6 md:mb-8 border-foreground/20 text-foreground font-medium bg-background/50 backdrop-blur-sm">
             <Sparkles className="w-3 h-3 mr-1 text-primary" />
-            Enterprise AI Solutions
+            Enterprise Solutions
           </Badge>
           
           <ResponsiveText
