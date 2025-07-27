@@ -6,7 +6,13 @@ import { ResponsiveContainer, ResponsiveText, Show } from '@/components/responsi
 import { ArrowUpRight } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 
-const industries = [
+type Industry = {
+  title: string
+  description: string
+  solutions: string[]
+}
+
+const industries: Industry[] = [
   {
     title: "Private Equity",
     description: "Slow deal sourcing, liquidity bottlenecks, operational complexity?",
@@ -44,9 +50,9 @@ const industries = [
       "Cost reduction through AI-powered management"
     ]
   }
-] as const
+]
 
-const IndustryModule = memo(function IndustryModule({ industry, index }: { industry: typeof industries[0], index: number }) {
+const IndustryModule = memo(function IndustryModule({ industry, index }: { industry: Industry, index: number }) {
   const { isMobile } = useResponsive()
   
   const containerClass = useMemo(() => 
