@@ -80,7 +80,6 @@ export default function Services() {
               desktopSize="text-xl"
               className="text-muted-foreground max-w-4xl mx-auto leading-relaxed"
             >
-              <span className="font-mono text-accent">[ENTERPRISE_AI]</span>{' '}
               Solving complex problems across{' '}
               <span className="text-accent font-semibold">Private Equity</span>,{' '}
               <span className="text-accent font-semibold">Banking</span>,{' '}
@@ -147,7 +146,7 @@ export default function Services() {
                   {/* Action link - simplified for mobile */}
                   <div className="group/link flex items-center gap-2 text-accent font-mono text-sm cursor-pointer">
                     <span className="group-hover/link:translate-x-2 transition-transform duration-300">
-                      {isMobile ? '[EXPLORE]' : '[INITIALIZE_PROTOCOL]'}
+                      {isMobile ? '[EXPLORE]' : ''}
                     </span>
                     <ChevronRight className="w-4 h-4 group-hover/link:translate-x-2 transition-transform duration-300" />
                     <div className={`${isMobile ? 'w-4' : 'w-8'} h-[1px] bg-accent group-hover/link:w-${isMobile ? '8' : '16'} transition-all duration-300`} />
