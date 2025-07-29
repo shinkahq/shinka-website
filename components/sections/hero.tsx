@@ -2,6 +2,7 @@
 
 import { memo } from 'react'
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import useResponsive from '@/lib/use-responsive'
 import { ResponsiveContainer, ResponsiveText } from '@/components/responsive'
 
@@ -47,6 +48,23 @@ const Hero = memo(function Hero() {
             <span className="font-semibold text-primary">1000x more efficient</span>{' '}
             with AI agents, models, integrations, and automations.
           </ResponsiveText>
+
+          {/* Clear CTA Button */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Button 
+              size="lg" 
+              className="px-8 py-3 text-lg font-semibold bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+            >
+              Get Started
+            </Button>
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="px-8 py-3 text-lg font-semibold border-2 hover:bg-accent/10 transition-all duration-300"
+            >
+              Learn More
+            </Button>
+          </div>
         </div>
       </ResponsiveContainer>
     </section>
