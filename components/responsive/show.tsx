@@ -47,11 +47,33 @@ export const Show: React.FC<ShowProps> = ({
       case 'desktop':
         // Show if it would be shown on desktop (lg breakpoint)
         if (above) {
-          const BREAKPOINTS = { xs: 0, sm: 640, md: 768, lg: 1024, xl: 1280, '2xl': 1536 }
+          const BREAKPOINTS = { 
+            xs: 0, 
+            'xs-sm': 375, 
+            sm: 640, 
+            md: 768, 
+            lg: 1024, 
+            xl: 1280, 
+            '2xl': 1536, 
+            '3xl': 1920, 
+            '4xl': 2560, 
+            '5xl': 3840 
+          }
           return 1024 >= BREAKPOINTS[above] ? <>{children}</> : null
         }
         if (below) {
-          const BREAKPOINTS = { xs: 0, sm: 640, md: 768, lg: 1024, xl: 1280, '2xl': 1536 }
+          const BREAKPOINTS = { 
+            xs: 0, 
+            'xs-sm': 375, 
+            sm: 640, 
+            md: 768, 
+            lg: 1024, 
+            xl: 1280, 
+            '2xl': 1536, 
+            '3xl': 1920, 
+            '4xl': 2560, 
+            '5xl': 3840 
+          }
           return 1024 < BREAKPOINTS[below] ? <>{children}</> : null
         }
         // Default to showing for desktop-first approach
