@@ -13,7 +13,7 @@ import { Show } from '@/components/responsive'
 // Navigation items (removed code numbers for clarity)
 const navItems = [
   { href: "/", label: "Home" },
-  { href: "/#services", label: "Solutions" },
+  { href: "/#about", label: "About" },
   { href: "/#team", label: "Team" },
 ] as const
 
