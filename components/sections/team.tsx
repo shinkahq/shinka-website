@@ -6,7 +6,7 @@ import { ResponsiveContainer, ResponsiveText } from '@/components/responsive'
 import { Badge } from '@/components/ui/badge'
 
 const experience = [
-  // { name: "QX Labs", role: "Founding AI Engineer", size: "large" },
+  { name: "QX Labs", role: "Founding AI Engineer", size: "large" },
   { name: "Unsiloed AI", role: "Founding AI Engineer", size: "medium" },
   { name: "Massachusetts Institute of Technology", role: "Undergraduate Researcher", size: "large" },
   { name: "Tsinghua University", role: "Research Collaborator", size: "medium" },
