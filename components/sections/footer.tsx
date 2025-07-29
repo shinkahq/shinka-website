@@ -26,18 +26,18 @@ const quickLinks = [
 ]
 
 export default function Footer() {
-  const { isMobile, isTablet } = useResponsive()
+  const { isMobile, isTablet, isXs } = useResponsive()
 
   return (
-    <footer className={`relative overflow-hidden bg-gradient-to-t from-background/95 to-background border-t border-accent/20 ${isMobile ? 'py-12' : 'py-16'}`}>
+    <footer className={`relative overflow-hidden bg-gradient-to-t from-background/95 to-background border-t border-accent/20 ${isXs ? 'py-8' : isMobile ? 'py-12' : 'py-16'}`}>
       {/* Subtle background grid */}
-      <div className={`absolute inset-0 ${isMobile ? 'opacity-2' : 'opacity-3'}`}>
+      <div className={`absolute inset-0 ${isXs ? 'opacity-1' : isMobile ? 'opacity-2' : 'opacity-3'}`}>
         <div className="absolute inset-0" style={{
           backgroundImage: `
             linear-gradient(hsl(var(--accent) / 0.05) 1px, transparent 1px),
             linear-gradient(90deg, hsl(var(--accent) / 0.05) 1px, transparent 1px)
           `,
-          backgroundSize: isMobile ? '30px 30px' : '40px 40px'
+          backgroundSize: isXs ? '20px 20px' : isMobile ? '30px 30px' : '40px 40px'
         }} />
       </div>
 
@@ -47,22 +47,22 @@ export default function Footer() {
       <ResponsiveContainer maxWidth="responsive" className="relative z-10">
         {/* Mobile: Stacked Layout */}
         <Show below="md">
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8">
             {/* Logo and Brand */}
             <div className="text-center">
-              <Link href="/" className="group inline-flex items-center gap-3 hover:opacity-80 transition-all duration-300">
+              <Link href="/" className="group inline-flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-all duration-300">
                 <div className="relative">
                   <Image 
                     src="/shinka-logo.png" 
                     alt="Shinka" 
-                    width={80} 
-                    height={32} 
-                    className="h-6 w-auto group-hover:scale-105 transition-transform duration-300" 
+                    width={isXs ? 60 : 80} 
+                    height={isXs ? 24 : 32} 
+                    className={`${isXs ? 'h-5' : 'h-6'} w-auto group-hover:scale-105 transition-transform duration-300`} 
                   />
                   <div className="absolute -inset-1 bg-accent/10 rounded-full opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-300" />
                 </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-foreground font-mono font-bold text-lg tracking-wide">
+                <div className="flex items-center gap-1 sm:gap-2">
+                  <span className={`text-foreground font-mono font-bold ${isXs ? 'text-base' : 'text-lg'} tracking-wide`}>
                     SHINKA
                   </span>
                   <div className="w-2 h-2 bg-accent rounded-full animate-pulse" />
@@ -71,12 +71,12 @@ export default function Footer() {
             </div>
 
             {/* Quick Links */}
-            <div className="flex items-center justify-center gap-6">
+            <div className="flex items-center justify-center gap-4 sm:gap-6">
               {quickLinks.map((link, index) => (
                 <Link 
                   key={index}
                   href={link.href}
-                  className="text-muted-foreground hover:text-accent transition-colors duration-300 text-sm font-medium"
+                  className="text-muted-foreground hover:text-accent transition-colors duration-300 text-xs sm:text-sm font-medium"
                 >
                   {link.label}
                 </Link>
@@ -84,10 +84,10 @@ export default function Footer() {
             </div>
 
             {/* Contact & Social */}
-            <div className="flex items-center justify-center gap-4">
+            <div className="flex items-center justify-center gap-3 sm:gap-4">
               <a 
                 href="mailto:ayushbodade1@gmail.com" 
-                className="p-3 bg-accent/5 rounded-lg border border-accent/20 text-accent hover:bg-accent/10 hover:border-accent/40 transition-all duration-300 group"
+                className="p-2 sm:p-3 bg-accent/5 rounded-lg border border-accent/20 text-accent hover:bg-accent/10 hover:border-accent/40 transition-all duration-300 group"
                 aria-label="Email us"
               >
                 <Mail className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
@@ -99,7 +99,7 @@ export default function Footer() {
                   href={social.href}
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="p-3 bg-accent/5 rounded-lg border border-accent/20 text-accent hover:bg-accent/10 hover:border-accent/40 transition-all duration-300 group"
+                  className="p-2 sm:p-3 bg-accent/5 rounded-lg border border-accent/20 text-accent hover:bg-accent/10 hover:border-accent/40 transition-all duration-300 group"
                   aria-label={social.label}
                 >
                   <social.icon className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
@@ -108,9 +108,9 @@ export default function Footer() {
             </div>
 
             {/* Copyright */}
-            <div className="text-center pt-6 border-t border-accent/10">
+            <div className="text-center pt-4 sm:pt-6 border-t border-accent/10">
               <ResponsiveText
-                mobileSize="text-xs"
+                mobileSize={isXs ? "text-xs" : "text-xs"}
                 className="text-muted-foreground font-light"
               >
                 © 2025 Shinka. Building super-intelligence for the world and beyond.

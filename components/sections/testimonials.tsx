@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge'
 import { Card } from '@/components/ui/card'
 
 const Testimonials = memo(function Testimonials() {
-  const { isMobile } = useResponsive()
+  const { isMobile, isXs } = useResponsive()
 
   const testimonials = [
     {
@@ -34,7 +34,7 @@ const Testimonials = memo(function Testimonials() {
   ]
 
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-b from-muted/20 to-background relative overflow-hidden">
+    <section className={`${isXs ? 'py-12' : 'py-16 md:py-24'} bg-gradient-to-b from-muted/20 to-background relative overflow-hidden`}>
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
           backgroundImage: `radial-gradient(circle at 20% 80%, hsl(var(--accent) / 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, hsl(var(--primary) / 0.1) 0%, transparent 50%)`,
@@ -42,14 +42,14 @@ const Testimonials = memo(function Testimonials() {
       </div>
       
       <ResponsiveContainer maxWidth="responsive" className="relative z-10">
-        <div className="text-center mb-12 md:mb-16">
-          <Badge variant="outline" className="mb-4 md:mb-6 border-foreground/20 text-foreground font-medium bg-background/50 backdrop-blur-sm">
+        <div className={`text-center ${isXs ? 'mb-8' : 'mb-12 md:mb-16'}`}>
+          <Badge variant="outline" className={`${isXs ? 'mb-3' : 'mb-4 md:mb-6'} border-foreground/20 text-foreground font-medium bg-background/50 backdrop-blur-sm`}>
             TESTIMONIALS
           </Badge>
           
           <ResponsiveText
             as="h2"
-            mobileSize="text-2xl"
+            mobileSize={isXs ? "text-xl" : "text-2xl"}
             tabletSize="text-3xl"
             desktopSize="text-4xl"
             className="font-bold text-foreground mb-4 tracking-tight"
@@ -61,7 +61,7 @@ const Testimonials = memo(function Testimonials() {
           </ResponsiveText>
           
           <ResponsiveText
-            mobileSize="text-base"
+            mobileSize={isXs ? "text-sm" : "text-base"}
             tabletSize="text-lg"
             desktopSize="text-xl"
             className="text-muted-foreground max-w-2xl mx-auto"
@@ -70,18 +70,18 @@ const Testimonials = memo(function Testimonials() {
           </ResponsiveText>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           {testimonials.map((testimonial, index) => (
             <Card 
               key={index}
-              className="p-6 md:p-8 bg-background/50 backdrop-blur-sm border border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-lg group"
+              className={`${isXs ? 'p-4' : 'p-6 md:p-8'} bg-background/50 backdrop-blur-sm border border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-lg group`}
             >
               <div className="flex flex-col h-full">
                 {/* Quote */}
                 <div className="flex-grow">
                   <div className="text-2xl text-primary/60 mb-4">"</div>
                   <ResponsiveText
-                    mobileSize="text-sm"
+                    mobileSize={isXs ? "text-xs" : "text-sm"}
                     tabletSize="text-base"
                     desktopSize="text-lg"
                     className="text-foreground leading-relaxed mb-6 italic"
@@ -92,12 +92,12 @@ const Testimonials = memo(function Testimonials() {
                 
                 {/* Author */}
                 <div className="flex items-center space-x-3">
-                  <div className="text-2xl md:text-3xl">
+                  <div className={`${isXs ? 'text-xl' : 'text-2xl md:text-3xl'}`}>
                     {testimonial.avatar}
                   </div>
                   <div>
                     <ResponsiveText
-                      mobileSize="text-sm"
+                      mobileSize={isXs ? "text-xs" : "text-sm"}
                       tabletSize="text-base"
                       desktopSize="text-lg"
                       className="font-semibold text-foreground"
@@ -105,7 +105,7 @@ const Testimonials = memo(function Testimonials() {
                       {testimonial.author}
                     </ResponsiveText>
                     <ResponsiveText
-                      mobileSize="text-xs"
+                      mobileSize={isXs ? "text-xs" : "text-xs"}
                       tabletSize="text-sm"
                       desktopSize="text-base"
                       className="text-muted-foreground"
@@ -120,9 +120,9 @@ const Testimonials = memo(function Testimonials() {
         </div>
 
         {/* Trust indicators */}
-        <div className="mt-12 md:mt-16 text-center">
+        <div className={`${isXs ? 'mt-8' : 'mt-12 md:mt-16'} text-center`}>
           <ResponsiveText
-            mobileSize="text-sm"
+            mobileSize={isXs ? "text-xs" : "text-sm"}
             tabletSize="text-base"
             desktopSize="text-lg"
             className="text-muted-foreground mb-6"
@@ -130,11 +130,11 @@ const Testimonials = memo(function Testimonials() {
             Trusted by Fortune 500 companies and startups alike
           </ResponsiveText>
           
-          <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
-            <div className="text-2xl font-bold text-foreground/40">Fortune 500</div>
-            <div className="text-2xl font-bold text-foreground/40">YC Alumni</div>
-            <div className="text-2xl font-bold text-foreground/40">Tech Leaders</div>
-            <div className="text-2xl font-bold text-foreground/40">AI Pioneers</div>
+          <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-8 opacity-60">
+            <div className={`${isXs ? 'text-lg' : 'text-2xl'} font-bold text-foreground/40`}>Fortune 500</div>
+            <div className={`${isXs ? 'text-lg' : 'text-2xl'} font-bold text-foreground/40`}>YC Alumni</div>
+            <div className={`${isXs ? 'text-lg' : 'text-2xl'} font-bold text-foreground/40`}>Tech Leaders</div>
+            <div className={`${isXs ? 'text-lg' : 'text-2xl'} font-bold text-foreground/40`}>AI Pioneers</div>
           </div>
         </div>
       </ResponsiveContainer>

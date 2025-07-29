@@ -5,15 +5,19 @@ import { useState, useEffect, useCallback, useMemo, useRef } from 'react'
 // Tailwind CSS default breakpoints (cached as constants)
 const BREAKPOINTS = {
   xs: 0,
+  'xs-sm': 375, // Ultra-small screens (iPhone SE, small Android)
   sm: 640,
   md: 768,
   lg: 1024,
   xl: 1280,
   '2xl': 1536,
+  '3xl': 1920, // Full HD and larger
+  '4xl': 2560, // 2K displays
+  '5xl': 3840, // 4K displays
 } as const
 
 type Breakpoint = keyof typeof BREAKPOINTS
-type DeviceType = 'mobile' | 'tablet' | 'desktop'
+type DeviceType = 'mobile' | 'tablet' | 'desktop' | 'ultra-wide'
 type Orientation = 'portrait' | 'landscape'
 
 interface WindowDimensions {
@@ -27,14 +31,19 @@ interface ResponsiveState {
   deviceType: DeviceType
   orientation: Orientation
   isXs: boolean
+  isXsSm: boolean
   isSm: boolean
   isMd: boolean
   isLg: boolean
   isXl: boolean
   is2Xl: boolean
+  is3Xl: boolean
+  is4Xl: boolean
+  is5Xl: boolean
   isMobile: boolean
   isTablet: boolean
   isDesktop: boolean
+  isUltraWide: boolean
   isPortrait: boolean
   isLandscape: boolean
   isAbove: (breakpoint: Breakpoint) => boolean
@@ -47,18 +56,23 @@ interface ResponsiveState {
 
 // Cached helper functions (no re-creation)
 const getCurrentBreakpoint = (width: number): Breakpoint => {
+  if (width >= 3840) return '5xl'
+  if (width >= 2560) return '4xl'
+  if (width >= 1920) return '3xl'
   if (width >= 1536) return '2xl'
   if (width >= 1280) return 'xl'
   if (width >= 1024) return 'lg'
   if (width >= 768) return 'md'
   if (width >= 640) return 'sm'
+  if (width >= 375) return 'xs-sm'
   return 'xs'
 }
 
 const getDeviceType = (width: number): DeviceType => {
   if (width < 768) return 'mobile'
   if (width < 1024) return 'tablet'
-  return 'desktop'
+  if (width < 1920) return 'desktop'
+  return 'ultra-wide'
 }
 
 const getOrientation = (width: number, height: number): Orientation => {
@@ -163,14 +177,19 @@ const useResponsive = (): ResponsiveState => {
       orientation,
       // Pre-computed boolean checks (faster than string comparisons)
       isXs: currentBreakpoint === 'xs',
+      isXsSm: currentBreakpoint === 'xs-sm',
       isSm: currentBreakpoint === 'sm',
       isMd: currentBreakpoint === 'md',
       isLg: currentBreakpoint === 'lg',
       isXl: currentBreakpoint === 'xl',
       is2Xl: currentBreakpoint === '2xl',
+      is3Xl: currentBreakpoint === '3xl',
+      is4Xl: currentBreakpoint === '4xl',
+      is5Xl: currentBreakpoint === '5xl',
       isMobile: deviceType === 'mobile',
       isTablet: deviceType === 'tablet',
       isDesktop: deviceType === 'desktop',
+      isUltraWide: deviceType === 'ultra-wide',
       isPortrait: orientation === 'portrait',
       isLandscape: orientation === 'landscape',
     }

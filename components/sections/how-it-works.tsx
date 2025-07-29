@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge'
 import { Card } from '@/components/ui/card'
 
 const HowItWorks = memo(function HowItWorks() {
-  const { isMobile } = useResponsive()
+  const { isMobile, isXs } = useResponsive()
 
   const steps = [
     {
@@ -37,7 +37,7 @@ const HowItWorks = memo(function HowItWorks() {
   ]
 
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-b from-background to-muted/20 relative overflow-hidden">
+    <section className={`${isXs ? 'py-12' : 'py-16 md:py-24'} bg-gradient-to-b from-background to-muted/20 relative overflow-hidden`}>
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
           backgroundImage: `linear-gradient(45deg, hsl(var(--primary) / 0.1) 25%, transparent 25%), linear-gradient(-45deg, hsl(var(--primary) / 0.1) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, hsl(var(--primary) / 0.1) 75%), linear-gradient(-45deg, transparent 75%, hsl(var(--primary) / 0.1) 75%)`,
@@ -47,14 +47,14 @@ const HowItWorks = memo(function HowItWorks() {
       </div>
       
       <ResponsiveContainer maxWidth="responsive" className="relative z-10">
-        <div className="text-center mb-12 md:mb-16">
-          <Badge variant="outline" className="mb-4 md:mb-6 border-foreground/20 text-foreground font-medium bg-background/50 backdrop-blur-sm">
+        <div className={`text-center ${isXs ? 'mb-8' : 'mb-12 md:mb-16'}`}>
+          <Badge variant="outline" className={`${isXs ? 'mb-3' : 'mb-4 md:mb-6'} border-foreground/20 text-foreground font-medium bg-background/50 backdrop-blur-sm`}>
             HOW IT WORKS
           </Badge>
           
           <ResponsiveText
             as="h2"
-            mobileSize="text-2xl"
+            mobileSize={isXs ? "text-xl" : "text-2xl"}
             tabletSize="text-3xl"
             desktopSize="text-4xl"
             className="font-bold text-foreground mb-4 tracking-tight"
@@ -66,7 +66,7 @@ const HowItWorks = memo(function HowItWorks() {
           </ResponsiveText>
           
           <ResponsiveText
-            mobileSize="text-base"
+            mobileSize={isXs ? "text-sm" : "text-base"}
             tabletSize="text-lg"
             desktopSize="text-xl"
             className="text-muted-foreground max-w-2xl mx-auto"
@@ -75,13 +75,13 @@ const HowItWorks = memo(function HowItWorks() {
           </ResponsiveText>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
           {steps.map((step, index) => (
             <Card 
               key={index}
-              className="p-6 md:p-8 text-center bg-background/50 backdrop-blur-sm border border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-lg group"
+              className={`${isXs ? 'p-4' : 'p-6 md:p-8'} text-center bg-background/50 backdrop-blur-sm border border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-lg group`}
             >
-              <div className="text-4xl md:text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">
+              <div className={`${isXs ? 'text-3xl' : 'text-4xl md:text-5xl'} mb-4 group-hover:scale-110 transition-transform duration-300`}>
                 {step.icon}
               </div>
               
@@ -90,7 +90,7 @@ const HowItWorks = memo(function HowItWorks() {
               </div>
               
               <ResponsiveText
-                mobileSize="text-lg"
+                mobileSize={isXs ? "text-base" : "text-lg"}
                 tabletSize="text-xl"
                 desktopSize="text-2xl"
                 className="font-bold text-foreground mb-3"
@@ -99,7 +99,7 @@ const HowItWorks = memo(function HowItWorks() {
               </ResponsiveText>
               
               <ResponsiveText
-                mobileSize="text-sm"
+                mobileSize={isXs ? "text-xs" : "text-sm"}
                 tabletSize="text-base"
                 desktopSize="text-lg"
                 className="text-muted-foreground leading-relaxed"

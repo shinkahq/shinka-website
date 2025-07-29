@@ -18,11 +18,11 @@ const navItems = [
 ] as const
 
 // Logo component
-const Logo = memo(function Logo({ isMobile, isHydrated }: { isMobile: boolean; isHydrated: boolean }) {
-  const logoWidth = isHydrated ? (isMobile ? 100 : 120) : 120
-  const logoHeight = isHydrated ? (isMobile ? 32 : 40) : 40
-  const logoClass = isHydrated ? (isMobile ? 'h-6' : 'h-8') : 'h-8'
-  const textClass = isHydrated ? (isMobile ? 'text-base' : 'text-lg') : 'text-lg'
+const Logo = memo(function Logo({ isMobile, isHydrated, isXs }: { isMobile: boolean; isHydrated: boolean; isXs: boolean }) {
+  const logoWidth = isHydrated ? (isXs ? 80 : isMobile ? 100 : 120) : 120
+  const logoHeight = isHydrated ? (isXs ? 24 : isMobile ? 32 : 40) : 40
+  const logoClass = isHydrated ? (isXs ? 'h-5' : isMobile ? 'h-6' : 'h-8') : 'h-8'
+  const textClass = isHydrated ? (isXs ? 'text-sm' : isMobile ? 'text-base' : 'text-lg') : 'text-lg'
   
   return (
     <Link href="/" className="group flex items-center space-x-3 hover:opacity-80 transition-all duration-300">
@@ -184,7 +184,7 @@ const GetInTouchButton = memo(function GetInTouchButton({
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const { isMobile, isHydrated } = useResponsive()
+  const { isMobile, isHydrated, isXs } = useResponsive()
   const pathname = usePathname()
 
   const handleMenuToggle = useCallback(() => {
@@ -212,11 +212,11 @@ export default function Navigation() {
         {/* Top accent line */}
         <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
         
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6 lg:px-8 3xl:px-12 4xl:px-16 5xl:px-20">
           <div className="flex justify-between items-center h-16 relative">
             {/* Logo */}
             <div className="flex items-center space-x-3">
-              <Logo isMobile={isMobile} isHydrated={isHydrated} />
+              <Logo isMobile={isMobile} isHydrated={isHydrated} isXs={isXs} />
             </div>
 
             {/* Desktop Navigation */}
@@ -240,7 +240,7 @@ export default function Navigation() {
 
             {/* Mobile Menu Button */}
             <Show below="md" fallback="hide">
-              <div className="flex items-center space-x-3">
+              <div className="flex items-center space-x-2 sm:space-x-3">
                 <ThemeToggle />
                 <button
                   onClick={handleMenuToggle}
@@ -258,7 +258,7 @@ export default function Navigation() {
           {/* Mobile Navigation Menu */}
           <Show below="md" fallback="hide">
             {isMenuOpen && (
-              <div className="border-t border-accent/20 py-6 space-y-4 animate-in slide-in-from-top-2 duration-300 bg-gradient-to-b from-background/95 to-background/90">
+              <div className="border-t border-accent/20 py-4 sm:py-6 space-y-3 sm:space-y-4 animate-in slide-in-from-top-2 duration-300 bg-gradient-to-b from-background/95 to-background/90">
                 {navItems.map((item, index) => (
                   <NavLink
                     key={item.href}
@@ -266,11 +266,11 @@ export default function Navigation() {
                     label={item.label}
                     isActive={isActive(item.href)}
                     onClick={handleMenuClose}
-                    className="block py-3 px-2"
+                    className="block py-2 sm:py-3 px-2"
                   />
                 ))}
                 
-                <div className="pt-4 border-t border-accent/10">
+                <div className="pt-3 sm:pt-4 border-t border-accent/10">
                   <GetInTouchButton 
                     onClick={handleMenuClose} 
                     className="w-full" 
