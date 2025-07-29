@@ -24,9 +24,30 @@ const config: Config = {
       padding: "2rem",
       screens: {
         "2xl": "1400px",
+        "3xl": "1920px",
+        "4xl": "2560px",
+        "5xl": "3840px",
       },
     },
     extend: {
+      // Ultra-large screen breakpoints
+      screens: {
+        '3xl': '1920px',
+        '4xl': '2560px', 
+        '5xl': '3840px',
+      },
+      // Ultra-large max-width utilities
+      maxWidth: {
+        '8xl': '88rem', // 1408px
+        '9xl': '96rem', // 1536px
+      },
+      // Ultra-large spacing
+      spacing: {
+        '18': '4.5rem', // 72px
+        '22': '5.5rem', // 88px
+        '26': '6.5rem', // 104px
+        '30': '7.5rem', // 120px
+      },
       // Optimized color palette (only colors we actually use)
       colors: {
         border: "hsl(var(--border))",

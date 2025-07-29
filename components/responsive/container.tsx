@@ -22,13 +22,13 @@ export const ResponsiveContainer: React.FC<ResponsiveContainerProps> = ({
   maxWidth = 'responsive',
   center = true,
 }) => {
-  const { isMobile, isTablet } = useResponsive()
+  const { isMobile, isTablet, isXs, is3Xl, is4Xl, is5Xl } = useResponsive()
 
   // Responsive padding
   const getPadding = () => {
     if (padding === 'none') return ''
     if (padding === 'responsive') {
-      return isMobile ? 'px-4 py-2' : isTablet ? 'px-6 py-4' : 'px-8 py-6'
+      return isXs ? 'px-2 py-1' : isMobile ? 'px-4 py-2' : isTablet ? 'px-6 py-4' : is3Xl ? 'px-12 py-8' : is4Xl ? 'px-16 py-10' : is5Xl ? 'px-20 py-12' : 'px-8 py-6'
     }
     const paddingMap = {
       sm: 'p-2',
@@ -44,7 +44,7 @@ export const ResponsiveContainer: React.FC<ResponsiveContainerProps> = ({
     if (maxWidth === 'none') return ''
     if (maxWidth === 'full') return 'w-full'
     if (maxWidth === 'responsive') {
-      return isMobile ? 'max-w-full' : isTablet ? 'max-w-4xl' : 'max-w-6xl'
+      return isXs ? 'max-w-full' : isMobile ? 'max-w-full' : isTablet ? 'max-w-4xl' : is3Xl ? 'max-w-7xl' : is4Xl ? 'max-w-8xl' : is5Xl ? 'max-w-9xl' : 'max-w-6xl'
     }
     const maxWidthMap = {
       sm: 'max-w-sm',
@@ -57,6 +57,8 @@ export const ResponsiveContainer: React.FC<ResponsiveContainerProps> = ({
       '5xl': 'max-w-5xl',
       '6xl': 'max-w-6xl',
       '7xl': 'max-w-7xl',
+      '8xl': 'max-w-8xl',
+      '9xl': 'max-w-9xl',
     }
     return maxWidthMap[maxWidth] || 'max-w-4xl'
   }

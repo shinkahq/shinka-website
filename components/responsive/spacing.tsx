@@ -14,13 +14,13 @@ export const ResponsiveSpacing: React.FC<ResponsiveSpacingProps> = ({
   type = 'margin',
   direction = 'all',
 }) => {
-  const { isMobile, isTablet } = useResponsive()
+  const { isMobile, isTablet, isXs, is3Xl, is4Xl, is5Xl } = useResponsive()
 
   const getSpacing = () => {
     let spacing = ''
     
     if (size === 'responsive') {
-      spacing = isMobile ? '2' : isTablet ? '4' : '6'
+      spacing = isXs ? '1' : isMobile ? '2' : isTablet ? '4' : is3Xl ? '8' : is4Xl ? '12' : is5Xl ? '16' : '6'
     } else {
       const sizeMap = {
         xs: '1',
@@ -29,6 +29,9 @@ export const ResponsiveSpacing: React.FC<ResponsiveSpacingProps> = ({
         lg: '6',
         xl: '8',
         '2xl': '12',
+        '3xl': '16',
+        '4xl': '20',
+        '5xl': '24',
       }
       spacing = sizeMap[size] || '4'
     }

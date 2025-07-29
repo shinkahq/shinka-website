@@ -49,36 +49,36 @@ const contactOptions = [
 type ContactOption = typeof contactOptions[number]
 
 const Contact = memo(function Contact() {
-  const { isMobile } = useResponsive()
+  const { isMobile, isXs } = useResponsive()
 
   const sectionClass = useMemo(() => 
-    `${isMobile ? 'py-12' : 'py-24'} relative overflow-hidden`, 
-    [isMobile]
+    `${isXs ? 'py-8' : isMobile ? 'py-12' : 'py-24'} relative overflow-hidden`, 
+    [isMobile, isXs]
   )
   
   const headerClass = useMemo(() => 
-    `text-center ${isMobile ? 'mb-12' : 'mb-20'}`, 
-    [isMobile]
+    `text-center ${isXs ? 'mb-8' : isMobile ? 'mb-12' : 'mb-20'}`, 
+    [isMobile, isXs]
   )
   
   const badgeClass = useMemo(() => 
-    `${isMobile ? 'mb-4' : 'mb-8'} border-foreground/20 text-foreground font-mono bg-accent/5 backdrop-blur-sm`, 
-    [isMobile]
+    `${isXs ? 'mb-3' : isMobile ? 'mb-4' : 'mb-8'} border-foreground/20 text-foreground font-mono bg-accent/5 backdrop-blur-sm`, 
+    [isMobile, isXs]
   )
   
   const headingClass = useMemo(() => 
-    `font-bold text-foreground ${isMobile ? 'mb-4' : 'mb-8'} tracking-tight font-mono`, 
-    [isMobile]
+    `font-bold text-foreground ${isXs ? 'mb-3' : isMobile ? 'mb-4' : 'mb-8'} tracking-tight font-mono`, 
+    [isMobile, isXs]
   )
   
   const backgroundClass = useMemo(() => 
-    `absolute inset-0 ${isMobile ? 'opacity-3' : 'opacity-5'}`, 
-    [isMobile]
+    `absolute inset-0 ${isXs ? 'opacity-2' : isMobile ? 'opacity-3' : 'opacity-5'}`, 
+    [isMobile, isXs]
   )
   
   const backgroundSize = useMemo(() => 
-    isMobile ? '40px 40px' : '60px 60px', 
-    [isMobile]
+    isXs ? '30px 30px' : isMobile ? '40px 40px' : '60px 60px', 
+    [isMobile, isXs]
   )
   
   const backgroundImage = useMemo(() => 
@@ -87,13 +87,13 @@ const Contact = memo(function Contact() {
   )
   
   const gridClass = useMemo(() => 
-    `${isMobile ? 'grid-cols-1 gap-6' : 'md:grid-cols-3 gap-8'}`, 
-    [isMobile]
+    `${isXs ? 'grid-cols-1 gap-4' : isMobile ? 'grid-cols-1 gap-6' : 'md:grid-cols-3 gap-8'}`, 
+    [isMobile, isXs]
   )
   
   const cardClass = useMemo(() => 
-    `group relative bg-gradient-to-br from-background/80 to-background/60 backdrop-blur-sm border border-accent/10 rounded-xl ${isMobile ? 'p-6' : 'p-8'} hover:border-accent/30 transition-all duration-500`, 
-    [isMobile]
+    `group relative bg-gradient-to-br from-background/80 to-background/60 backdrop-blur-sm border border-accent/10 rounded-xl ${isXs ? 'p-4' : isMobile ? 'p-6' : 'p-8'} hover:border-accent/30 transition-all duration-500`, 
+    [isMobile, isXs]
   )
 
   return (
@@ -116,7 +116,7 @@ const Contact = memo(function Contact() {
           
           <ResponsiveText
             as="h2"
-            mobileSize="text-2xl"
+            mobileSize={isXs ? "text-xl" : "text-2xl"}
             tabletSize="text-4xl"
             desktopSize="text-5xl lg:text-6xl"
             className={headingClass}
@@ -131,7 +131,7 @@ const Contact = memo(function Contact() {
           </ResponsiveText>
           
           <ResponsiveText
-            mobileSize="text-base"
+            mobileSize={isXs ? "text-sm" : "text-base"}
             tabletSize="text-lg"
             desktopSize="text-xl"
             className="text-muted-foreground max-w-4xl mx-auto leading-relaxed"
@@ -153,7 +153,7 @@ const Contact = memo(function Contact() {
                   <div className="text-center">
                     <ResponsiveText
                       as="h3"
-                      mobileSize="text-lg"
+                      mobileSize={isXs ? "text-base" : "text-lg"}
                       tabletSize="text-xl"
                       desktopSize="text-xl"
                       className="font-semibold text-foreground mb-3 group-hover:text-accent transition-colors duration-300"
@@ -162,7 +162,7 @@ const Contact = memo(function Contact() {
                     </ResponsiveText>
                     
                     <ResponsiveText
-                      mobileSize="text-sm"
+                      mobileSize={isXs ? "text-xs" : "text-sm"}
                       tabletSize="text-base"
                       desktopSize="text-base"
                       className="text-muted-foreground leading-relaxed mb-6"
@@ -183,7 +183,7 @@ const Contact = memo(function Contact() {
                     )}
 
                     {'socialLinks' in option && option.socialLinks && (
-                      <div className="flex justify-center gap-4 mt-6">
+                      <div className="flex justify-center gap-3 sm:gap-4 mt-4 sm:mt-6">
                         {option.socialLinks.map((social: any, socialIndex: number) => (
                           <a
                             key={socialIndex}

@@ -17,7 +17,7 @@ const experience = [
 ] as const
 
 const Team = memo(function Team() {
-  const { isMobile } = useResponsive()
+  const { isMobile, isXs, isSm, isMd } = useResponsive()
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
 
   const handleItemClick = useCallback((index: number) => {
@@ -27,39 +27,47 @@ const Team = memo(function Team() {
   }, [isMobile, activeIndex])
 
   const sectionClass = useMemo(() => 
-    `${isMobile ? 'py-12' : 'py-24'} relative overflow-hidden`, 
-    [isMobile]
+    `${isXs ? 'py-8' : isMobile ? 'py-12' : 'py-24'} relative overflow-hidden`, 
+    [isMobile, isXs]
   )
   
   const headerClass = useMemo(() => 
-    `text-center ${isMobile ? 'mb-12' : 'mb-20'}`, 
-    [isMobile]
+    `text-center ${isXs ? 'mb-8' : isMobile ? 'mb-12' : 'mb-20'}`, 
+    [isMobile, isXs]
   )
   
   const badgeClass = useMemo(() => 
-    `${isMobile ? 'mb-4' : 'mb-8'} border-foreground/20 text-foreground font-mono bg-accent/5 backdrop-blur-sm`, 
-    [isMobile]
+    `${isXs ? 'mb-3' : isMobile ? 'mb-4' : 'mb-8'} border-foreground/20 text-foreground font-mono bg-accent/5 backdrop-blur-sm`, 
+    [isMobile, isXs]
   )
   
   const headingClass = useMemo(() => 
-    `font-bold text-foreground ${isMobile ? 'mb-4' : 'mb-8'} tracking-tight font-mono`, 
-    [isMobile]
+    `font-bold text-foreground ${isXs ? 'mb-3' : isMobile ? 'mb-4' : 'mb-8'} tracking-tight font-mono`, 
+    [isMobile, isXs]
   )
   
   const backgroundClass = useMemo(() => 
-    `absolute inset-0 ${isMobile ? 'opacity-3' : 'opacity-5'}`, 
-    [isMobile]
+    `absolute inset-0 ${isXs ? 'opacity-2' : isMobile ? 'opacity-3' : 'opacity-5'}`, 
+    [isMobile, isXs]
   )
   
   const backgroundSize = useMemo(() => 
-    isMobile ? '40px 40px' : '60px 60px', 
-    [isMobile]
+    isXs ? '30px 30px' : isMobile ? '40px 40px' : '60px 60px', 
+    [isMobile, isXs]
   )
   
   const backgroundImage = useMemo(() => 
     `linear-gradient(hsl(var(--accent) / 0.1) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--accent) / 0.1) 1px, transparent 1px)`, 
     []
   )
+
+  // Improved responsive spacing and layout
+  const containerClass = useMemo(() => {
+    if (isXs) return 'grid grid-cols-1 gap-4 justify-items-center pt-2 pb-8'
+    if (isSm) return 'grid grid-cols-2 gap-4 gap-y-6 justify-items-center pt-3 pb-10'
+    if (isMd) return 'flex flex-wrap justify-center items-baseline gap-4 gap-y-8 pt-3 pb-10'
+    return 'flex flex-wrap justify-center items-baseline gap-6 gap-y-10 pt-4 pb-12'
+  }, [isXs, isSm, isMd])
 
   return (
     <section id="team" className={sectionClass}>
@@ -81,7 +89,7 @@ const Team = memo(function Team() {
           
           <ResponsiveText
             as="h2"
-            mobileSize="text-2xl"
+            mobileSize={isXs ? "text-xl" : "text-2xl"}
             tabletSize="text-4xl"
             desktopSize="text-5xl lg:text-6xl"
             className={headingClass}
@@ -89,7 +97,7 @@ const Team = memo(function Team() {
             TEAM
           </ResponsiveText>
           <ResponsiveText
-            mobileSize="text-base"
+            mobileSize={isXs ? "text-sm" : "text-base"}
             tabletSize="text-lg"
             desktopSize="text-xl"
             className="text-muted-foreground max-w-4xl mx-auto leading-relaxed"
@@ -101,13 +109,13 @@ const Team = memo(function Team() {
           </ResponsiveText>
         </div>
 
-        <div className="relative max-w-5xl mx-auto">
-          <div className={`flex flex-wrap justify-center items-center gap-${isMobile ? '4' : '6 md:gap-8'}`}>
+        <div className="relative max-w-6xl mx-auto">
+          <div className={containerClass}>
             {experience.map((item, index) => {
               const sizeClasses = {
-                small: isMobile ? 'text-base' : 'text-lg md:text-xl',
-                medium: isMobile ? 'text-lg' : 'text-xl md:text-2xl',
-                large: isMobile ? 'text-xl' : 'text-2xl md:text-3xl'
+                small: isXs ? 'text-sm' : isSm ? 'text-base' : isMd ? 'text-lg' : 'text-lg md:text-xl',
+                medium: isXs ? 'text-base' : isSm ? 'text-lg' : isMd ? 'text-xl' : 'text-xl md:text-2xl', 
+                large: isXs ? 'text-lg' : isSm ? 'text-xl' : isMd ? 'text-2xl' : 'text-2xl md:text-3xl'
               }[item.size]
 
               const isActive = activeIndex === index
@@ -115,19 +123,26 @@ const Team = memo(function Team() {
               return (
                 <div 
                   key={index}
-                  className="group relative py-2 px-1"
-                  onClick={() => handleItemClick(index)}
+                  className="group relative flex flex-col items-center max-w-full"
                 >
-                  <div className={`relative transition-all duration-500 ${isMobile ? '' : 'group-hover:-translate-y-1'}`}>
-                    <span className={`font-medium ${sizeClasses} transition-colors duration-300 text-foreground/70 ${isMobile ? 'text-accent cursor-pointer' : 'group-hover:text-accent'}`}>
+                  {/* Main text container with better responsive padding and enhanced touch targets */}
+                  <div 
+                    className={`relative ${isMobile ? 'px-4 py-4 cursor-pointer touch-manipulation' : 'px-3 py-2'} transition-all duration-500 ${isMobile ? '' : 'group-hover:-translate-y-1'} text-center ${isMobile ? 'min-h-[44px] flex items-center justify-center' : ''}`}
+                    onClick={() => handleItemClick(index)}
+                    role={isMobile ? "button" : undefined}
+                    tabIndex={isMobile ? 0 : undefined}
+                  >
+                    <span className={`font-medium ${sizeClasses} transition-colors duration-300 text-foreground/70 ${isMobile ? 'text-accent' : 'group-hover:text-accent'} ${isXs || isSm ? 'text-center' : ''} leading-tight select-none`}>
                       {item.name}
                     </span>
                     
-                    <div className={`absolute -bottom-1 left-0 h-[2px] bg-accent transition-all duration-500 ${isMobile ? (isActive ? 'w-full' : 'w-0') : 'w-0 group-hover:w-full'}`} />
+                    {/* Improved underline effect */}
+                    <div className={`absolute -bottom-1 left-3 right-3 h-[2px] bg-accent transition-all duration-500 ${isMobile ? (isActive ? 'scale-x-100' : 'scale-x-0') : 'scale-x-0 group-hover:scale-x-100'} origin-center`} />
                   </div>
                   
-                  <div className={`absolute ${isMobile ? '-bottom-6' : '-bottom-8'} left-1/2 -translate-x-1/2 pointer-events-none z-10`}>
-                    <span className={`${isMobile ? 'text-xs' : 'text-sm'} text-accent transform transition-all duration-500 whitespace-nowrap font-medium ${isMobile ? (isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2') : 'opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0'}`}>
+                  {/* Enhanced role tooltip positioning */}
+                  <div className={`absolute top-full ${isXs ? 'mt-1' : 'mt-2'} left-1/2 -translate-x-1/2 pointer-events-none z-20`}>
+                    <span className={`${isXs ? 'text-xs' : isSm ? 'text-xs' : 'text-sm'} text-accent transform transition-all duration-500 whitespace-nowrap font-medium text-center block ${isMobile ? (isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2') : 'opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0'}`}>
                       {item.role}
                     </span>
                   </div>

@@ -6,26 +6,26 @@ import { ResponsiveContainer, ResponsiveText } from '@/components/responsive'
 import { Badge } from '@/components/ui/badge'
 
 const About = memo(function About() {
-  const { isMobile } = useResponsive()
+  const { isMobile, isXs, is3Xl, is4Xl, is5Xl } = useResponsive()
   
   const sectionClass = useMemo(() => 
-    `${isMobile ? 'py-12' : 'py-24'} relative overflow-hidden bg-gradient-to-b from-background via-background/98 to-background/95`, 
-    [isMobile]
+    `${isXs ? 'py-8' : isMobile ? 'py-12' : is3Xl ? 'py-32' : is4Xl ? 'py-40' : is5Xl ? 'py-48' : 'py-24'} relative overflow-hidden bg-gradient-to-b from-background via-background/98 to-background/95`, 
+    [isMobile, isXs, is3Xl, is4Xl, is5Xl]
   )
   
   const headerClass = useMemo(() => 
-    `text-center ${isMobile ? 'mb-12' : 'mb-20 md:mb-32'}`, 
-    [isMobile]
+    `text-center ${isXs ? 'mb-8' : isMobile ? 'mb-12' : is3Xl ? 'mb-32' : is4Xl ? 'mb-40' : is5Xl ? 'mb-48' : 'mb-20 md:mb-32'}`, 
+    [isMobile, isXs, is3Xl, is4Xl, is5Xl]
   )
   
   const badgeClass = useMemo(() => 
-    `${isMobile ? 'mb-4' : 'mb-8'} border-foreground/20 text-foreground font-mono bg-accent/5 backdrop-blur-sm`, 
-    [isMobile]
+    `${isXs ? 'mb-3' : isMobile ? 'mb-4' : is3Xl ? 'mb-12' : is4Xl ? 'mb-16' : is5Xl ? 'mb-20' : 'mb-8'} border-foreground/20 text-foreground font-mono bg-accent/5 backdrop-blur-sm`, 
+    [isMobile, isXs, is3Xl, is4Xl, is5Xl]
   )
   
   const headingClass = useMemo(() => 
-    `font-bold text-foreground ${isMobile ? 'mb-4' : 'mb-8'} tracking-tight font-mono`, 
-    [isMobile]
+    `font-bold text-foreground ${isXs ? 'mb-3' : isMobile ? 'mb-4' : is3Xl ? 'mb-12' : is4Xl ? 'mb-16' : is5Xl ? 'mb-20' : 'mb-8'} tracking-tight font-mono`, 
+    [isMobile, isXs, is3Xl, is4Xl, is5Xl]
   )
 
   return (
@@ -50,9 +50,9 @@ const About = memo(function About() {
           
           <ResponsiveText
             as="h2"
-            mobileSize="text-2xl"
+            mobileSize={isXs ? "text-xl" : "text-2xl"}
             tabletSize="text-4xl"
-            desktopSize="text-5xl lg:text-6xl"
+            desktopSize={is3Xl ? "text-6xl lg:text-7xl" : is4Xl ? "text-7xl lg:text-8xl" : is5Xl ? "text-8xl lg:text-9xl" : "text-5xl lg:text-6xl"}
             className={headingClass}
           >
             OUR{' '}
@@ -66,9 +66,9 @@ const About = memo(function About() {
           
           <ResponsiveText
             as="h3"
-            mobileSize="text-3xl"
+            mobileSize={isXs ? "text-2xl" : "text-3xl"}
             tabletSize="text-4xl lg:text-5xl"
-            desktopSize="text-5xl lg:text-7xl"
+            desktopSize={is3Xl ? "text-6xl lg:text-7xl" : is4Xl ? "text-7xl lg:text-8xl" : is5Xl ? "text-8xl lg:text-9xl" : "text-5xl lg:text-7xl"}
             className="font-semibold text-foreground tracking-tight leading-[1.1]"
           >
             <span className="inline-block">
