@@ -129,18 +129,6 @@ const Contact = memo(function Contact() {
               <div className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-accent/50 via-accent to-accent/50" />
             </span>
           </ResponsiveText>
-          
-          <ResponsiveText
-            mobileSize={isXs ? "text-sm" : "text-base"}
-            tabletSize="text-lg"
-            desktopSize="text-xl"
-            className="text-muted-foreground max-w-4xl mx-auto leading-relaxed"
-          >
-            Ready to{' '}
-            <span className="text-accent font-semibold">transform</span>{' '}
-            your enterprise with{' '}
-            <span className="text-accent font-semibold">AI</span>?
-          </ResponsiveText>
         </div>
 
         <div className="max-w-4xl mx-auto">
