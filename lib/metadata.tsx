@@ -5,7 +5,7 @@ export default function StructuredData() {
     "name": "Shinka",
     "url": "https://shinkahq.com",
     "logo": "https://shinkahq.com/shinka-logo.png",
-    "description": "Intelligent AI products for modern enterprises. We build cutting-edge AI agents, workflows, and automations that transform how enterprises operate.",
+    "description": "Building super-intelligence for the world and beyond.",
     "foundingDate": "2025",
     "industry": "Artificial Intelligence",
     "address": [
