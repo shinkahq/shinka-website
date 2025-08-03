@@ -4,8 +4,6 @@ import { memo, useMemo } from 'react'
 import useResponsive from '@/lib/use-responsive'
 import { ResponsiveContainer, ResponsiveText } from '@/components/responsive'
 
-
-
 const About = memo(function About() {
   const { isMobile, isXs, is3Xl, is4Xl, is5Xl } = useResponsive()
   
@@ -66,6 +64,9 @@ const About = memo(function About() {
               <div className="flex items-center justify-center gap-2">
                 <span className="text-muted-foreground text-sm sm:text-base font-mono">
                   shin·ka
+                </span>
+                <span className="text-muted-foreground text-xs sm:text-sm font-mono opacity-70">
+                  (Japanese)
                 </span>
               </div>
             </div>
