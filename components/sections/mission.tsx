@@ -4,9 +4,7 @@ import { memo, useMemo } from 'react'
 import useResponsive from '@/lib/use-responsive'
 import { ResponsiveContainer, ResponsiveText } from '@/components/responsive'
 
-
-
-const About = memo(function About() {
+const Mission = memo(function Mission() {
   const { isMobile, isXs, is3Xl, is4Xl, is5Xl } = useResponsive()
   
   const sectionClass = useMemo(() => 
@@ -25,7 +23,7 @@ const About = memo(function About() {
   )
 
   return (
-    <section id="about" className={sectionClass}>
+    <section id="mission" className={sectionClass}>
       {!isMobile && (
         <div className="absolute inset-0 opacity-20">
           <div className="absolute inset-0" style={{
@@ -48,56 +46,36 @@ const About = memo(function About() {
             desktopSize={is3Xl ? "text-6xl lg:text-7xl" : is4Xl ? "text-7xl lg:text-8xl" : is5Xl ? "text-8xl lg:text-9xl" : "text-5xl lg:text-6xl"}
             className={headingClass}
           >
-            ABOUT{' '}
+            OUR{' '}
             <span className="relative">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-accent via-accent/90 to-accent">
-                US
+                MISSION
               </span>
               <div className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-accent/50 via-accent to-accent/50" />
             </span>
           </ResponsiveText>
-
-          {/* Japanese Kanji Display */}
-          <div className="flex items-center justify-center gap-6 sm:gap-8 mb-8 sm:mb-12">
-            <div className="text-center space-y-2">
-              <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-accent/80 tracking-wider">
-                進化
-              </div>
-              <div className="flex items-center justify-center gap-2">
-                <span className="text-muted-foreground text-sm sm:text-base font-mono">
-                  shin·ka
-                </span>
-              </div>
-            </div>
-            
-            <div className="w-px h-16 sm:h-20 bg-accent/20" />
-            
-            <div className="text-left space-y-2">
-              <div className="text-lg sm:text-xl font-semibold text-foreground">
-                Evolution
-              </div>
-              <div className="text-muted-foreground text-sm sm:text-base max-w-xs">
-                The process of becoming more advanced, progress, development, and improvement
-              </div>
-            </div>
-          </div>
           
-          {/* Main Description */}
-          <div className="max-w-4xl mx-auto mb-8 sm:mb-12">
-            <ResponsiveText
-              mobileSize="text-lg sm:text-xl"
-              tabletSize="text-2xl"
-              desktopSize="text-2xl"
-              className="text-muted-foreground leading-relaxed"
-            >
-              An applied research laboratory building products that embody the spirit of evolution—advancing 
-              technology to solve humanity's greatest challenges through continuous innovation and breakthrough solutions.
-            </ResponsiveText>
-          </div>
+          <ResponsiveText
+            as="h3"
+            mobileSize={isXs ? "text-2xl" : "text-3xl"}
+            tabletSize="text-4xl lg:text-5xl"
+            desktopSize={is3Xl ? "text-6xl lg:text-7xl" : is4Xl ? "text-7xl lg:text-8xl" : is5Xl ? "text-8xl lg:text-9xl" : "text-5xl lg:text-7xl"}
+            className="font-semibold text-foreground tracking-tight leading-[1.1]"
+          >
+            <span className="inline-block">
+              <span className="text-primary font-bold">Building</span>{' '}
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/80 font-bold">super-intelligence</span>
+            </span>
+            <br />
+            <span className="inline-block">
+              <span className="text-primary/70 font-bold">for the world</span> &{' '}
+              <span className="text-foreground">beyond</span>
+            </span>
+          </ResponsiveText>
         </div>
       </ResponsiveContainer>
     </section>
   )
 })
 
-export default About
+export default Mission 

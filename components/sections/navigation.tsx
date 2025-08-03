@@ -14,6 +14,7 @@ import { Show } from '@/components/responsive'
 const navItems = [
   { href: "/", label: "Home" },
   { href: "/#about", label: "About" },
+  { href: "/#mission", label: "Mission" },
   { href: "/#team", label: "Team" },
 ] as const
 
