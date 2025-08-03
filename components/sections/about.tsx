@@ -90,8 +90,7 @@ const About = memo(function About() {
               desktopSize="text-2xl"
               className="text-muted-foreground leading-relaxed"
             >
-              An applied research laboratory building products that embody the spirit of evolution—advancing 
-              technology to solve humanity's greatest challenges through continuous innovation and breakthrough solutions.
+            We are an applied research lab.
             </ResponsiveText>
           </div>
         </div>
