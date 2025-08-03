@@ -3,7 +3,6 @@
 import { useState, memo, useMemo, useCallback } from 'react'
 import useResponsive from '@/lib/use-responsive'
 import { ResponsiveContainer, ResponsiveText } from '@/components/responsive'
-import { Badge } from '@/components/ui/badge'
 
 const experience = [
   { name: "QX Labs", role: "Founding AI Engineer", size: "large" },
@@ -33,11 +32,6 @@ const Team = memo(function Team() {
   
   const headerClass = useMemo(() => 
     `text-center ${isXs ? 'mb-8' : isMobile ? 'mb-12' : 'mb-20'}`, 
-    [isMobile, isXs]
-  )
-  
-  const badgeClass = useMemo(() => 
-    `${isXs ? 'mb-3' : isMobile ? 'mb-4' : 'mb-8'} border-foreground/20 text-foreground font-mono bg-accent/5 backdrop-blur-sm`, 
     [isMobile, isXs]
   )
   
@@ -83,10 +77,6 @@ const Team = memo(function Team() {
 
       <ResponsiveContainer maxWidth="responsive" className="relative z-10">
         <div className={headerClass}>
-          <Badge variant="outline" className={badgeClass}>
-            EXPERIENCE
-          </Badge>
-          
           <ResponsiveText
             as="h2"
             mobileSize={isXs ? "text-xl" : "text-2xl"}

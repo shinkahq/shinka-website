@@ -1,10 +1,33 @@
 'use client'
 
 import { memo, useMemo } from 'react'
-import { ArrowRight, Twitter, Linkedin, Mail, Calendar, MessageSquare } from "lucide-react"
+import { ArrowRight, Mail, Calendar, MessageSquare } from "lucide-react"
 import useResponsive from '@/lib/use-responsive'
 import { ResponsiveContainer, ResponsiveText } from '@/components/responsive'
-import { Badge } from '@/components/ui/badge'
+
+// Custom LinkedIn Icon Component
+const LinkedinIcon = ({ className, ...props }: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={className}
+    {...props}
+  >
+    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+  </svg>
+)
+
+// Custom X (Twitter) Icon Component
+const XIcon = ({ className, ...props }: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={className}
+    {...props}
+  >
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+  </svg>
+)
 
 const contactOptions = [
   {
@@ -33,12 +56,12 @@ const contactOptions = [
     icon: MessageSquare,
     socialLinks: [
       {
-        icon: Twitter,
+        icon: XIcon,
         href: "https://x.com/shinkahq",
         label: "Twitter"
       },
       {
-        icon: Linkedin,
+        icon: LinkedinIcon,
         href: "https://linkedin.com/company/shinkahq",
         label: "LinkedIn"
       }
@@ -58,11 +81,6 @@ const Contact = memo(function Contact() {
   
   const headerClass = useMemo(() => 
     `text-center ${isXs ? 'mb-8' : isMobile ? 'mb-12' : 'mb-20'}`, 
-    [isMobile, isXs]
-  )
-  
-  const badgeClass = useMemo(() => 
-    `${isXs ? 'mb-3' : isMobile ? 'mb-4' : 'mb-8'} border-foreground/20 text-foreground font-mono bg-accent/5 backdrop-blur-sm`, 
     [isMobile, isXs]
   )
   
@@ -110,9 +128,6 @@ const Contact = memo(function Contact() {
 
       <ResponsiveContainer maxWidth="responsive" className="relative z-10">
         <div className={headerClass}>
-          <Badge variant="outline" className={badgeClass}>
-            CONTACT
-          </Badge>
           
           <ResponsiveText
             as="h2"

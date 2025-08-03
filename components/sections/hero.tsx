@@ -1,7 +1,6 @@
 'use client'
 
 import { memo } from 'react'
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import useResponsive from '@/lib/use-responsive'
 import { ResponsiveContainer, ResponsiveText } from '@/components/responsive'
@@ -14,10 +13,6 @@ const Hero = memo(function Hero() {
     <section className={`${paddingClass} bg-gradient-to-b from-background to-muted/20`}>
       <ResponsiveContainer maxWidth="responsive">
         <div className="text-center">
-          <Badge variant="outline" className="mb-4 sm:mb-6 md:mb-8 3xl:mb-12 4xl:mb-16 5xl:mb-20 border-foreground/20 text-foreground font-medium bg-background/50 backdrop-blur-sm">
-            ENTERPRISE SOLUTIONS
-          </Badge>
-          
           <ResponsiveText
             as="h1"
             mobileSize={isXs ? "text-2xl" : "text-3xl"}

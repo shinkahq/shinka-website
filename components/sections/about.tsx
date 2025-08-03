@@ -3,7 +3,6 @@
 import { memo, useMemo } from 'react'
 import useResponsive from '@/lib/use-responsive'
 import { ResponsiveContainer, ResponsiveText } from '@/components/responsive'
-import { Badge } from '@/components/ui/badge'
 
 const About = memo(function About() {
   const { isMobile, isXs, is3Xl, is4Xl, is5Xl } = useResponsive()
@@ -15,11 +14,6 @@ const About = memo(function About() {
   
   const headerClass = useMemo(() => 
     `text-center ${isXs ? 'mb-8' : isMobile ? 'mb-12' : is3Xl ? 'mb-32' : is4Xl ? 'mb-40' : is5Xl ? 'mb-48' : 'mb-20 md:mb-32'}`, 
-    [isMobile, isXs, is3Xl, is4Xl, is5Xl]
-  )
-  
-  const badgeClass = useMemo(() => 
-    `${isXs ? 'mb-3' : isMobile ? 'mb-4' : is3Xl ? 'mb-12' : is4Xl ? 'mb-16' : is5Xl ? 'mb-20' : 'mb-8'} border-foreground/20 text-foreground font-mono bg-accent/5 backdrop-blur-sm`, 
     [isMobile, isXs, is3Xl, is4Xl, is5Xl]
   )
   
@@ -44,9 +38,6 @@ const About = memo(function About() {
       
       <ResponsiveContainer maxWidth="responsive" className="relative z-10">
         <div className={headerClass}>
-          <Badge variant="outline" className={badgeClass}>
-            ABOUT US
-          </Badge>
           
           <ResponsiveText
             as="h2"
