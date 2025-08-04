@@ -59,12 +59,7 @@ const About = memo(function About() {
               </div>
             </div>
             
-            {/* Vertical separator - hidden on mobile, shown on larger screens */}
-            <div className="hidden lg:block w-px h-24 bg-accent/20" />
-            
-            {/* Horizontal separator - shown on mobile/tablet */}
-            <div className="lg:hidden w-16 h-px bg-accent/20" />
-            
+            {/* Evolution word and description moved above the separator */}
             <div className="text-center lg:text-left space-y-3 sm:space-y-4 max-w-sm lg:max-w-md">
               <div className="text-lg sm:text-xl lg:text-2xl font-semibold text-foreground">
                 Evolution
@@ -73,6 +68,12 @@ const About = memo(function About() {
                 The process of becoming more advanced, progress, development, and improvement
               </div>
             </div>
+
+            {/* Vertical separator - hidden on mobile, shown on larger screens */}
+            <div className="hidden lg:block w-px h-24 bg-accent/20" />
+            
+            {/* Horizontal separator - shown on mobile/tablet */}
+            <div className="lg:hidden w-16 h-px bg-accent/20" />
           </div>
           
           {/* Main Description */}
