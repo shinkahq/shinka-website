@@ -44,7 +44,7 @@ const About = memo(function About() {
           </ResponsiveText>
 
           {/* Japanese Kanji and Description */}
-          <div className="flex flex-col lg:flex-row items-center justify-center gap-6 sm:gap-8 lg:gap-12 mb-8 sm:mb-12 lg:mb-16">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8 lg:gap-12 mb-8 sm:mb-12 lg:mb-16">
             <div className="text-center space-y-3 sm:space-y-4">
               <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-accent/80 tracking-wider">
                 進化
@@ -58,9 +58,12 @@ const About = memo(function About() {
                 </span>
               </div>
             </div>
+
+            {/* Vertical separator - shown on all screens */}
+            <div className="w-px h-24 bg-accent/20" />
             
-            {/* Evolution word and description moved above the separator */}
-            <div className="text-center lg:text-left space-y-3 sm:space-y-4 max-w-sm lg:max-w-md">
+            {/* Evolution word and description */}
+            <div className="text-center sm:text-left space-y-3 sm:space-y-4 max-w-sm lg:max-w-md">
               <div className="text-lg sm:text-xl lg:text-2xl font-semibold text-foreground">
                 Evolution
               </div>
@@ -68,12 +71,6 @@ const About = memo(function About() {
                 The process of becoming more advanced, progress, development, and improvement
               </div>
             </div>
-
-            {/* Vertical separator - hidden on mobile, shown on larger screens */}
-            <div className="hidden lg:block w-px h-24 bg-accent/20" />
-            
-            {/* Horizontal separator - shown on mobile/tablet */}
-            <div className="lg:hidden w-16 h-px bg-accent/20" />
           </div>
           
           {/* Main Description */}
