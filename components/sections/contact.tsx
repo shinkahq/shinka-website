@@ -36,7 +36,7 @@ const contactOptions = [
     icon: Mail,
     action: {
       text: "Send Message",
-      href: "mailto:ayushbodade1@gmail.com",
+      href: "mailto:founders@shinkahq.com",
       external: false
     }
   },

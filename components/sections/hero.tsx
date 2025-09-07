@@ -52,7 +52,7 @@ const Hero = memo(function Hero() {
               className="px-6 sm:px-8 3xl:px-12 4xl:px-16 5xl:px-20 py-2 sm:py-3 3xl:py-4 4xl:py-6 5xl:py-8 text-base sm:text-lg 3xl:text-xl 4xl:text-2xl 5xl:text-3xl font-semibold bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
             >
               <a href="#contact" className="scroll-smooth">
-                Get Started
+                Get In Touch
               </a>
             </Button>
           </div>

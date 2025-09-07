@@ -110,7 +110,7 @@ export default function Footer() {
             {/* Contact & Social */}
             <div className="flex items-center justify-center gap-3 sm:gap-4">
               <a 
-                href="mailto:ayushbodade1@gmail.com" 
+                href="mailto:founders@shinkahq.com" 
                 className="p-2 sm:p-3 bg-accent/5 rounded-lg border border-accent/20 text-accent hover:bg-accent/10 hover:border-accent/40 transition-all duration-300 group"
                 aria-label="Email us"
               >
@@ -185,7 +185,7 @@ export default function Footer() {
             {/* Right: Contact & Social */}
             <div className="flex items-center justify-end gap-3">
               <a 
-                href="mailto:ayushbodade1@gmail.com" 
+                href="mailto:founders@shinkahq.com" 
                 className="p-2 bg-accent/5 rounded-lg border border-accent/20 text-accent hover:bg-accent/10 hover:border-accent/40 transition-all duration-300 group"
                 aria-label="Email us"
               >
